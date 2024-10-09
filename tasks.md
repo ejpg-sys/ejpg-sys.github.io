@@ -5,8 +5,8 @@
 -02 :[--]: orderby date implementation in ng-repeat funcion
 -03 :[--]: MIT License footer text
 ## TASK 002
--04 :[--]: language change listener by user
--05 :[--]: dynamic content loader by language settings
+-04 :[-?]: language change listener by user
+-05 :[OK]: dynamic content loader by language settings
 ## TASK 003
 -06 :[--]: load text data by language in modal (extract content text)
 ## TASK 004
