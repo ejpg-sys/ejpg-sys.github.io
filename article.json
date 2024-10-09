@@ -33,5 +33,19 @@
     "languages": ["en","pt"],
     "author": "E.J.P.G.",
     "date_time": "2024-10-02T18:35:41"
+  },
+  {
+    "title": "EPICS, HISTORIES, AND TASKS",
+    "body": "article/epics-histories-and-tasks.md",
+    "languages": ["en","pt"],
+    "author": "E.J.P.G.",
+    "date_time": "2024-10-07T09:57:17"
+  },
+  {
+    "title": "FUNCTION POINT ANALYSIS",
+    "body": "article/fpa-function-point-analysis.md",
+    "languages": ["en","pt"],
+    "author": "E.J.P.G.",
+    "date_time": "2024-10-07T10:19:53"
   }
 ]
