@@ -12,15 +12,7 @@
       <h1 class="text-center">EJPG-SYS on GITHUB.IO</h1>
     </div>
     <hr/>
-    <div id="systemProgressBar">
-      <div class="progress">
-        <div class="progress-bar bg-success" role="progressbar" aria-label="Basic example" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-      <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar bg-success" style="width: 25%"></div>
-      </div>
-    </div>
-    <div class="">
+    <div>
       <div class="row">
         <div class="text-dark col justify-content-end">
           <label ng-bind="languageLabel"></label> 
@@ -40,13 +32,13 @@
           </thead>
           <tbody>
             <tr ng-repeat="article in articles">
-              <th scope="row">
+              <th class="col" scope="row">
                 <span ng-bind="$index + 1"></span>
               </th>
-              <td>
-                <span ng-bind="article.date_time"></span>
+              <td class="col">
+                <span ng-bind="article.date_time | date:'yyyy-MM-dd'"></span>
               </td>
-              <td>
+              <td class="col-12">
                 <a class="text-dark" ng-href="{{article.body}}" ng-bind="article.title"></a>
               </td>
             </tr>
@@ -56,51 +48,88 @@
           <div class="col justify-content-end">
             <label class="fw-bold" ng-bind="tablePageLabel"></label>
             <a class="text-dark fw-bold" href="#">1</a>
-            <a class="text-dark" href="#">2</a>
-            <a class="text-dark" href="#">3</a>
           </div>
         </div>
       <div>
       <br/>
     </div>
     <div>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainReader">Let me see working!</button>
-      <div class="modal fade" id="mainReader">
-        <div class="modal-xl modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-titled" ng-bind="article.title"></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            </div>
-            <div class="modal-body" ng-bind="article.body">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>
       <hr/>
-      <a class="text-dark" href="license.txt">MIT License (c) EJPG</a>
+      <a class="text-dark" href="license.txt">MIT License</a>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" integrity="sha384-c+qsMuWimzoMxDpSd67QtX89Nctaxh/CBMTgEnKrTahfMz1HgjjwqrzEGYXMZxYi" crossorigin="anonymous"></script>
   <script>
+    var articles = [
+    {
+      "title": "DRIVEN DESIGN",
+      "body": "article/driven-design.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-01T15:35:31.000-03:00"
+    },
+    {
+      "title": "DRIVEN EVENT",
+      "body": "article/driven-event.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-01T01:45:20.000-03:00"
+    },
+    {
+      "title": "ARTIFICIAL INTELLIGENCE",
+      "body": "article/artificial-intelligence.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-02T04:15:28.000-03:00"
+    },
+    {
+      "title": "MACHINE LEARNING",
+      "body": "article/machine-learning.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-02T04:53:51.000-03:00"
+    },
+    {
+      "title": "HANDS-ON IN DRIVEN-DESIGN",
+      "body": "article/hand-on_driven-design.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-02T18:35:41.000-03:00"
+    },
+    {
+      "title": "EPICS, HISTORIES, AND TASKS",
+      "body": "article/epics-histories-and-tasks.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-07T09:57:17.000-03:00"
+    },
+    {
+      "title": "FUNCTION POINT ANALYSIS",
+      "body": "article/fpa-function-point-analysis.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-07T10:19:53.000-03:00"
+    },
+    {
+      "title": "HANDS-ON IN HISTORY PRODUCT DEVELOPMENT",
+      "body": "article/hands_on-in-history-product-development.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-07T15:16:07.000-03:00"
+    }];
+    var userLanguage = 'en';
+    var userLanguages = navigator.languages;    
+    var i = 0;
+    while( i < userLanguages.length) {
+      if (userLanguages[i] === 'pt' || userLanguages[i] === 'pt-BR') {
+        userLanguage = 'pt';
+        break;
+      }
+      i+=1;
+    }
     var system = angular.module("system", []);
     system.controller("systemCtrl", function ($scope) { 
-      var userLanguage = 'en';
-      var userLanguages = navigator.languages;    
-      var i = 0;
-      while( i < userLanguages.length) {
-        if (userLanguages[i] === 'pt' || userLanguages[i] === 'pt-BR') {
-          userLanguage = 'pt';
-          break;
-        }
-        i+=1;
-      }
       $scope.language = userLanguage;
       $scope.changeLanguageEN = function() {
         $scope.articlesLabel = 'articles';
@@ -125,26 +154,8 @@
       } else {
         $scope.changeLanguageEN();
       }
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'article.json', true);
-      xhr.responseType = 'json';
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          $scope.articles = xhr.response;
-        }
-      }
-      xhr.send();
+      $scope.articles = articles;
     });
-    (function main() {
-      var iprogress = 0;
-      var progressInterval = setInterval(function() {
-        if (iprogress <= 5) {
-          iprogress++;
-        } else {
-          clearInterval(progressInterval);
-        }
-      }, 500);
-    })();
   </script>
 </body>
 </html>

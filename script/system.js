@@ -1,6 +1,3 @@
-var system = angular.module("system", []);
-system.controller("systemCtrl", function ($scope) {
-$scope.appname = "hello!";
 /**
 fetch("article.json")
 .then(function(response) {
@@ -20,4 +17,15 @@ xhr.onload = function() {
   }
 }
 xhr.send();
-});
+
+(function main() {
+  var iprogress = 0;
+  var progressInterval = setInterval(function() {
+    if (iprogress <= 5) {
+      iprogress++;
+    } else {
+      clearInterval(progressInterval);
+    }
+  }, 500);
+})();
+
