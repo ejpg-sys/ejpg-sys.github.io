@@ -39,7 +39,7 @@
                 <span ng-bind="article.date_time | date:'yyyy-MM-dd'"></span>
               </td>
               <td class="col-12">
-                <a class="text-dark" ng-href="{{article.body}}" ng-bind="article.title"></a>
+                <a class="text-dark" ng-click="readerModalOpen(article.article_id)" ng-bind="article.title" href="#"></a>
               </td>
             </tr>
           </tbody>
@@ -58,11 +58,32 @@
       <a class="text-dark" href="license.txt">MIT License</a>
     </div>
   </div>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#readerModal">
+    Let me see working!
+  </button>
+  <div class="modal fade" id="readerModal" tabindex="-1" aria-labelledby="readerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="readerModalLabel" ng-bind="readerModalTitle"></h1>
+          <button type="button" class="btn-close" aria-label="Close" ng-click="readerModalClose()"></button>
+        </div>
+        <div class="modal-body">
+          <p ng-bind="readerModalBody"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" ng-click="readerModalClose()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" integrity="sha384-c+qsMuWimzoMxDpSd67QtX89Nctaxh/CBMTgEnKrTahfMz1HgjjwqrzEGYXMZxYi" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
     var articles = [
     {
+      "article_id": "5a61f8fb4c067ea035bb779880421743e11b9b71",
       "title": "DRIVEN DESIGN",
       "body": "article/driven-design.md",
       "languages": ["en","pt"],
@@ -70,6 +91,7 @@
       "date_time": "2024-10-01T15:35:31.000-03:00"
     },
     {
+      "article_id": "93ea0629f27b756cbf681651ab7c0030765024ca",
       "title": "DRIVEN EVENT",
       "body": "article/driven-event.md",
       "languages": ["en","pt"],
@@ -77,6 +99,7 @@
       "date_time": "2024-10-01T01:45:20.000-03:00"
     },
     {
+      "article_id": "8a9466c4856ccc4aa0d94d222f4fe49c23f0d11f",
       "title": "ARTIFICIAL INTELLIGENCE",
       "body": "article/artificial-intelligence.md",
       "languages": ["en","pt"],
@@ -84,6 +107,7 @@
       "date_time": "2024-10-02T04:15:28.000-03:00"
     },
     {
+      "article_id": "f7af5c1c938aa9a46c4bb208a746e0cb93c70d20",
       "title": "MACHINE LEARNING",
       "body": "article/machine-learning.md",
       "languages": ["en","pt"],
@@ -91,6 +115,7 @@
       "date_time": "2024-10-02T04:53:51.000-03:00"
     },
     {
+      "article_id": "d14a0e0ae48b2e4b8b91bd81d5ec8f7897082849",
       "title": "HANDS-ON IN DRIVEN-DESIGN",
       "body": "article/hand-on_driven-design.md",
       "languages": ["en","pt"],
@@ -98,6 +123,7 @@
       "date_time": "2024-10-02T18:35:41.000-03:00"
     },
     {
+      "article_id": "bcd97f8b7b800f18409255a18d49a92d733bcb96",
       "title": "EPICS, HISTORIES, AND TASKS",
       "body": "article/epics-histories-and-tasks.md",
       "languages": ["en","pt"],
@@ -105,6 +131,7 @@
       "date_time": "2024-10-07T09:57:17.000-03:00"
     },
     {
+      "article_id": "647f7e958b24ae3fd4b355242e62a047d2bba089",
       "title": "FUNCTION POINT ANALYSIS",
       "body": "article/fpa-function-point-analysis.md",
       "languages": ["en","pt"],
@@ -112,6 +139,7 @@
       "date_time": "2024-10-07T10:19:53.000-03:00"
     },
     {
+      "article_id": "7821c5d3cb0af89107e574e25d1a995f9bab6a36",
       "title": "HANDS-ON IN HISTORY PRODUCT DEVELOPMENT",
       "body": "article/hands_on-in-history-product-development.md",
       "languages": ["en","pt"],
@@ -155,6 +183,31 @@
         $scope.changeLanguageEN();
       }
       $scope.articles = articles;
+
+      $scope.readerModalOpen = function(article_id) {
+        var i = 0;
+        while (i < articles.length) {
+          if (articles[i].article_id === article_id) {
+            xhr = new XMLHttpRequest();
+            xhr.open('GET', articles[i].body);
+            xhr.onload = function(data) {
+              if (xhr.status === 200)
+              $scope.readerModalTitle = articles[i].title;
+              $scope.readerModalBody = xhr.responseText;
+              $("#readerModal").modal('toggle');
+            }
+            xhr.send();
+            break;
+          }
+          i++
+        }
+      }
+
+      $scope.readerModalClose = function() {
+        $("#readerModal").modal('hide');
+        $scope.readerModalTitle = '';
+        $scope.readerModalBody = '';
+      }
     });
   </script>
 </body>
