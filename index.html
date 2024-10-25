@@ -36,7 +36,7 @@
                 <span ng-bind="$index + 1"></span>
               </th>
               <td class="col">
-                <span ng-bind="article.date_time | date:'yyyy-MM-dd'"></span>
+                <span ng-bind="article.date_time | date:'yyyy-MM-dd HH:mm'"></span>
               </td>
               <td class="col-12">
                 <a class="text-dark" ng-click="readerModalOpen(article.article_id)" ng-bind="article.title" href="#"></a>
@@ -55,12 +55,9 @@
     </div>
     <div>
       <hr/>
-      <a class="text-dark" href="license.txt">MIT License</a>
+      <a class="text-dark" ng-click="readerLicense(license.txt)" href="#">MIT License</a>
     </div>
   </div>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#readerModal">
-    Let me see working!
-  </button>
   <div class="modal fade" id="readerModal" tabindex="-1" aria-labelledby="readerModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
       <div class="modal-content">
@@ -96,7 +93,7 @@
       "body": "article/driven-event.md",
       "languages": ["en","pt"],
       "author": "E.J.P.G.",
-      "date_time": "2024-10-01T01:45:20.000-03:00"
+      "date_time": "2024-10-02T01:45:20.000-03:00"
     },
     {
       "article_id": "8a9466c4856ccc4aa0d94d222f4fe49c23f0d11f",
@@ -183,7 +180,6 @@
         $scope.changeLanguageEN();
       }
       $scope.articles = articles;
-
       $scope.readerModalOpen = function(article_id) {
         var i = 0;
         while (i < articles.length) {
@@ -202,11 +198,21 @@
           i++
         }
       }
-
       $scope.readerModalClose = function() {
         $("#readerModal").modal('hide');
         $scope.readerModalTitle = '';
         $scope.readerModalBody = '';
+      }
+      $scope.readerLicense = function() {
+        xhr = new XMLHttpRequest();
+        xhr.open('GET', 'license.txt');
+        xhr.onload = function(data) {
+          if (xhr.status === 200)
+          $scope.readerModalTitle = 'License';
+          $scope.readerModalBody = xhr.responseText;
+          $("#readerModal").modal('toggle');
+        }
+        xhr.send();
       }
     });
   </script>
