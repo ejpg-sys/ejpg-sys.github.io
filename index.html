@@ -1,111 +1,255 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="system">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>EJPG-SYS on GITHUB.IO</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
+<body ng-controller="systemCtrl">
   <div class="mt-5 container">
     <div>
       <h1 class="text-center">EJPG-SYS on GITHUB.IO</h1>
     </div>
     <hr/>
     <div>
-      <h2>articles</h2>
-      <table class="table table-hover table-borderless">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">DATE</th>
-            <th scope="col">SUBJECT</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>2024-10-01</td>
-            <td>
-              <a class="text-dark" href="article/driven-design.md">DRIVEN DESIGN</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>2024-10-02</td>
-            <td>
-              <a class="text-dark" href="article/driven-event.md">DRIVEN EVENT</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>2024-10-02</td>
-            <td>
-              <a class="text-dark" href="article/artificial-intelligence.md">ARTIFICIAL INTELLIGENCE</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>2024-10-02</td>
-            <td>
-              <a class="text-dark" href="article/machine-learning.md">MACHINE LEARNING</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>2024-10-02</td>
-            <td>
-              <a class="text-dark" href="article/hand-on_driven-design.md">HANDS-ON IN DRIVEN-DESIGN</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">6</th>
-            <td>2024-10-07</td>
-            <td>
-              <a class="text-dark" href="article/epics-histories-and-tasks.md">EPICS, HISTORIES, AND TASKS</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">7</th>
-            <td>2024-10-07</td>
-            <td>
-              <a class="text-dark" href="article/fpa-function-point-analysis.md">FUNCTION POINT ANALYSIS</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">8</th>
-            <td>2024-10-07</td>
-            <td>
-              <a class="text-dark" href="article/hands_on-in-history-product-development.md">HANDS-ON IN HISTORY PRODUCT DEVELOPMENT</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">9</th>
-            <td>2024-10-26</td>
-            <td>
-              <a class="text-dark" href="article/software-product-ecossystem-perspective.md">SOFTWARE PRODUCT ECOSSYSTEM PERSPECTIVE</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">10</th>
-            <td>2024-10-27</td>
-            <td>
-              <a class="text-dark" href="article/utopia-contract.md">sporsorship contract to labor in CLT [BR] modalite</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">11</th>
-            <td>2024-10-27</td>
-            <td>
-              <a class="text-dark" href="article/sponsorship-and-business-capacity.md">SPONSORSHIP AND BUSINESS CAPACITY</a>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <th colspan="3">PAGE 1</th>
-        </tfoot>
-    </table>
+      <div class="row">
+        <div class="text-dark col justify-content-end">
+          <label ng-bind="languageLabel"></label> 
+          <a href="#" ng-click="changeLanguageEN()" id="languageENLabel">en</a>
+          <a href="#" ng-click="changeLanguagePT()" id="languagePTLabel">pt</a>
+        </div>
+      </div>
+      <div>
+        <h2 ng-bind="articlesLabel"></h2>
+        <table class="table table-hover table-borderless" id="articlesTable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th ng-bind="tableDateLabel" scope="col"></th>
+              <th ng-bind="tableSubjectLabel" scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="article in articles | limitTo:articlesMaxItemsPage:articlesMaxItemsPage*(articlesCurrentPage-1) track by $index">
+              <th class="col" scope="row">
+                <span ng-bind="$index + 1"></span>
+              </th>
+              <td class="col">
+                <span ng-bind="article.date_time | date:'yyyy-MM-dd HH:mm'"></span>
+              </td>
+              <td class="col-12">
+                <a class="text-dark" ng-click="readerModalOpen(article.article_id)" ng-bind="article.title" href="#"></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row" id="pager">
+          <div class="col justify-content-end">
+            <label class="fw-bold" ng-bind="tablePageLabel"></label>
+            <a class="text-dark fw-bold" href="#" ng-click="articlesChangePage(1)">1</a>
+            <a class="text-dark fw-bold" href="#" ng-click="articlesChangePage(2)">2</a>
+            <a class="text-dark fw-bold" href="#" ng-click="articlesChangePage(3)">3</a>
+          </div>
+        </div>
+      <div>
+      <br/>
+    </div>
     <div>
+      <hr/>
+      <a class="text-dark" ng-click="readerLicense(license.txt)" href="#">MIT License</a>
+    </div>
+  </div>
+  <div class="modal fade" id="readerModal" tabindex="-1" aria-labelledby="readerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="readerModalLabel" ng-bind="readerModalTitle"></h1>
+          <button type="button" class="btn-close" aria-label="Close" ng-click="readerModalClose()"></button>
+        </div>
+        <div class="modal-body">
+          <p ng-bind="readerModalBody"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" ng-click="readerModalClose()">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" integrity="sha384-c+qsMuWimzoMxDpSd67QtX89Nctaxh/CBMTgEnKrTahfMz1HgjjwqrzEGYXMZxYi" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script>
+    var articles = [
+    {
+      "article_id": "5a61f8fb4c067ea035bb779880421743e11b9b71",
+      "title": "DRIVEN DESIGN",
+      "body": "article/driven-design.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-01T15:35:31.000-03:00"
+    },
+    {
+      "article_id": "93ea0629f27b756cbf681651ab7c0030765024ca",
+      "title": "DRIVEN EVENT",
+      "body": "article/driven-event.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-02T01:45:20.000-03:00"
+    },
+    {
+      "article_id": "8a9466c4856ccc4aa0d94d222f4fe49c23f0d11f",
+      "title": "ARTIFICIAL INTELLIGENCE",
+      "body": "article/artificial-intelligence.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-02T04:15:28.000-03:00"
+    },
+    {
+      "article_id": "f7af5c1c938aa9a46c4bb208a746e0cb93c70d20",
+      "title": "MACHINE LEARNING",
+      "body": "article/machine-learning.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-02T04:53:51.000-03:00"
+    },
+    {
+      "article_id": "d14a0e0ae48b2e4b8b91bd81d5ec8f7897082849",
+      "title": "HANDS-ON IN DRIVEN-DESIGN",
+      "body": "article/hand-on_driven-design.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-02T18:35:41.000-03:00"
+    },
+    {
+      "article_id": "bcd97f8b7b800f18409255a18d49a92d733bcb96",
+      "title": "EPICS, HISTORIES, AND TASKS",
+      "body": "article/epics-histories-and-tasks.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-07T09:57:17.000-03:00"
+    },
+    {
+      "article_id": "647f7e958b24ae3fd4b355242e62a047d2bba089",
+      "title": "FUNCTION POINT ANALYSIS",
+      "body": "article/fpa-function-point-analysis.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-07T10:19:53.000-03:00"
+    },
+    {
+      "article_id": "7821c5d3cb0af89107e574e25d1a995f9bab6a36",
+      "title": "HANDS-ON IN HISTORY PRODUCT DEVELOPMENT",
+      "body": "article/hands_on-in-history-product-development.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-07T15:16:07.000-03:00"
+    },
+    {
+      "article_id": "ca7ce43d406acc85591585825b2edac8bc2cbd60",
+      "title": "SOFTWARE PRODUCT ECOSSYSTEM PERSPECTIVE",
+      "body": "article/software-product-ecossystem-perspective.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-26T21:19:24.000-0300"
+    },
+    {
+      "article_id": "ecf542c5bf7de2251f0b43a3be18cd927a10cef9",
+      "title": "sporsorship contract to labor in CLT [BR] modalite",
+      "body": "article/utopia-contract.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-27T12:13:25.000-0300"
+    },
+    {
+      "article_id": "b6cdcf64e6d1119954225ff20b64aff078e61275",
+      "title": "SPONSORSHIP AND BUSINESS CAPACITY",
+      "body": "article/sponsorship-and-business-capacity.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-27T13:45:59.000-0300"
+    }];
+    var userLanguage = 'en';
+    var userLanguages = navigator.languages;    
+    var i = 0;
+    while( i < userLanguages.length) {
+      if (userLanguages[i] === 'pt' || userLanguages[i] === 'pt-BR') {
+        userLanguage = 'pt';
+        break;
+      }
+      i+=1;
+    }
+    var system = angular.module("system", []);
+    system.controller("systemCtrl", function ($scope) { 
+      $scope.language = userLanguage;
+      $scope.changeLanguageEN = function() {
+        $scope.articlesLabel = 'articles';
+        $scope.languageLabel = 'languages';
+        $scope.tableDateLabel = 'DATE';
+        $scope.tableSubjectLabel = 'SUBJECT';
+        $scope.tablePageLabel = "PAGE"
+        document.getElementById('languageENLabel').setAttribute('class', 'text-dark fw-bold');
+        document.getElementById('languagePTLabel').setAttribute('class', 'text-dark');
+      }
+      $scope.changeLanguagePT = function() {
+        $scope.articlesLabel = 'artigos';
+        $scope.languageLabel = 'idiomas';
+        $scope.tableDateLabel = 'DATA';
+        $scope.tableSubjectLabel = 'ASSUNTO';
+        $scope.tablePageLabel = "PÁGINA";
+        document.getElementById('languagePTLabel').setAttribute('class', 'text-dark fw-bold');
+        document.getElementById('languageENLabel').setAttribute('class', 'text-dark');
+      }
+      if (userLanguage = 'pt') {
+        $scope.changeLanguagePT();
+      } else {
+        $scope.changeLanguageEN();
+      }
+      $scope.articles = articles;
+      $scope.readerModalOpen = function(article_id) {
+        var i = 0;
+        while (i < articles.length) {
+          if (articles[i].article_id === article_id) {
+            xhr = new XMLHttpRequest();
+            xhr.open('GET', articles[i].body);
+            xhr.onload = function(data) {
+              if (xhr.status === 200)
+              $scope.readerModalTitle = articles[i].title;
+              $scope.readerModalBody = xhr.responseText;
+              $("#readerModal").modal('toggle');
+            }
+            xhr.send();
+            break;
+          }
+          i++
+        }
+      }
+      $scope.readerModalClose = function() {
+        $("#readerModal").modal('hide');
+        $scope.readerModalTitle = '';
+        $scope.readerModalBody = '';
+      }
+      $scope.readerLicense = function() {
+        xhr = new XMLHttpRequest();
+        xhr.open('GET', 'license.txt');
+        xhr.onload = function(data) {
+          if (xhr.status === 200)
+          $scope.readerModalTitle = 'License';
+          $scope.readerModalBody = xhr.responseText;
+          $("#readerModal").modal('toggle');
+        }
+        xhr.send();
+      }
+      $scope.artitlesListSize = articles.length;
+      $scope.articlesMaxItemsPage = 4;
+      $scope.articlesCurrentPage = 1;
+      $scope.articlesTotalPages = Math.round($scope.artitlesListSize / $scope.articlesMaxItemsPage);
+      $scope.articlesChangePage = function(pageNumber) {
+        if ($scope.articlesCurrentPage != pageNumber) {
+          $scope.articlesCurrentPage = pageNumber;
+        }
+      }
+    });
+  </script>
 </body>
 </html>
