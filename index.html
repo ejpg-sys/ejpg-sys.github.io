@@ -31,7 +31,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="article in articles | limitTo:articlesMaxItemsPage">
+            <tr ng-repeat="article in articles | limitTo:articlesMaxItemsPage:articlesMaxItemsPage*(articlesCurrentPage-1) track by $index">
               <th class="col" scope="row">
                 <span ng-bind="$index + 1"></span>
               </th>
