@@ -31,7 +31,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="article in articles">
+            <tr ng-repeat="article in articles | limitTo:articlesMaxItemsPage">
               <th class="col" scope="row">
                 <span ng-bind="$index + 1"></span>
               </th>
@@ -47,7 +47,9 @@
         <div class="row" id="pager">
           <div class="col justify-content-end">
             <label class="fw-bold" ng-bind="tablePageLabel"></label>
-            <a class="text-dark fw-bold" href="#">1</a>
+            <a class="text-dark fw-bold" href="#" ng-click="articlesChangePage(1)">1</a>
+            <a class="text-dark fw-bold" href="#" ng-click="articlesChangePage(2)">2</a>
+            <a class="text-dark fw-bold" href="#" ng-click="articlesChangePage(3)">3</a>
           </div>
         </div>
       <div>
@@ -144,29 +146,29 @@
       "date_time": "2024-10-07T15:16:07.000-03:00"
     },
     {
-    "article_id": "ca7ce43d406acc85591585825b2edac8bc2cbd60",
-    "title": "SOFTWARE PRODUCT ECOSSYSTEM PERSPECTIVE",
-    "body": "article/software-product-ecossystem-perspective.md",
-    "languages": ["en","pt"],
-    "author": "E.J.P.G.",
-    "date_time": "2024-10-26T21:19:24.000-0300"
-  },
-  {
-    "article_id": "ecf542c5bf7de2251f0b43a3be18cd927a10cef9",
-    "title": "sporsorship contract to labor in CLT [BR] modalite",
-    "body": "article/utopia-contract.md",
-    "languages": ["en","pt"],
-    "author": "E.J.P.G.",
-    "date_time": "2024-10-27T12:13:25.000-0300"
-  },
-  {
-    "article_id": "b6cdcf64e6d1119954225ff20b64aff078e61275",
-    "title": "SPONSORSHIP AND BUSINESS CAPACITY",
-    "body": "article/sponsorship-and-business-capacity.md",
-    "languages": ["en","pt"],
-    "author": "E.J.P.G.",
-    "date_time": "2024-10-27T13:45:59.000-0300"
-  }];
+      "article_id": "ca7ce43d406acc85591585825b2edac8bc2cbd60",
+      "title": "SOFTWARE PRODUCT ECOSSYSTEM PERSPECTIVE",
+      "body": "article/software-product-ecossystem-perspective.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-26T21:19:24.000-0300"
+    },
+    {
+      "article_id": "ecf542c5bf7de2251f0b43a3be18cd927a10cef9",
+      "title": "sporsorship contract to labor in CLT [BR] modalite",
+      "body": "article/utopia-contract.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-27T12:13:25.000-0300"
+    },
+    {
+      "article_id": "b6cdcf64e6d1119954225ff20b64aff078e61275",
+      "title": "SPONSORSHIP AND BUSINESS CAPACITY",
+      "body": "article/sponsorship-and-business-capacity.md",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2024-10-27T13:45:59.000-0300"
+    }];
     var userLanguage = 'en';
     var userLanguages = navigator.languages;    
     var i = 0;
@@ -237,6 +239,15 @@
           $("#readerModal").modal('toggle');
         }
         xhr.send();
+      }
+      $scope.artitlesListSize = articles.length;
+      $scope.articlesMaxItemsPage = 4;
+      $scope.articlesCurrentPage = 1;
+      $scope.articlesTotalPages = Math.round($scope.artitlesListSize / $scope.articlesMaxItemsPage);
+      $scope.articlesChangePage = function(pageNumber) {
+        if ($scope.articlesCurrentPage != pageNumber) {
+          $scope.articlesCurrentPage = pageNumber;
+        }
       }
     });
   </script>
