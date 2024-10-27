@@ -218,6 +218,7 @@
               $scope.readerModalTitle = articles[i].title;
               $scope.readerModalBody = xhr.responseText;
               $("#readerModal").modal('toggle');
+              console.log($scope.readerModalBody);
             }
             xhr.send();
             break;
