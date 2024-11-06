@@ -1,0 +1,22 @@
+
+the word <<<<<<HEAD on top of page means: on development!
+
+========================================
+KANBAM
+----------------------------------------
+1.
+-> written dinamic pages botton of page
+-> change page button selection to bold when activated
+----------------------------------------
+2. 
+-> read json file from external schema
+-> update tbody with ng-repeat when load done from json file
+----------------------------------------
+3.
+-> open text from article body with resource load request
+-> extract text for user talk language
+---------------------------------------
+4.
+-> add properies of author, date time, and subject on modal.
+========================================
+
