@@ -23,8 +23,8 @@
 	  <div class="row">
         <div class="text-dark col justify-content-end">
 		  <label ng-bind="topicTextValue"></label>
-          [<a href="#" ng-click="changeForArticlesTableView()" id="articlesLabel" ng-bind="articlesTextValue"></a>]
-          [<a href="#" ng-click="changeForPapersTableView()" id="papersLabel" ng-bind="papersTextValue"></a>]
+          [<a href="#" ng-click="changeTopicViewForArticlesTable()" id="articlesLabel" ng-bind="articlesTextValue"></a>]
+          [<a href="#" ng-click="changeTopicViewForPapersTable()" id="papersLabel" ng-bind="papersTextValue"></a>]
         </div>
       </div>
 	  <div class="row">
@@ -157,7 +157,7 @@
       "body": "article/software-product-ecossystem-perspective.md",
       "languages": ["en","pt"],
       "author": "E.J.P.G.",
-      "date_time": "2024-10-26T21:19:24.000-0300"
+      "date_time": "2024-10-26T21:19:24.000-03:00"
     },
     {
       "order_id": "10",
@@ -166,7 +166,7 @@
       "body": "article/utopia-contract.md",
       "languages": ["en","pt"],
       "author": "E.J.P.G.",
-      "date_time": "2024-10-27T12:13:25.000-0300"
+      "date_time": "2024-10-27T12:13:25.000-03:00"
     },
     {
       "order_id": "11",
@@ -175,7 +175,7 @@
       "body": "article/sponsorship-and-business-capacity.md",
       "languages": ["en","pt"],
       "author": "E.J.P.G.",
-      "date_time": "2024-10-27T13:45:59.000-0300"
+      "date_time": "2024-10-27T13:45:59.000-03:00"
     },
     {
       "order_id": "12",
@@ -184,7 +184,7 @@
       "body": "article/employer-on-technical-resources.md",
       "languages": ["en","pt"],
       "author": "E.J.P.G.",
-      "date_time": "2024-10-27T18:49:21.000-0300"
+      "date_time": "2024-10-27T18:49:21.000-03:00"
     },
     {
       "order_id": "13",
@@ -193,7 +193,7 @@
       "body": "article/working-on-the-shadow.md",
       "languages": ["en","pt"],
       "author": "E.J.P.G.",
-      "date_time": "2024-11-05T23:36:13.000-0300"
+      "date_time": "2024-11-05T23:36:13.000-03:00"
     }];
     var userLanguage = 'en';
     var userLanguages = navigator.languages;    
@@ -241,6 +241,18 @@
         document.getElementById('languagePT').setAttribute('class', 'text-dark fw-bold');
         document.getElementById('languageEN').setAttribute('class', 'text-dark');
       }
+	  $scope.changeTopicViewForArticlesTable = function() {
+	      // TODO: implement!
+	  }
+	  $scope.changeTopicViewForPapersTable = function() {
+	      // TODO: implement!
+	  }
+	  $scope.orderByNewest = function() {
+	      // TODO: implement!
+	  }
+	  $scope.orderByOldest = function() {
+	      // TODO: implement!
+	  }
       if (userLanguage = 'pt') {
         $scope.changeLanguagePT();
       } else {
