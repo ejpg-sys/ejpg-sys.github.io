@@ -16,12 +16,26 @@
       <div class="row">
         <div class="text-dark col justify-content-end">
           <label ng-bind="languageLabel"></label> 
-          <a href="#" ng-click="changeLanguageEN()" id="languageENLabel">en</a>
-          <a href="#" ng-click="changeLanguagePT()" id="languagePTLabel">pt</a>
+          [<a href="#" ng-click="changeLanguageEN()" id="languageENLabel" ng-bind="languageENTextValue"></a>]
+          [<a href="#" ng-click="changeLanguagePT()" id="languagePTLabel" ng-bind="languagePTTextValue"></a>]
         </div>
       </div>
-      <div>
-        <h2 ng-bind="articlesLabel"></h2>
+	  <div class="row">
+        <div class="text-dark col justify-content-end">
+          [<a href="#" ng-click="changeForArticlesTableView()" id="articlesLabel"></a>]
+          [<a href="#" ng-click="changeForPapersTableView()" id="papersLabel"></a>]
+        </div>
+      </div>
+	  <nav class="navbar">
+		    <div class="container">
+                <li class="nav-item">
+			        <a class="nav-link" ng-bind="articlesLabel"></a>
+				</li>
+				<li class="nav-item">
+			        <a class="nav-link" ng-bind="papersLabel"></a>
+				</li>
+			</div>
+		</nav>
         <table class="table table-hover table-borderless" id="articlesTable">
           <thead>
             <tr>
@@ -197,8 +211,11 @@
     system.controller("systemCtrl", function ($scope) { 
       $scope.language = userLanguage;
       $scope.changeLanguageEN = function() {
-        $scope.articlesLabel = 'articles';
-        $scope.languageLabel = 'languages';
+        $scope.articlesLabel = '[articles]';
+		$scope.papersLabel = '[papers]';
+        $scope.languageLabel = 'language';
+		$scope.languageENTextValue = "english";
+		$scope.languagePTTextValue = "portuguese";
         $scope.tableDateLabel = 'DATE';
         $scope.tableSubjectLabel = 'SUBJECT';
         $scope.tablePageLabel = "PAGE"
@@ -206,8 +223,11 @@
         document.getElementById('languagePTLabel').setAttribute('class', 'text-dark');
       }
       $scope.changeLanguagePT = function() {
-        $scope.articlesLabel = 'artigos';
-        $scope.languageLabel = 'idiomas';
+        $scope.articlesLabel = '[artigos]';
+		$scope.papersLabel = '[apresentações]';
+        $scope.languageLabel = 'idioma';
+		$scope.languageENTextValue = "inglês";
+		$scope.languagePTTextValue = "português";
         $scope.tableDateLabel = 'DATA';
         $scope.tableSubjectLabel = 'ASSUNTO';
         $scope.tablePageLabel = "PÁGINA";
