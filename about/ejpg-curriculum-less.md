@@ -6,9 +6,9 @@ Github Page: https://ejpg-sys.github.io
 
 ## Most Recent Copyright Projects
 
-2025-03-07 [Specification Interpreter Command v1.2] Presentation
-English: https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_2/en-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_2-default.pdf
-Portuguese: https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_2/pt-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_2-default.pdf
+2025-03-21 [Specification Interpreter Command v1.3] Presentation
+English: https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_3/en-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_3-default.pdf
+Portuguese: https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_3/pt-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_3-default.pdf
 
 2025-02-21 [AFPA Counting v1.0] Presentation 
 English: https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/afpa_counting_v1_0/en-presentation-ejpg_ecosystem_afpa_counting-default-v1_0.pdf
