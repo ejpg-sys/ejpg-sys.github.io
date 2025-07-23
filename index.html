@@ -7,34 +7,38 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body ng-controller="ctrl">
-  <div class="mt-5 container">
-    <div>
-      <h1 class="text-center" ng-bind="pageTitle"></h1>
-    </div>
-    <hr/>
-    <div>
-      <div class="row">
-        <div class="text-dark col justify-content-end">
-          <label ng-bind="languageLabel"></label> 
-          [<a href="#" ng-click="changeLanguageEN()" id="languageEN" ng-bind="languageENTextValue"></a>]
-          [<a href="#" ng-click="changeLanguagePT()" id="languagePT" ng-bind="languagePTTextValue"></a>]
-        </div>
+  <main>
+    <div class="mt-5 container">
+      <div>
+        <h1 class="text-center" ng-bind="pageTitle"></h1>
       </div>
-	  <div class="row">
-        <div class="text-dark col justify-content-end">
-		  <label ng-bind="topicTextValue"></label>
-          [<a href="#" ng-click="changeTopicViewForArticlesTable()" id="articlesLabel" ng-bind="articlesTextValue"></a>]
-          [<a href="#" ng-click="changeTopicViewForPapersTable()" id="papersLabel" ng-bind="papersTextValue"></a>]
+      <hr/>
+      <div>
+        <div class="row">
+          <div class="text-dark col justify-content-end">
+            <label ng-bind="languageLabel"></label> 
+            [<a href="#" ng-click="changeLanguageEN()" id="languageEN" ng-bind="languageENTextValue"></a>]
+            [<a href="#" ng-click="changeLanguagePT()" id="languagePT" ng-bind="languagePTTextValue"></a>]
+          </div>
         </div>
-      </div>
-	  <div class="row">
-        <div class="text-dark col justify-content-end">
-		  <label ng-bind="orderTextValue"></label>
-          [<a href="#" ng-click="orderByNewest()" id="newestId" ng-bind="newestTextValue"></a>]
-          [<a href="#" ng-click="orderByOldest()" id="oldestId" ng-bind="oldestTextValue"></a>]
+	    <div class="row">
+          <div class="text-dark col justify-content-end">
+		    <label ng-bind="topicTextValue"></label>
+            [<a href="#" ng-click="changeTopicViewForArticlesTable()" id="articlesLabel" ng-bind="articlesTextValue"></a>]
+            [<a href="#" ng-click="changeTopicViewForPapersTable()" id="papersLabel" ng-bind="papersTextValue"></a>]
+          </div>
         </div>
-      </div>
-        <table class="table table-hover table-borderless" id="articlesTable">
+	    <div class="row">
+          <div class="text-dark col justify-content-end">
+		    <label ng-bind="orderTextValue"></label>
+            [<a href="#" ng-click="orderByNewest()" id="newestId" ng-bind="newestTextValue"></a>]
+            [<a href="#" ng-click="orderByOldest()" id="oldestId" ng-bind="oldestTextValue"></a>]
+          </div>
+        </div>
+		<hr/>
+	  </div>
+	  <div ng-show="resources.lenght != 0">
+        <table class="table table-hover table-borderless" id="resourcesTable">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -43,15 +47,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="article in articles | limitTo:articlesMaxItemsPage:articlesMaxItemsPage*(articlesCurrentPage-1) track by $index">
+            <tr ng-repeat="resource in resources | limitTo:resourcesMaxItemsPage:resourcesMaxItemsPage*(resourcesCurrentPage-1) track by $index">
               <th class="col" scope="row">
                 <span ng-bind="$index + 1"></span>
               </th>
               <td class="col">
-                <span ng-bind="article.date_time | date:'yyyy-MM-dd HH:mm'"></span>
+                <span ng-bind="resource.date_time | date:'yyyy-MM-dd HH:mm'"></span>
               </td>
               <td class="col-10">
-                <a class="text-dark" ng-bind="article.title" ng-href="{{article.body}}"></a>
+                <a class="text-dark" ng-bind="resource.title" ng-href="{{resource.body}}"></a>
               </td>
             </tr>
           </tbody>
@@ -59,20 +63,19 @@
         <div class="row" id="pager">
           <div class="col justify-content-end">
             <label class="fw-bold" ng-bind="tablePageLabel"></label>
-            <a class="text-dark fw-bold" href="#" ng-click="articlesChangePage(1)">1</a>
-            <a class="text-dark fw-bold" href="#" ng-click="articlesChangePage(2)">2</a>
-            <a class="text-dark fw-bold" href="#" ng-click="articlesChangePage(3)">3</a>
-            <a class="text-dark fw-bold" href="#" ng-click="articlesChangePage(4)">4</a>
+            <a class="text-dark fw-bold" href="#" ng-click="resourcesChangePage(1)">1</a>
+            <a class="text-dark fw-bold" href="#" ng-click="resourcesChangePage(2)">2</a>
+            <a class="text-dark fw-bold" href="#" ng-click="resourcesChangePage(3)">3</a>
+            <a class="text-dark fw-bold" href="#" ng-click="resourcesChangePage(4)">4</a>
           </div>
         </div>
-      <div>
-      <br/>
+        <hr/>
+      </div>
+      <footer>
+        <a class="text-dark" href="license.txt">MIT License</a>
+      </footer>
     </div>
-    <div>
-      <hr/>
-      <a class="text-dark" href="license.txt">MIT License</a>
-    </div>
-  </div>
+  </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" integrity="sha384-c+qsMuWimzoMxDpSd67QtX89Nctaxh/CBMTgEnKrTahfMz1HgjjwqrzEGYXMZxYi" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

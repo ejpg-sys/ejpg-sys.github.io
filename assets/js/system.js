@@ -44,11 +44,49 @@ system.controller("ctrl", function ($scope,$http) {
     document.getElementById('languagePT').setAttribute('class', 'text-dark fw-bold');
     document.getElementById('languageEN').setAttribute('class', 'text-dark');
   }
+  if (userLanguage = 'pt') {
+    $scope.changeLanguagePT();
+  }   else {
+    $scope.changeLanguageEN();
+  }
+  $http.defaults.cache = false;
+  $scope.resources = [];
+  $scope.articles = [];
+  $scope.papers = [];
+  $scope.retrieve_articles = function() {
+	$http.get("articles.json")
+	  .then(function(response){
+		$scope.resources = response.data;
+		$scope.articles = response.data;
+	  }, function(error) {
+		console.error(error);
+	  });
+  };
+  $scope.retrieve_papers = function() {
+    $http.get("papers.json")
+      .then(function(response) {
+		$scope.resources = response.data;
+		$scope.papers = response.data;
+	  }, function(error) {
+		console.error(error);
+	  });
+  };
+  $scope.resourcesListSize = $scope.resources.length;
+  $scope.resourcesMaxItemsPage = 4;
+  $scope.resourcesCurrentPage = 1;
+  $scope.resourcesTotalPages = Math.round($scope.resourcesListSize / $scope.resourcesMaxItemsPage);
+  $scope.resourcesChangePage = function(pageNumber) {
+    if ($scope.resourcesCurrentPage != pageNumber) {
+      $scope.resourcesCurrentPage = pageNumber;
+    }
+  }
   $scope.changeTopicViewForArticlesTable = function() {
+    $scope.retrieve_articles();
     document.getElementById('articlesLabel').setAttribute('class', 'text-dark fw-bold');
     document.getElementById('papersLabel').setAttribute('class', 'text-dark');
   }
   $scope.changeTopicViewForPapersTable = function() {
+    $scope.retrieve_papers();
     document.getElementById('papersLabel').setAttribute('class', 'text-dark fw-bold');
     document.getElementById('articlesLabel').setAttribute('class', 'text-dark');
   }
@@ -59,41 +97,6 @@ system.controller("ctrl", function ($scope,$http) {
   $scope.orderByOldest = function() {
     document.getElementById('oldestId').setAttribute('class', 'text-dark fw-bold');
     document.getElementById('newestId').setAttribute('class', 'text-dark');
-  }
-  if (userLanguage = 'pt') {
-    $scope.changeLanguagePT();
-  }   else {
-    $scope.changeLanguageEN();
-  }
-  $http.defaults.cache = false;
-  $scope.articles = [];
-  $scope.papers = [];
-  $scope.retrieve_articles = function() {
-	$http.get("articles.json")
-	  .then(function(response){
-		$scope.articles = response.data;
-	  }, function(error) {
-		console.error(error);
-	  });
-  };
-  $scope.retrieve_papers = function() {
-    $http.get("papers.json")
-      .then(function(response) {
-		$scope.papers = response.data;
-	  }, function(error) {
-		console.error(error);
-	  });
-  };
-  $scope.retrieve_articles();
-  $scope.retrieve_papers();
-  $scope.artitlesListSize = $scope.articles.length;
-  $scope.articlesMaxItemsPage = 4;
-  $scope.articlesCurrentPage = 1;
-  $scope.articlesTotalPages = Math.round($scope.artitlesListSize / $scope.articlesMaxItemsPage);
-  $scope.articlesChangePage = function(pageNumber) {
-    if ($scope.articlesCurrentPage != pageNumber) {
-      $scope.articlesCurrentPage = pageNumber;
-    }
   }
   $scope.changeTopicViewForPapersTable();
   $scope.orderByNewest();
