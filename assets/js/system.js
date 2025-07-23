@@ -45,16 +45,20 @@ system.controller("ctrl", function ($scope,$http) {
     document.getElementById('languageEN').setAttribute('class', 'text-dark');
   }
   $scope.changeTopicViewForArticlesTable = function() {
-    // TODO: implement!
+    document.getElementById('articlesLabel').setAttribute('class', 'text-dark fw-bold');
+    document.getElementById('papersLabel').setAttribute('class', 'text-dark');
   }
   $scope.changeTopicViewForPapersTable = function() {
-    // TODO: implement!
+    document.getElementById('papersLabel').setAttribute('class', 'text-dark fw-bold');
+    document.getElementById('articlesLabel').setAttribute('class', 'text-dark');
   }
   $scope.orderByNewest = function() {
-    // TODO: implement!
+    document.getElementById('newestId').setAttribute('class', 'text-dark fw-bold');
+    document.getElementById('oldestId').setAttribute('class', 'text-dark');
   }
   $scope.orderByOldest = function() {
-    // TODO: implement!
+    document.getElementById('oldestId').setAttribute('class', 'text-dark fw-bold');
+    document.getElementById('newestId').setAttribute('class', 'text-dark');
   }
   if (userLanguage = 'pt') {
     $scope.changeLanguagePT();
@@ -91,4 +95,6 @@ system.controller("ctrl", function ($scope,$http) {
       $scope.articlesCurrentPage = pageNumber;
     }
   }
+  $scope.changeTopicViewForPapersTable();
+  $scope.orderByNewest();
 });
