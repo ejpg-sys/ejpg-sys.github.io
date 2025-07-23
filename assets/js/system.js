@@ -9,7 +9,7 @@ while( i < userLanguages.length) {
   i+=1;
 }
 var system = angular.module("system", []);
-system.controller("systemCtrl", function ($scope) { 
+system.controller("ctrl", function ($scope,$http) { 
   $scope.pageTitle = "EJPG-SYS on GITHUB.IO";
   $scope.language = userLanguage;
   $scope.changeLanguageEN = function() {
@@ -61,8 +61,21 @@ system.controller("systemCtrl", function ($scope) {
   }   else {
     $scope.changeLanguageEN();
   }
-  $scope.articles = articles;
-  $scope.artitlesListSize = articles.length;
+  var retrieve_articles = function() {
+	$http.get("articles.json")
+	  .success(function(data,status,header,config){
+        $scope.articles = data;
+	  });
+  };
+  var retrieve_papers = function() {
+    $http.get("papers.json")
+      .success(function(data,status,header,config){
+        $scope.papers = data;
+	  });
+  };
+  retrieve_articles();
+  retrieve_papers();
+  $scope.artitlesListSize = $scope.articles.length;
   $scope.articlesMaxItemsPage = 4;
   $scope.articlesCurrentPage = 1;
   $scope.articlesTotalPages = Math.round($scope.artitlesListSize / $scope.articlesMaxItemsPage);
