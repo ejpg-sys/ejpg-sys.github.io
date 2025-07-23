@@ -61,20 +61,27 @@ system.controller("ctrl", function ($scope,$http) {
   }   else {
     $scope.changeLanguageEN();
   }
-  var retrieve_articles = function() {
+  $http.defaults.cache = false;
+  $scope.articles = [];
+  $scope.papers = [];
+  $scope.retrieve_articles = function() {
 	$http.get("articles.json")
-	  .success(function(data,status,header,config){
-        $scope.articles = data;
+	  .then(function(response){
+		$scope.articles = response.data;
+	  }, function(error) {
+		console.error(error);
 	  });
   };
-  var retrieve_papers = function() {
+  $scope.retrieve_papers = function() {
     $http.get("papers.json")
-      .success(function(data,status,header,config){
-        $scope.papers = data;
+      .then(function(response) {
+		$scope.papers = response.data;
+	  }, function(error) {
+		console.error(error);
 	  });
   };
-  retrieve_articles();
-  retrieve_papers();
+  $scope.retrieve_articles();
+  $scope.retrieve_papers();
   $scope.artitlesListSize = $scope.articles.length;
   $scope.articlesMaxItemsPage = 4;
   $scope.articlesCurrentPage = 1;
