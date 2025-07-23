@@ -1,3 +1,7 @@
+/**
+ * The MIT License (MIT)
+ * Copyright (c) 2024-2025 EJPG-SYS
+ */
 var userLanguage = 'en';
 var userLanguages = navigator.languages;    
 var i = 0;
@@ -54,24 +58,28 @@ system.controller("ctrl", function ($scope,$http) {
   $scope.articles = [];
   $scope.papers = [];
   $scope.retrieve_articles = function() {
-	$http.get("articles.json")
-	  .then(function(response){
-		$scope.articles = JSON.parse(JSON.stringify(response.data));  
-		$scope.resourcesOldest = JSON.parse(JSON.stringify(response.data));
-		$scope.resourcesNewest = JSON.parse(JSON.stringify(response.data.reverse()));
-	  }, function(error) {
-		console.error(error);
-	  });
+	if ($scope.articles !== undefined) {
+	  $http.get("articles.json")
+	    .then(function(response){
+		  $scope.articles = JSON.parse(JSON.stringify(response.data));
+		  $scope.resourcesOldest = JSON.parse(JSON.stringify(response.data));
+		  $scope.resourcesNewest = JSON.parse(JSON.stringify(response.data.reverse()));
+	    }, function(error) {
+		  console.error(error);
+	    });
+    }
   };
   $scope.retrieve_papers = function() {
-    $http.get("papers.json")
-      .then(function(response) {
-		$scope.papers = JSON.parse(JSON.stringify(response.data));
-		$scope.resourcesOldest = JSON.parse(JSON.stringify(response.data));
-		$scope.resourcesNewest = JSON.parse(JSON.stringify(response.data.reverse()));
-	  }, function(error) {
-		console.error(error);
-	  });
+	if ($scope.papers !== undefined) {
+      $http.get("papers.json")
+        .then(function(response) {
+		  $scope.papers = JSON.parse(JSON.stringify(response.data));
+		  $scope.resourcesOldest = JSON.parse(JSON.stringify(response.data));
+		  $scope.resourcesNewest = JSON.parse(JSON.stringify(response.data.reverse()));
+	    }, function(error) {
+		  console.error(error);
+	    });
+	}
   };
   $scope.resourcesListSize = $scope.resources.length;
   $scope.resourcesMaxItemsPage = 4;
