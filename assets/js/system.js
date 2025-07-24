@@ -59,7 +59,7 @@ system.controller("ctrl", function ($scope,$http) {
   $scope.papers = [];
   $scope.retrieve_articles = function(sincronizedCallback) {
 	if ($scope.articles !== undefined) {
-	  $http.get("articles.json")
+	  $http.get("articles.json?v=1234567890")
 	    .then(function(response){
 		  $scope.articles = JSON.parse(JSON.stringify(response.data));
 		  $scope.resourcesOldest = JSON.parse(JSON.stringify(response.data));
@@ -74,7 +74,7 @@ system.controller("ctrl", function ($scope,$http) {
   };
   $scope.retrieve_papers = function(sincronizedCallback) {
 	if ($scope.papers !== undefined) {
-      $http.get("papers.json")
+      $http.get("papers.json?v=1234567890")
         .then(function(response) {
 		  $scope.papers = JSON.parse(JSON.stringify(response.data));
           if (userLanguage = 'pt') {
@@ -96,13 +96,15 @@ system.controller("ctrl", function ($scope,$http) {
 		sincronizedCallback();
 	}
   };
-  $scope.resourcesListSize = $scope.resources.length;
-  $scope.resourcesMaxItemsPage = 4;
-  $scope.resourcesCurrentPage = 1;
-  $scope.resourcesTotalPages = Math.round($scope.resourcesListSize / $scope.resourcesMaxItemsPage);
-  $scope.resourcesChangePage = function(pageNumber) {
-    if ($scope.resourcesCurrentPage != pageNumber) {
-      $scope.resourcesCurrentPage = pageNumber;
+  $scope.paginator = function() {
+	$scope.resourcesListSize = $scope.resources.length;
+    $scope.resourcesMaxItemsPage = 4;
+    $scope.resourcesCurrentPage = 1;
+    $scope.resourcesTotalPages = Math.ceil($scope.resourcesListSize / $scope.resourcesMaxItemsPage);
+    $scope.resourcesChangePage = function(pageNumber) {
+      if ($scope.resourcesCurrentPage != pageNumber) {
+        $scope.resourcesCurrentPage = pageNumber;
+      }
     }
   }
   $scope.enableOrderByNewest = true;
@@ -111,12 +113,12 @@ system.controller("ctrl", function ($scope,$http) {
 	$scope.resources = $scope.resourcesNewest;
     $scope.enableOrderByNewest = true;
     document.getElementById('newestId').setAttribute('class', 'text-dark fw-bold');
-    $scope.enableOrderByOldest - false;
+    $scope.enableOrderByOldest = false;
     document.getElementById('oldestId').setAttribute('class', 'text-dark');
   }
   $scope.orderByOldest = function() {
 	$scope.resources = $scope.resourcesOldest;
-    $scope.enableOrderByOldest - true;
+    $scope.enableOrderByOldest = true;
     document.getElementById('oldestId').setAttribute('class', 'text-dark fw-bold');
     $scope.enableOrderByNewest = false;
     document.getElementById('newestId').setAttribute('class', 'text-dark');
@@ -137,6 +139,7 @@ system.controller("ctrl", function ($scope,$http) {
       $scope.enableViewPapersTable = false;
       document.getElementById('papersLabel').setAttribute('class', 'text-dark');
 	  $scope.orderBy();
+	  $scope.paginator();
 	}
 	$scope.retrieve_articles(sincronized);
   }
@@ -147,6 +150,7 @@ system.controller("ctrl", function ($scope,$http) {
       $scope.enableViewArticlesTable = false;
       document.getElementById('articlesLabel').setAttribute('class', 'text-dark');
 	  $scope.orderBy();
+	  $scope.paginator();
 	}
 	$scope.retrieve_papers(sincronized);
   }

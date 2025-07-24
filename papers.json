@@ -63,8 +63,8 @@
       "order_id": "7",
       "paper_id": "7a9123c7079de81cd955dd96592c7fe586ad37f7",
       "title": "SPECIFICATION INTERPRETER COMMAND v1.2",
-      "en_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/en-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_2-default.pdf",
-	  "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/pt-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_2-default.pdf",
+      "en_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_2/en-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_2-default.pdf",
+	  "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_2/pt-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_2-default.pdf",
       "languages": ["en","pt"],
       "author": "E.J.P.G.",
       "date_time": "2025-03-10T13:34:12.000-03:00"
@@ -73,8 +73,8 @@
       "order_id": "8",
       "paper_id": "312b22a175da4a56d8c46e0d82cdcabe9944af7b",
       "title": "SPECIFICATION INTERPRETER COMMAND v1.3",
-      "en_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/en-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_3-default.pdf",
-	  "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/pt-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_3-default.pdf",
+      "en_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_3/en-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_3-default.pdf",
+	  "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_3/pt-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_3-default.pdf",
       "languages": ["en","pt"],
       "author": "E.J.P.G.",
       "date_time": "2025-03-19T08:59:54.000-03:00"
