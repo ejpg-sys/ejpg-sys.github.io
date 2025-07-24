@@ -3,39 +3,49 @@
  * Copyright (c) 2024-2025 EJPG-SYS
  */
 var system = angular.module("system", []);
-system.controller("ctrl", function ($scope,$http) { 
+system.controller("ctrl", function ($scope,$http,$log) {
   $scope.pageTitle = "EJPG-SYS on GITHUB.IO";
+  $scope.portugueseLanguage = 'pt';
+  $scope.englishLanguage = 'en';
+  $scope.userLanguageStarter = function() {
+    var userLanguage = undefined;
+    var userLanguages = navigator.languages;
+    var i = 0;
+    while(i < userLanguages.length) {
+      if (userLanguages[i] === 'pt' || userLanguages[i] === 'pt-BR') {
+        userLanguage = $scope.portugueseLanguage;
+        $scope.language = userLanguage;
+        localStorage.setItem('language', $scope.language);
+        break;
+      }
+      i+=1;
+    }
+    if (userLanguage === undefined) {
+      $scope.language = $scope.englishLanguage;
+      localStorage.setItem('language', $scope.language);
+    }
+  }
+  $scope.userLanguagePreferenceUpdate = function(language) {
+    if (language === $scope.portugueseLanguage) {
+      $scope.language = $scope.portugueseLanguage;
+      localStorage.setItem('language', $scope.language);
+    } else if (language === $scope.englishLanguage) {
+      $scope.language = $scope.englishLanguage;
+      localStorage.setItem('language', $scope.language);
+    } else {
+      $log.error('unreconized value!');
+    }
+  }
   $scope.userLanguagePreference = function(language) {
-    var portugueseLanguage = 'pt';
-    var englishLanguage = 'en';
     if (language === undefined) {
       const languagePreference = localStorage.getItem('language');
       if (languagePreference === null) {
-        var userLanguage = undefined;
-        var userLanguages = navigator.languages;
-        var i = 0;
-        while(i < userLanguages.length) {
-          if (userLanguages[i] === 'pt' || userLanguages[i] === 'pt-BR') {
-            userLanguage = portugueseLanguage;
-            $scope.language = userLanguage;
-            localStorage.setItem('language', portugueseLanguage);
-            break;
-          }
-          i+=1;
-        }
-        if (userLanguage === undefined) {
-          $scope.language = englishLanguage;
-          localStorage.setItem('language', englishLanguage);
-        }
+        $scope.userLanguageStarter();
       } else {
         $scope.language = languagePreference;
       }
-    } else if (language === portugueseLanguage) {
-      $scope.language = portugueseLanguage;
-    } else if (language === englishLanguage) {
-      $scope.language = englishLanguage;
     } else {
-      console.error('unreconized value!');
+      $scope.userLanguagePreferenceUpdate(language);
     }
   }
   $scope.changeLanguageEN = function() {
@@ -183,10 +193,12 @@ system.controller("ctrl", function ($scope,$http) {
   $scope.actionChangeLanguage = function(language) {
     if (language === 'pt') {
       $scope.changeLanguagePT();
+      $log.info('action user preference language change for: ' + language);
     } else if (language === 'en') {
       $scope.changeLanguageEN();
+      $log.info('action user preference language change for: ' + language);
     } else {
-      console.error('unrecognized value!');
+      $log.error('unrecognized value!');
     }
   }
 });
