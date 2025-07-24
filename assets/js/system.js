@@ -29,9 +29,11 @@ system.controller("ctrl", function ($scope,$http,$log) {
     if (language === $scope.portugueseLanguage) {
       $scope.language = $scope.portugueseLanguage;
       localStorage.setItem('language', $scope.language);
+      $log.info('action user preference language change for: ' + language);
     } else if (language === $scope.englishLanguage) {
       $scope.language = $scope.englishLanguage;
       localStorage.setItem('language', $scope.language);
+      $log.info('action user preference language change for: ' + language);
     } else {
       $log.error('unreconized value!');
     }
@@ -44,8 +46,10 @@ system.controller("ctrl", function ($scope,$http,$log) {
       } else {
         $scope.language = languagePreference;
       }
-    } else {
+    } else if ($scope.language !== language) {
       $scope.userLanguagePreferenceUpdate(language);
+    } else {
+      $log.warn('user language already in use: ' + language);
     }
   }
   $scope.changeLanguageEN = function() {
@@ -191,12 +195,10 @@ system.controller("ctrl", function ($scope,$http,$log) {
   }
   $scope.changeTopicViewForPapersTable();
   $scope.actionChangeLanguage = function(language) {
-    if (language === 'pt') {
+    if (language === $scope.portugueseLanguage) {
       $scope.changeLanguagePT();
-      $log.info('action user preference language change for: ' + language);
-    } else if (language === 'en') {
+    } else if (language === $scope.englishLanguage) {
       $scope.changeLanguageEN();
-      $log.info('action user preference language change for: ' + language);
     } else {
       $log.error('unrecognized value!');
     }
