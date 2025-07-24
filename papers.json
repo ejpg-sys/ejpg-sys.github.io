@@ -1,0 +1,82 @@
+[
+    {
+      "order_id": "1",
+      "paper_id": "7720b17c082cb31e8fbdf0452a0969c3e5ed6f0c",
+      "title": "BASE Web Service v1.3",
+	  "en_body": "",
+      "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/base-v1.3/YP0004-ebase-pt-apresentacao-linkedin-less.pdf",
+      "languages": ["pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2025-01-17T12:44:43.000-03:00"
+	},
+	{
+      "order_id": "2",
+      "paper_id": "8cda10c0883c30e28fc281542acad15f25d819f0",
+      "title": "BASE Web Service v1.7",
+      "en_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/base-v1.7/YP0006_0-EN-BASE_PRESENTATION-MINIFIED.pdf",
+	  "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/base-v1.7/YP0006_0-PT-BASE_APRESENTACAO-MINIFICADO.pdf",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2025-01-27T11:28:07.000-03:00"
+	},
+	{
+      "order_id": "3",
+      "paper_id": "ee61a7b9c08405bafc83a67333b9b49f37dea5a0",
+      "title": "DDL Interpreter v1.0",
+      "en_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/ddl_interpreter-v1.0/en-presentation-ejpg_ecosystem_ddl_interpreter.pdf",
+	  "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/ddl_interpreter-v1.0/pt-presentation-ejpg_ecosystem_ddl_interpreter.pdf",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2025-02-04T15:19:51.000-03:00"
+	},
+    {
+      "order_id": "4",
+      "paper_id": "81fbb5a0c79c7c1f60655ff4bdc5a9ccb5c67e16",
+      "title": "Admin Web Service v1.2-RC",
+      "en_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/admin-v1.2-RC/en-presentation-ejpg_ecosystem_admin-ws.pdf",
+	  "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/admin-v1.2-RC/pt-presentation-ejpg_ecosystem_admin-ws.pdf",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2025-02-11T14:22:58.000-03:00"
+	},
+    {
+      "order_id": "5",
+      "paper_id": "fcf68abe7e05bb253fba4dbe4174a92d62b660ac",
+      "title": "DDL Interpreter v1.1",
+      "en_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/ddl_interpreter-v1.1/en-presentation-ejpg_ecosystem_ddl_interpreter-v1_1-default.pdf",
+	  "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/ddl_interpreter-v1.1/pt-presentation-ejpg_ecosystem_ddl_interpreter-v1_1-default.pdf",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2025-02-19T13:30:44.000-03:00"
+	},
+	{
+      "order_id": "6",
+      "paper_id": "4dbcee4d2dddd5bf45afbd95f2869cde67fe55c0",
+      "title": "AFPA Counting v1.0",
+      "en_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/afpa_counting_v1_0/en-presentation-ejpg_ecosystem_afpa_counting-default-v1_0.pdf",
+	  "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/afpa_counting_v1_0/pt-presentation-ejpg_ecosystem_afpa_counting-default-v1_0.pdf",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2025-02-21T14:25:44.000-03:00"
+	},
+	{
+      "order_id": "7",
+      "paper_id": "7a9123c7079de81cd955dd96592c7fe586ad37f7",
+      "title": "SPECIFICATION INTERPRETER COMMAND v1.2",
+      "en_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_2/en-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_2-default.pdf",
+	  "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_2/pt-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_2-default.pdf",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2025-03-10T13:34:12.000-03:00"
+	},
+	{
+      "order_id": "8",
+      "paper_id": "312b22a175da4a56d8c46e0d82cdcabe9944af7b",
+      "title": "SPECIFICATION INTERPRETER COMMAND v1.3",
+      "en_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_3/en-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_3-default.pdf",
+	  "pt_body": "https://github.com/ejpg-sys/ejpg-sys.github.io/blob/main/paper/spec_interpreter_cmd_v1_3/pt-presentation-ejpg_ecosystem_spec_interpreter_cmd_v1_3-default.pdf",
+      "languages": ["en","pt"],
+      "author": "E.J.P.G.",
+      "date_time": "2025-03-19T08:59:54.000-03:00"
+	}
+]
