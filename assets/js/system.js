@@ -2,21 +2,44 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-var userLanguage = 'en';
-var userLanguages = navigator.languages;    
-var i = 0;
-while( i < userLanguages.length) {
-  if (userLanguages[i] === 'pt' || userLanguages[i] === 'pt-BR') {
-    userLanguage = 'pt';
-    break;
-  }
-  i+=1;
-}
 var system = angular.module("system", []);
 system.controller("ctrl", function ($scope,$http) { 
   $scope.pageTitle = "EJPG-SYS on GITHUB.IO";
-  $scope.language = userLanguage;
+  $scope.userLanguagePreference = function(language) {
+    var portugueseLanguage = 'pt';
+    var englishLanguage = 'en';
+    if (language === undefined) {
+      const languagePreference = localStorage.getItem('language');
+      if (languagePreference === undefined) {
+        var userLanguage = undefined;
+        var userLanguages = navigator.languages;
+        var i = 0;
+        while(i < userLanguages.length) {
+          if (userLanguages[i] === 'pt' || userLanguages[i] === 'pt-BR') {
+            userLanguage = portugueseLanguage;
+            $scope.language = userLanguage;
+            localStorage.setItem('language', portugueseLanguage);
+            break;
+          }
+          i+=1;
+        }
+        if (userLanguage === undefined) {
+          $scope.language = englishLanguage;
+          localStorage.setItem('language', englishLanguage);
+        }
+      } else {
+        $scope.language = languagePreference;
+      }
+    } else if (language === portugueseLanguage) {
+      $scope.language = portugueseLanguage;
+    } else if (language === englishLanguage) {
+      $scope.language = englishLanguage;
+    } else {
+      console.error('unreconized value!');
+    }
+  }
   $scope.changeLanguageEN = function() {
+    $scope.userLanguagePreference('en');
     $scope.orderTextValue = "order by";
     $scope.newestTextValue = "newest";
     $scope.oldestTextValue = "oldest";
@@ -33,6 +56,7 @@ system.controller("ctrl", function ($scope,$http) {
     document.getElementById('languagePT').setAttribute('class', 'text-dark');
   }
   $scope.changeLanguagePT = function() {
+    $scope.userLanguagePreference('pt');
     $scope.orderTextValue = "ordernar por";
     $scope.newestTextValue = "recente";
     $scope.oldestTextValue = "antigo";
@@ -48,9 +72,10 @@ system.controller("ctrl", function ($scope,$http) {
     document.getElementById('languagePT').setAttribute('class', 'text-dark fw-bold');
     document.getElementById('languageEN').setAttribute('class', 'text-dark');
   }
-  if (userLanguage = 'pt') {
+  $scope.userLanguagePreference(undefined);
+  if ($scope.language === 'pt') {
     $scope.changeLanguagePT();
-  }   else {
+  } else {
     $scope.changeLanguageEN();
   }
   $http.defaults.cache = false;
@@ -77,7 +102,7 @@ system.controller("ctrl", function ($scope,$http) {
       $http.get("papers.json?v=1234567890")
         .then(function(response) {
 		  $scope.papers = JSON.parse(JSON.stringify(response.data));
-          if (userLanguage = 'pt') {
+          if ($scope.language === 'pt') {
 			$scope.papers.forEach(function(paper) {
 			  paper.body = paper.pt_body;
 			});
