@@ -195,7 +195,9 @@ system.controller("ctrl", function ($scope,$http,$log) {
   }
   $scope.changeTopicViewForPapersTable();
   $scope.actionChangeLanguage = function(language) {
-    if (language === $scope.portugueseLanguage) {
+    if ($scope.language == language) {
+      $log.warn('user language already in use: ' + language);
+    } else if (language === $scope.portugueseLanguage) {
       $scope.changeLanguagePT();
     } else if (language === $scope.englishLanguage) {
       $scope.changeLanguageEN();
