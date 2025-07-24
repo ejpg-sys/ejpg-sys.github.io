@@ -10,7 +10,7 @@ system.controller("ctrl", function ($scope,$http) {
     var englishLanguage = 'en';
     if (language === undefined) {
       const languagePreference = localStorage.getItem('language');
-      if (languagePreference === undefined) {
+      if (languagePreference === null) {
         var userLanguage = undefined;
         var userLanguages = navigator.languages;
         var i = 0;
