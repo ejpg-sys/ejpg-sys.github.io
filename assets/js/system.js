@@ -26,7 +26,9 @@ system.controller("ctrl", function ($scope,$http,$log) {
     }
   }
   $scope.userLanguagePreferenceUpdate = function(language) {
-    if (language === $scope.portugueseLanguage) {
+    if ($scope.language == language) {
+      $log.warn('user language already in use: ' + language);
+    } else if (language === $scope.portugueseLanguage) {
       $scope.language = $scope.portugueseLanguage;
       localStorage.setItem('language', $scope.language);
       $log.info('action user preference language change for: ' + language);
@@ -48,8 +50,6 @@ system.controller("ctrl", function ($scope,$http,$log) {
       }
     } else if ($scope.language !== language) {
       $scope.userLanguagePreferenceUpdate(language);
-    } else {
-      $log.warn('user language already in use: ' + language);
     }
   }
   $scope.changeLanguageEN = function() {
