@@ -180,4 +180,13 @@ system.controller("ctrl", function ($scope,$http) {
 	$scope.retrieve_papers(sincronized);
   }
   $scope.changeTopicViewForPapersTable();
+  $scope.actionChangeLanguage = function(language) {
+    if (language === 'pt') {
+      $scope.changeLanguagePT();
+    } else if (language === 'en') {
+      $scope.changeLanguageEN();
+    } else {
+      console.error('unrecognized value!');
+    }
+  }
 });
