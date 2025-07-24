@@ -77,8 +77,17 @@ system.controller("ctrl", function ($scope,$http) {
       $http.get("papers.json")
         .then(function(response) {
 		  $scope.papers = JSON.parse(JSON.stringify(response.data));
-		  $scope.resourcesOldest = JSON.parse(JSON.stringify(response.data));
-		  $scope.resourcesNewest = JSON.parse(JSON.stringify(response.data.reverse()));
+          if (userLanguage = 'pt') {
+			$scope.papers.forEach(function(paper) {
+			  paper.body = paper.pt_body;
+			});
+          } else {
+            $scope.papers.forEach(function(paper) {
+			  paper.body = paper.en_body;
+			});
+          }
+		  $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.papers));
+		  $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.papers.reverse()));
 		  sincronizedCallback();
 	    }, function(error) {
 		  console.error(error);
