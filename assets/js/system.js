@@ -57,28 +57,34 @@ system.controller("ctrl", function ($scope,$http) {
   $scope.resources = [];
   $scope.articles = [];
   $scope.papers = [];
-  $scope.retrieve_articles = function() {
+  $scope.retrieve_articles = function(sincronizedCallback) {
 	if ($scope.articles !== undefined) {
 	  $http.get("articles.json")
 	    .then(function(response){
 		  $scope.articles = JSON.parse(JSON.stringify(response.data));
 		  $scope.resourcesOldest = JSON.parse(JSON.stringify(response.data));
 		  $scope.resourcesNewest = JSON.parse(JSON.stringify(response.data.reverse()));
+		  sincronizedCallback();
 	    }, function(error) {
 		  console.error(error);
 	    });
-    }
+    } else {
+		sincronizedCallback();
+	}
   };
-  $scope.retrieve_papers = function() {
+  $scope.retrieve_papers = function(sincronizedCallback) {
 	if ($scope.papers !== undefined) {
       $http.get("papers.json")
         .then(function(response) {
 		  $scope.papers = JSON.parse(JSON.stringify(response.data));
 		  $scope.resourcesOldest = JSON.parse(JSON.stringify(response.data));
 		  $scope.resourcesNewest = JSON.parse(JSON.stringify(response.data.reverse()));
+		  sincronizedCallback();
 	    }, function(error) {
 		  console.error(error);
 	    });
+	} else {
+		sincronizedCallback();
 	}
   };
   $scope.resourcesListSize = $scope.resources.length;
@@ -116,20 +122,24 @@ system.controller("ctrl", function ($scope,$http) {
   $scope.enableViewArticlesTable = false;
   $scope.enableViewPapersTable = false;
   $scope.changeTopicViewForArticlesTable = function() {
-    $scope.retrieve_articles();
-    $scope.enableViewArticlesTable = true;
-    document.getElementById('articlesLabel').setAttribute('class', 'text-dark fw-bold');
-    $scope.enableViewPapersTable = false;
-    document.getElementById('papersLabel').setAttribute('class', 'text-dark');
-	$scope.orderBy();
+    var sincronized = function() {
+	  $scope.enableViewArticlesTable = true;
+      document.getElementById('articlesLabel').setAttribute('class', 'text-dark fw-bold');
+      $scope.enableViewPapersTable = false;
+      document.getElementById('papersLabel').setAttribute('class', 'text-dark');
+	  $scope.orderBy();
+	}
+	$scope.retrieve_articles(sincronized);
   }
   $scope.changeTopicViewForPapersTable = function() {
-    $scope.retrieve_papers();
-    $scope.enableViewPapersTable = true;
-    document.getElementById('papersLabel').setAttribute('class', 'text-dark fw-bold');
-    $scope.enableViewArticlesTable = false;
-    document.getElementById('articlesLabel').setAttribute('class', 'text-dark');
-	$scope.orderBy();
+    var sincronized = function() {
+	  $scope.enableViewPapersTable = true;
+      document.getElementById('papersLabel').setAttribute('class', 'text-dark fw-bold');
+      $scope.enableViewArticlesTable = false;
+      document.getElementById('articlesLabel').setAttribute('class', 'text-dark');
+	  $scope.orderBy();
+	}
+	$scope.retrieve_papers(sincronized);
   }
   $scope.changeTopicViewForPapersTable();
 });
