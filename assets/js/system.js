@@ -64,15 +64,13 @@ system.controller("ctrl", function ($scope,$http,$log) {
   };
   $http.defaults.cache = false;
   $scope.resources = [];
-  $scope.originArticles = [];
   $scope.articles = [];
-  $scope.originPapers = [];
   $scope.papers = [];
   $scope.retrieve_articles = function(sincronizedCallback) {
-	if ($scope.originArticles.length === 0) {
+	if ($scope.articles.length === 0) {
 	  $http.get("articles.json?v=1234567890")
 	    .then(function(response){
-		  $scope.originArticles = JSON.parse(JSON.stringify(response.data));
+		  $scope.articles = JSON.parse(JSON.stringify(response.data));
 		  sincronizedCallback();
 	    }, function(error) {
 		  console.error(error);
@@ -93,10 +91,10 @@ system.controller("ctrl", function ($scope,$http,$log) {
     }
   }
   $scope.retrieve_papers = function(sincronizedCallback) {
-	if ($scope.originPapers.length === 0) {
+	if ($scope.papers.length === 0) {
       $http.get("papers.json?v=1234567890")
         .then(function(response) {
-		  $scope.originPapers = JSON.parse(JSON.stringify(response.data));
+		  $scope.papers = JSON.parse(JSON.stringify(response.data));
 		  sincronizedCallback();
 	    }, function(error) {
 		  console.error(error);
@@ -118,13 +116,15 @@ system.controller("ctrl", function ($scope,$http,$log) {
   }
   $scope.orderByNewest = function() {
     $scope.orderBy.current = $scope.orderBy.newest;
-	$scope.resources = $scope.resourcesNewest;
+	$scope.resources.sort((a, b) => b.order_id - a.order_id);
     document.getElementById('newestId').setAttribute('class', 'text-dark fw-bold');
     document.getElementById('oldestId').setAttribute('class', 'text-dark');
   }
   $scope.orderByOldest = function() {
     $scope.orderBy.current = $scope.orderBy.oldest;
-	$scope.resources = $scope.resourcesOldest;
+    $scope.resources.sort(function(a,b){
+      return a.order_id - b.order_id;
+    });
     document.getElementById('oldestId').setAttribute('class', 'text-dark fw-bold');
     document.getElementById('newestId').setAttribute('class', 'text-dark');
   }
@@ -142,9 +142,7 @@ system.controller("ctrl", function ($scope,$http,$log) {
   $scope.choiceTopicViewForArticlesTable = function() {
     var sincronized = function() {
       $scope.topic.current = $scope.topic.articles;
-      $scope.articles = $scope.originArticles;
-      $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.articles));
-      $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.articles.reverse()));
+      $scope.resources = $scope.articles;
       $scope.orderByPreference();
       $scope.paginator();
       document.getElementById('articlesLabel').setAttribute('class', 'text-dark fw-bold');
@@ -155,10 +153,8 @@ system.controller("ctrl", function ($scope,$http,$log) {
   $scope.choiceTopicViewForPapersTable = function() {
     var sincronized = function() {
       $scope.topic.current = $scope.topic.papers;
-      $scope.papers = $scope.originPapers;
+      $scope.resources = $scope.papers;
       $scope.papersLanguagePreference();
-      $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.papers));
-      $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.papers.reverse()));
       $scope.orderByPreference();
       $scope.paginator();
       document.getElementById('papersLabel').setAttribute('class', 'text-dark fw-bold');
