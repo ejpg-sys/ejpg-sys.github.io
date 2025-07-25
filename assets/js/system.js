@@ -86,12 +86,6 @@ system.controller("ctrl", function ($scope,$http,$log) {
     document.getElementById('languagePT').setAttribute('class', 'text-dark fw-bold');
     document.getElementById('languageEN').setAttribute('class', 'text-dark');
   }
-  $scope.userLanguagePreference(undefined);
-  if ($scope.language === 'pt') {
-    $scope.changeLanguagePT();
-  } else {
-    $scope.changeLanguageEN();
-  }
   $http.defaults.cache = false;
   $scope.resources = [];
   $scope.articles = [];
@@ -196,7 +190,6 @@ system.controller("ctrl", function ($scope,$http,$log) {
 	}
 	$scope.retrieve_papers(sincronized);
   }
-  $scope.changeTopicViewForPapersTable();
   $scope.actionChangeLanguage = function(language) {
     if ($scope.language == language) {
       $log.warn('user language already in use: ' + language);
@@ -208,4 +201,11 @@ system.controller("ctrl", function ($scope,$http,$log) {
       $log.error('unrecognized value!');
     }
   }
+  $scope.userLanguagePreference(undefined);
+  if ($scope.language === 'pt') {
+    $scope.changeLanguagePT();
+  } else {
+    $scope.changeLanguageEN();
+  }
+  $scope.changeTopicViewForPapersTable();
 });
