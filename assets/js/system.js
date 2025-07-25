@@ -111,22 +111,25 @@ system.controller("ctrl", function ($scope,$http,$log) {
 		sincronizedCallback();
 	}
   };
+  $scope.papersLanguagePreference = function() {
+    if ($scope.language === $scope.portugueseLanguage) {
+      $scope.papers.forEach(function(paper) {
+        paper.body = paper.pt_body;
+	  });
+    } else if ($scope.language === $scope.englishLanguage) {
+      $scope.papers.forEach(function(paper) {
+        paper.body = paper.en_body;
+      });
+    }
+    $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.papers));
+    $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.papers.reverse()));
+  }
   $scope.retrieve_papers = function(sincronizedCallback) {
 	if ($scope.papers !== undefined) {
       $http.get("papers.json?v=1234567890")
         .then(function(response) {
 		  $scope.papers = JSON.parse(JSON.stringify(response.data));
-          if ($scope.language === 'pt') {
-			$scope.papers.forEach(function(paper) {
-			  paper.body = paper.pt_body;
-			});
-          } else {
-            $scope.papers.forEach(function(paper) {
-			  paper.body = paper.en_body;
-			});
-          }
-		  $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.papers));
-		  $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.papers.reverse()));
+          $scope.papersLanguagePreference();
 		  sincronizedCallback();
 	    }, function(error) {
 		  console.error(error);
