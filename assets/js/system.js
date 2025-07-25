@@ -81,8 +81,6 @@ system.controller("ctrl", function ($scope,$http,$log) {
         paper.body = paper.en_body;
       });
     }
-    $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.papers));
-    $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.papers.reverse()));
   }
   $scope.retrieve_papers = function(sincronizedCallback) {
 	if ($scope.papers !== undefined) {
@@ -90,6 +88,8 @@ system.controller("ctrl", function ($scope,$http,$log) {
         .then(function(response) {
 		  $scope.papers = JSON.parse(JSON.stringify(response.data));
           $scope.papersLanguagePreference();
+          $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.papers));
+          $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.papers.reverse()));
 		  sincronizedCallback();
 	    }, function(error) {
 		  console.error(error);
