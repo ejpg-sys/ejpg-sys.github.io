@@ -52,40 +52,6 @@ system.controller("ctrl", function ($scope,$http,$log) {
       $scope.userLanguagePreferenceUpdate(language);
     }
   }
-  $scope.changeLanguageEN = function() {
-    $scope.userLanguagePreference('en');
-    $scope.orderTextValue = "order by";
-    $scope.newestTextValue = "newest";
-    $scope.oldestTextValue = "oldest";
-    $scope.topicTextValue = "topic"
-    $scope.articlesTextValue = 'articles';
-    $scope.papersTextValue = 'papers';
-    $scope.languageLabel = 'language';
-    $scope.languageENTextValue = "english";
-    $scope.languagePTTextValue = "portuguese";
-    $scope.tableDateLabel = 'DATE';
-    $scope.tableSubjectLabel = 'SUBJECT';
-    $scope.tablePageLabel = "PAGE"
-    document.getElementById('languageEN').setAttribute('class', 'text-dark fw-bold');
-    document.getElementById('languagePT').setAttribute('class', 'text-dark');
-  }
-  $scope.changeLanguagePT = function() {
-    $scope.userLanguagePreference('pt');
-    $scope.orderTextValue = "ordernar por";
-    $scope.newestTextValue = "recente";
-    $scope.oldestTextValue = "antigo";
-    $scope.topicTextValue = "topico";
-    $scope.articlesTextValue = 'artigos';
-    $scope.papersTextValue = 'apresentações';
-    $scope.languageLabel = 'idioma';
-    $scope.languageENTextValue = "inglês";
-    $scope.languagePTTextValue = "português";
-    $scope.tableDateLabel = 'DATA';
-    $scope.tableSubjectLabel = 'ASSUNTO';
-    $scope.tablePageLabel = "PÁGINA";
-    document.getElementById('languagePT').setAttribute('class', 'text-dark fw-bold');
-    document.getElementById('languageEN').setAttribute('class', 'text-dark');
-  }
   $http.defaults.cache = false;
   $scope.resources = [];
   $scope.articles = [];
@@ -189,6 +155,40 @@ system.controller("ctrl", function ($scope,$http,$log) {
 	  $scope.paginator();
 	}
 	$scope.retrieve_papers(sincronized);
+  }
+  $scope.changeLanguageEN = function() {
+    $scope.userLanguagePreference('en');
+    $scope.orderTextValue = "order by";
+    $scope.newestTextValue = "newest";
+    $scope.oldestTextValue = "oldest";
+    $scope.topicTextValue = "topic"
+    $scope.articlesTextValue = 'articles';
+    $scope.papersTextValue = 'papers';
+    $scope.languageLabel = 'language';
+    $scope.languageENTextValue = "english";
+    $scope.languagePTTextValue = "portuguese";
+    $scope.tableDateLabel = 'DATE';
+    $scope.tableSubjectLabel = 'SUBJECT';
+    $scope.tablePageLabel = "PAGE"
+    document.getElementById('languageEN').setAttribute('class', 'text-dark fw-bold');
+    document.getElementById('languagePT').setAttribute('class', 'text-dark');
+  }
+  $scope.changeLanguagePT = function() {
+    $scope.userLanguagePreference('pt');
+    $scope.orderTextValue = "ordernar por";
+    $scope.newestTextValue = "recente";
+    $scope.oldestTextValue = "antigo";
+    $scope.topicTextValue = "topico";
+    $scope.articlesTextValue = 'artigos';
+    $scope.papersTextValue = 'apresentações';
+    $scope.languageLabel = 'idioma';
+    $scope.languageENTextValue = "inglês";
+    $scope.languagePTTextValue = "português";
+    $scope.tableDateLabel = 'DATA';
+    $scope.tableSubjectLabel = 'ASSUNTO';
+    $scope.tablePageLabel = "PÁGINA";
+    document.getElementById('languagePT').setAttribute('class', 'text-dark fw-bold');
+    document.getElementById('languageEN').setAttribute('class', 'text-dark');
   }
   $scope.actionChangeLanguage = function(language) {
     if ($scope.language == language) {
