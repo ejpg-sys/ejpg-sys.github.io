@@ -21,22 +21,22 @@
         <div class="row">
           <div class="text-dark col justify-content-end">
             <label ng-bind="languageLabel"></label> 
-            [<a href="#" ng-click="changeLanguageEN()" id="languageEN" ng-bind="languageENTextValue"></a>]
-            [<a href="#" ng-click="changeLanguagePT()" id="languagePT" ng-bind="languagePTTextValue"></a>]
+            [<a href="#" ng-click="actionChangeLanguage('en')" id="languageEN" ng-bind="languageENTextValue"></a>]
+            [<a href="#" ng-click="actionChangeLanguage('pt')" id="languagePT" ng-bind="languagePTTextValue"></a>]
           </div>
         </div>
 	    <div class="row">
           <div class="text-dark col justify-content-end">
 		    <label ng-bind="topicTextValue"></label>
-            [<a href="#" ng-click="changeTopicViewForArticlesTable()" id="articlesLabel" ng-bind="articlesTextValue"></a>]
-            [<a href="#" ng-click="changeTopicViewForPapersTable()" id="papersLabel" ng-bind="papersTextValue"></a>]
+            [<a href="#" ng-click="actionChangeTopic('articles')" id="articlesLabel" ng-bind="articlesTextValue"></a>]
+            [<a href="#" ng-click="actionChangeTopic('papers')" id="papersLabel" ng-bind="papersTextValue"></a>]
           </div>
         </div>
 	    <div class="row">
           <div class="text-dark col justify-content-end">
 		    <label ng-bind="orderTextValue"></label>
-            [<a href="#" ng-click="orderByNewest()" id="newestId" ng-bind="newestTextValue"></a>]
-            [<a href="#" ng-click="orderByOldest()" id="oldestId" ng-bind="oldestTextValue"></a>]
+            [<a href="#" ng-click="actionChangeOrderBy('asc')" id="newestId" ng-bind="newestTextValue"></a>]
+            [<a href="#" ng-click="actionChangeOrderBy('desc')" id="oldestId" ng-bind="oldestTextValue"></a>]
           </div>
         </div>
 		<hr/>
