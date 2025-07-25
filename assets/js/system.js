@@ -134,7 +134,7 @@ system.controller("ctrl", function ($scope,$http,$log) {
   }
   $scope.enableViewArticlesTable = false;
   $scope.enableViewPapersTable = false;
-  $scope.changeTopicViewForArticlesTable = function() {
+  $scope.choiceTopicViewForArticlesTable = function() {
     var sincronized = function() {
 	  $scope.enableViewArticlesTable = true;
       document.getElementById('articlesLabel').setAttribute('class', 'text-dark fw-bold');
@@ -145,7 +145,7 @@ system.controller("ctrl", function ($scope,$http,$log) {
 	}
 	$scope.retrieve_articles(sincronized);
   }
-  $scope.changeTopicViewForPapersTable = function() {
+  $scope.choiceTopicViewForPapersTable = function() {
     var sincronized = function() {
 	  $scope.enableViewPapersTable = true;
       document.getElementById('papersLabel').setAttribute('class', 'text-dark fw-bold');
@@ -203,6 +203,15 @@ system.controller("ctrl", function ($scope,$http,$log) {
       $log.error('unrecognized value!');
     }
   }
+  $scope.actionChangeTopic = function(topic) {
+    if (topic === 'articles') {
+      $scope.choiceTopicViewForArticlesTable();
+	} else if (topic === 'papers') {
+      $scope.choiceTopicViewForPapersTable();
+	} else {
+      $log.error('unrecognized value!');
+    }
+  }
   $scope.defaultStarter = function() {
     $scope.userLanguagePreference(undefined);
     if ($scope.language === 'pt') {
@@ -210,7 +219,7 @@ system.controller("ctrl", function ($scope,$http,$log) {
     } else {
       $scope.changeLanguageEN();
     }
-    $scope.changeTopicViewForPapersTable();
+    $scope.choiceTopicViewForPapersTable();
   }
   $scope.defaultStarter();
 });
