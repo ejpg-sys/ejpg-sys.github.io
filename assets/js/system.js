@@ -203,11 +203,14 @@ system.controller("ctrl", function ($scope,$http,$log) {
       $log.error('unrecognized value!');
     }
   }
-  $scope.userLanguagePreference(undefined);
-  if ($scope.language === 'pt') {
-    $scope.changeLanguagePT();
-  } else {
-    $scope.changeLanguageEN();
+  $scope.defaultStarter = function() {
+    $scope.userLanguagePreference(undefined);
+    if ($scope.language === 'pt') {
+      $scope.changeLanguagePT();
+    } else {
+      $scope.changeLanguageEN();
+    }
+    $scope.changeTopicViewForPapersTable();
   }
-  $scope.changeTopicViewForPapersTable();
+  $scope.defaultStarter();
 });
