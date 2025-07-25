@@ -35,8 +35,8 @@
 	    <div class="row">
           <div class="text-dark col justify-content-end">
 		    <label ng-bind="orderTextValue"></label>
-            [<a href="#" ng-click="orderByNewest()" id="newestId" ng-bind="newestTextValue"></a>]
-            [<a href="#" ng-click="orderByOldest()" id="oldestId" ng-bind="oldestTextValue"></a>]
+            [<a href="#" ng-click="actionChangeOrderBy('asc')" id="newestId" ng-bind="newestTextValue"></a>]
+            [<a href="#" ng-click="actionChangeOrderBy('desc')" id="oldestId" ng-bind="oldestTextValue"></a>]
           </div>
         </div>
 		<hr/>

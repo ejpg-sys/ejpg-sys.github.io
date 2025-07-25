@@ -125,7 +125,7 @@ system.controller("ctrl", function ($scope,$http,$log) {
     $scope.enableOrderByNewest = false;
     document.getElementById('newestId').setAttribute('class', 'text-dark');
   }
-  $scope.orderBy = function() {
+  $scope.orderByEnabled = function() {
     if ($scope.enableOrderByNewest) {
       $scope.orderByNewest();
 	} else {
@@ -140,7 +140,7 @@ system.controller("ctrl", function ($scope,$http,$log) {
       document.getElementById('articlesLabel').setAttribute('class', 'text-dark fw-bold');
       $scope.enableViewPapersTable = false;
       document.getElementById('papersLabel').setAttribute('class', 'text-dark');
-	  $scope.orderBy();
+	  $scope.orderByEnabled();
 	  $scope.paginator();
 	}
 	$scope.retrieve_articles(sincronized);
@@ -151,7 +151,7 @@ system.controller("ctrl", function ($scope,$http,$log) {
       document.getElementById('papersLabel').setAttribute('class', 'text-dark fw-bold');
       $scope.enableViewArticlesTable = false;
       document.getElementById('articlesLabel').setAttribute('class', 'text-dark');
-	  $scope.orderBy();
+	  $scope.orderByEnabled();
 	  $scope.paginator();
 	}
 	$scope.retrieve_papers(sincronized);
@@ -208,6 +208,15 @@ system.controller("ctrl", function ($scope,$http,$log) {
       $scope.choiceTopicViewForArticlesTable();
 	} else if (topic === 'papers') {
       $scope.choiceTopicViewForPapersTable();
+	} else {
+      $log.error('unrecognized value!');
+    }
+  }
+  $scope.actionChangeOrderBy = function(orderBy) {
+    if (orderBy === 'asc') {
+      $scope.orderByNewest();
+	} else if (orderBy === 'desc') {
+      $scope.orderByOldest();
 	} else {
       $log.error('unrecognized value!');
     }
