@@ -195,8 +195,10 @@ system.controller("ctrl", function ($scope,$http,$log) {
       $log.warn('user language already in use: ' + language);
     } else if (language === $scope.portugueseLanguage) {
       $scope.changeLanguagePT();
+      $scope.papersLanguagePreference();
     } else if (language === $scope.englishLanguage) {
       $scope.changeLanguageEN();
+      $scope.papersLanguagePreference();
     } else {
       $log.error('unrecognized value!');
     }
