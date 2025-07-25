@@ -61,8 +61,6 @@ system.controller("ctrl", function ($scope,$http,$log) {
 	  $http.get("articles.json?v=1234567890")
 	    .then(function(response){
 		  $scope.articles = JSON.parse(JSON.stringify(response.data));
-		  $scope.resourcesOldest = JSON.parse(JSON.stringify(response.data));
-		  $scope.resourcesNewest = JSON.parse(JSON.stringify(response.data.reverse()));
 		  sincronizedCallback();
 	    }, function(error) {
 		  console.error(error);
@@ -88,8 +86,6 @@ system.controller("ctrl", function ($scope,$http,$log) {
         .then(function(response) {
 		  $scope.papers = JSON.parse(JSON.stringify(response.data));
           $scope.papersLanguagePreference();
-          $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.papers));
-          $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.papers.reverse()));
 		  sincronizedCallback();
 	    }, function(error) {
 		  console.error(error);
@@ -136,6 +132,8 @@ system.controller("ctrl", function ($scope,$http,$log) {
   $scope.enableViewPapersTable = false;
   $scope.choiceTopicViewForArticlesTable = function() {
     var sincronized = function() {
+      $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.articles));
+      $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.articles.reverse()));
 	  $scope.enableViewArticlesTable = true;
       document.getElementById('articlesLabel').setAttribute('class', 'text-dark fw-bold');
       $scope.enableViewPapersTable = false;
@@ -147,6 +145,8 @@ system.controller("ctrl", function ($scope,$http,$log) {
   }
   $scope.choiceTopicViewForPapersTable = function() {
     var sincronized = function() {
+      $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.papers));
+      $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.papers.reverse()));
 	  $scope.enableViewPapersTable = true;
       document.getElementById('papersLabel').setAttribute('class', 'text-dark fw-bold');
       $scope.enableViewArticlesTable = false;
