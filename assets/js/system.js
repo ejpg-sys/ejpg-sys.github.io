@@ -52,15 +52,27 @@ system.controller("ctrl", function ($scope,$http,$log) {
       $scope.userLanguagePreferenceUpdate(language);
     }
   }
+  $scope.topic = {
+    current: undefined,
+    articles: 'articles',
+    papers: 'papers'
+  };
+  $scope.orderBy = {
+    current: undefined,
+    newest: 'asc',
+	oldest: 'desc'
+  };
   $http.defaults.cache = false;
   $scope.resources = [];
+  $scope.originArticles = [];
   $scope.articles = [];
+  $scope.originPapers = [];
   $scope.papers = [];
   $scope.retrieve_articles = function(sincronizedCallback) {
-	if ($scope.articles !== undefined) {
+	if ($scope.originArticles.length === 0) {
 	  $http.get("articles.json?v=1234567890")
 	    .then(function(response){
-		  $scope.articles = JSON.parse(JSON.stringify(response.data));
+		  $scope.originArticles = JSON.parse(JSON.stringify(response.data));
 		  sincronizedCallback();
 	    }, function(error) {
 		  console.error(error);
@@ -81,11 +93,10 @@ system.controller("ctrl", function ($scope,$http,$log) {
     }
   }
   $scope.retrieve_papers = function(sincronizedCallback) {
-	if ($scope.papers !== undefined) {
+	if ($scope.originPapers.length === 0) {
       $http.get("papers.json?v=1234567890")
         .then(function(response) {
-		  $scope.papers = JSON.parse(JSON.stringify(response.data));
-          $scope.papersLanguagePreference();
+		  $scope.originPapers = JSON.parse(JSON.stringify(response.data));
 		  sincronizedCallback();
 	    }, function(error) {
 		  console.error(error);
@@ -105,54 +116,53 @@ system.controller("ctrl", function ($scope,$http,$log) {
       }
     }
   }
-  $scope.enableOrderByNewest = true;
-  $scope.enableOrderByOldest - false;
   $scope.orderByNewest = function() {
+    $scope.orderBy.current = $scope.orderBy.newest;
 	$scope.resources = $scope.resourcesNewest;
-    $scope.enableOrderByNewest = true;
     document.getElementById('newestId').setAttribute('class', 'text-dark fw-bold');
-    $scope.enableOrderByOldest = false;
     document.getElementById('oldestId').setAttribute('class', 'text-dark');
   }
   $scope.orderByOldest = function() {
+    $scope.orderBy.current = $scope.orderBy.oldest;
 	$scope.resources = $scope.resourcesOldest;
-    $scope.enableOrderByOldest = true;
     document.getElementById('oldestId').setAttribute('class', 'text-dark fw-bold');
-    $scope.enableOrderByNewest = false;
     document.getElementById('newestId').setAttribute('class', 'text-dark');
   }
-  $scope.orderByEnabled = function() {
-    if ($scope.enableOrderByNewest) {
+  $scope.orderByPreference = function() {
+    if ($scope.orderBy.current == undefined) {
       $scope.orderByNewest();
-	} else {
+    } else if ($scope.orderBy.current == $scope.orderBy.newest){
+      $scope.orderByNewest();
+    } else if ($scope.orderBy.current == $scope.orderBy.oldest) {
       $scope.orderByOldest();
+    } else {
+      $log.debug('unrecognized value!');
 	}
   }
-  $scope.enableViewArticlesTable = false;
-  $scope.enableViewPapersTable = false;
   $scope.choiceTopicViewForArticlesTable = function() {
     var sincronized = function() {
+      $scope.topic.current = $scope.topic.articles;
+      $scope.articles = $scope.originArticles;
       $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.articles));
       $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.articles.reverse()));
-	  $scope.enableViewArticlesTable = true;
+      $scope.orderByPreference();
+      $scope.paginator();
       document.getElementById('articlesLabel').setAttribute('class', 'text-dark fw-bold');
-      $scope.enableViewPapersTable = false;
       document.getElementById('papersLabel').setAttribute('class', 'text-dark');
-	  $scope.orderByEnabled();
-	  $scope.paginator();
 	}
 	$scope.retrieve_articles(sincronized);
   }
   $scope.choiceTopicViewForPapersTable = function() {
     var sincronized = function() {
+      $scope.topic.current = $scope.topic.papers;
+      $scope.papers = $scope.originPapers;
+      $scope.papersLanguagePreference();
       $scope.resourcesOldest = JSON.parse(JSON.stringify($scope.papers));
       $scope.resourcesNewest = JSON.parse(JSON.stringify($scope.papers.reverse()));
-	  $scope.enableViewPapersTable = true;
+      $scope.orderByPreference();
+      $scope.paginator();
       document.getElementById('papersLabel').setAttribute('class', 'text-dark fw-bold');
-      $scope.enableViewArticlesTable = false;
       document.getElementById('articlesLabel').setAttribute('class', 'text-dark');
-	  $scope.orderByEnabled();
-	  $scope.paginator();
 	}
 	$scope.retrieve_papers(sincronized);
   }
@@ -169,7 +179,7 @@ system.controller("ctrl", function ($scope,$http,$log) {
     $scope.languagePTTextValue = "portuguese";
     $scope.tableDateLabel = 'DATE';
     $scope.tableSubjectLabel = 'SUBJECT';
-    $scope.tablePageLabel = "PAGE"
+    $scope.tablePageLabel = "PAGE";
     document.getElementById('languageEN').setAttribute('class', 'text-dark fw-bold');
     document.getElementById('languagePT').setAttribute('class', 'text-dark');
   }
@@ -204,16 +214,20 @@ system.controller("ctrl", function ($scope,$http,$log) {
     }
   }
   $scope.actionChangeTopic = function(topic) {
-    if (topic === 'articles') {
+    if (topic === $scope.topic.current) {
+      $log.warn('user topic already in use: ' + topic);
+    } else if (topic === $scope.topic.articles) {
       $scope.choiceTopicViewForArticlesTable();
-	} else if (topic === 'papers') {
+	} else if (topic === $scope.topic.papers) {
       $scope.choiceTopicViewForPapersTable();
 	} else {
       $log.error('unrecognized value!');
     }
   }
   $scope.actionChangeOrderBy = function(orderBy) {
-    if (orderBy === 'asc') {
+    if (orderBy === $scope.orderBy.current) {
+      $log.warn('user orderby already in use: ' + orderBy);
+    } else if (orderBy === 'asc') {
       $scope.orderByNewest();
 	} else if (orderBy === 'desc') {
       $scope.orderByOldest();
