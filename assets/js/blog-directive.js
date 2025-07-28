@@ -69,7 +69,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.resourcesMaxItemsPage = 4;
         scope.resourcesCurrentPage = 1;
         scope.resourcesTotalPages = Math.ceil(scope.resourcesListSize / scope.resourcesMaxItemsPage);
-        scope.resourcesChangePage = function(pageNumber) {
+        scope.actionChangePage = function(pageNumber) {
           if (scope.resourcesCurrentPage != pageNumber) {
             scope.resourcesCurrentPage = pageNumber;
           }

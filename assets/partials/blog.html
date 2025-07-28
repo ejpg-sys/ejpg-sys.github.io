@@ -58,7 +58,7 @@
       <div class="col justify-content-end">
         <label class="fw-bold" ng-bind="tablePageLabel"></label>
         <span ng-repeat="i in [].constructor(resourcesTotalPages) track by $index">
-          <a class="text-dark fw-bold" href="#" ng-click="resourcesChangePage(($index +1))" ng-bind="$index + 1"></a>
+          <a class="text-dark fw-bold" href="#" ng-click="actionChangePage(($index +1))" ng-bind="$index + 1"></a>
         </span>
       </div>
     </div>
