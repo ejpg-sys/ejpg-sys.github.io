@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.directive('blog', ['$http', 'languageService', function($http, languageService) {
+system.directive('blog', ['$log', '$http', 'languageService', function($log, $http, languageService) {
   return {
     templateUrl: '/assets/partials/blog.html',
     replace: true,
@@ -41,11 +41,11 @@ system.directive('blog', ['$http', 'languageService', function($http, languageSe
         }
       };
       scope.papersLanguagePreference = function() {
-        if (scope.language === scope.portugueseLanguage) {
+        if (languageService.get() === languageService.portugueseLanguage) {
           scope.papers.forEach(function(paper) {
             paper.body = paper.pt_body;
           });
-        } else if (scope.language === scope.englishLanguage) {
+        } else if (languageService.get() === languageService.englishLanguage) {
           scope.papers.forEach(function(paper) {
             paper.body = paper.en_body;
           });
@@ -158,12 +158,12 @@ system.directive('blog', ['$http', 'languageService', function($http, languageSe
         document.getElementById('languageEN').setAttribute('class', 'text-dark');
       }
       scope.actionChangeLanguage = function(language) {
-        if (scope.language == language) {
+        if (languageService.get() == language) {
           $log.warn('user language already in use: ' + language);
-        } else if (language === scope.portugueseLanguage) {
+        } else if (languageService.portugueseLanguage === language) {
           scope.choiceLanguagePT();
           scope.papersLanguagePreference();
-        } else if (language === scope.englishLanguage) {
+        } else if (languageService.englishLanguage === language) {
           scope.choiceLanguageEN();
           scope.papersLanguagePreference();
         } else {
@@ -193,7 +193,7 @@ system.directive('blog', ['$http', 'languageService', function($http, languageSe
         }
       }
       scope.blogInitializer = function() {
-        if (scope.language === 'pt') {
+        if (languageService.get() === languageService.portugueseLanguage) {
           scope.choiceLanguagePT();
         } else {
           scope.choiceLanguageEN();
