@@ -242,8 +242,3 @@ system.controller("ctrl", function ($scope,$http,$log) {
   }
   $scope.defaultStarter();
 });
-system.directive('blog', function() {
-  return {
-    templateUrl: '/assets/partials/blog.html'
-  }
-});
