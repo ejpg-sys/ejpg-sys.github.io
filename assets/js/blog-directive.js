@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.directive('blog', ['$http', function($http) {
+system.directive('blog', ['$http', 'languageService', function($http, languageService) {
   return {
     templateUrl: '/assets/partials/blog.html',
     replace: true,
@@ -12,6 +12,7 @@ system.directive('blog', ['$http', function($http) {
     },
     transclude: false,
     link: function(scope, element, attrs, ctrl, transcludeFn) {
+      scope.pageTitle = "EJPG-SYS on GITHUB.IO";
       scope.topic = {
         current: undefined,
         articles: 'articles',
@@ -123,7 +124,7 @@ system.directive('blog', ['$http', function($http) {
         scope.retrieve_papers(sincronized);
       }
       scope.choiceLanguageEN = function() {
-        scope.userLanguagePreference('en');
+        languageService.userLanguagePreference('en');
         scope.orderTextValue = "order by";
         scope.newestTextValue = "newest";
         scope.oldestTextValue = "oldest";
@@ -140,7 +141,7 @@ system.directive('blog', ['$http', function($http) {
         document.getElementById('languagePT').setAttribute('class', 'text-dark');
       }
       scope.choiceLanguagePT = function() {
-        scope.userLanguagePreference('pt');
+        languageService.userLanguagePreference('pt');
         scope.orderTextValue = "ordernar por";
         scope.newestTextValue = "recente";
         scope.oldestTextValue = "antigo";
