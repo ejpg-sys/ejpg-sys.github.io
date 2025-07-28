@@ -64,15 +64,26 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           sincronizedCallback();
         }
       };
+      scope.cleanPageSelection = function() {
+        if (scope.resourcesCurrentPage !== undefined) {
+          document.getElementById('pageId'+scope.resourcesCurrentPage).setAttribute('class', 'text-dark');
+        }
+      }
       scope.paginator = function() {
+        scope.cleanPageSelection();
         scope.resourcesListSize = scope.resources.length;
         scope.resourcesMaxItemsPage = 4;
         scope.resourcesCurrentPage = 1;
         scope.resourcesTotalPages = Math.ceil(scope.resourcesListSize / scope.resourcesMaxItemsPage);
-        scope.actionChangePage = function(pageNumber) {
-          if (scope.resourcesCurrentPage != pageNumber) {
-            scope.resourcesCurrentPage = pageNumber;
-          }
+        document.getElementById('pageId'+scope.resourcesCurrentPage).setAttribute('class', 'text-dark fw-bold');
+      }
+      scope.actionChangePage = function(pageNumber) {
+        if (scope.resourcesCurrentPage != pageNumber) {
+          scope.cleanPageSelection();
+          document.getElementById('pageId'+pageNumber).setAttribute('class', 'text-dark fw-bold');
+          scope.resourcesCurrentPage = pageNumber;
+        } else {
+          $log.warn('user page already active!');
         }
       }
       scope.orderByNewest = function() {
@@ -80,6 +91,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.resources.sort((a, b) => b.order_id - a.order_id);
         document.getElementById('newestId').setAttribute('class', 'text-dark fw-bold');
         document.getElementById('oldestId').setAttribute('class', 'text-dark');
+        scope.paginator();
       }
       scope.orderByOldest = function() {
         scope.orderBy.current = scope.orderBy.oldest;
@@ -88,6 +100,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         });
         document.getElementById('oldestId').setAttribute('class', 'text-dark fw-bold');
         document.getElementById('newestId').setAttribute('class', 'text-dark');
+        scope.paginator();
       }
       scope.orderByPreference = function() {
         if (scope.orderBy.current == undefined) {
