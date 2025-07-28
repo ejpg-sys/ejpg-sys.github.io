@@ -12,76 +12,13 @@
 </head>
 <body ng-controller="ctrl">
   <main>
-    <div class="mt-5 container">
-      <div>
-        <h1 class="text-center" ng-bind="pageTitle"></h1>
-      </div>
-      <hr/>
-      <div>
-        <div class="row">
-          <div class="text-dark col justify-content-end">
-            <label ng-bind="languageLabel"></label> 
-            [<a href="#" ng-click="actionChangeLanguage('en')" id="languageEN" ng-bind="languageENTextValue"></a>]
-            [<a href="#" ng-click="actionChangeLanguage('pt')" id="languagePT" ng-bind="languagePTTextValue"></a>]
-          </div>
-        </div>
-	    <div class="row">
-          <div class="text-dark col justify-content-end">
-		    <label ng-bind="topicTextValue"></label>
-            [<a href="#" ng-click="actionChangeTopic('articles')" id="articlesLabel" ng-bind="articlesTextValue"></a>]
-            [<a href="#" ng-click="actionChangeTopic('papers')" id="papersLabel" ng-bind="papersTextValue"></a>]
-          </div>
-        </div>
-	    <div class="row">
-          <div class="text-dark col justify-content-end">
-		    <label ng-bind="orderTextValue"></label>
-            [<a href="#" ng-click="actionChangeOrderBy('asc')" id="newestId" ng-bind="newestTextValue"></a>]
-            [<a href="#" ng-click="actionChangeOrderBy('desc')" id="oldestId" ng-bind="oldestTextValue"></a>]
-          </div>
-        </div>
-		<hr/>
-	  </div>
-	  <div ng-show="resources.lenght != 0">
-        <table class="table table-hover table-borderless" id="resourcesTable">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th ng-bind="tableDateLabel" scope="col"></th>
-              <th ng-bind="tableSubjectLabel" scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="resource in resources | limitTo:resourcesMaxItemsPage:resourcesMaxItemsPage*(resourcesCurrentPage-1) track by $index">
-              <th class="col" scope="row">
-                <span ng-bind="$index + 1"></span>
-              </th>
-              <td class="col">
-                <span ng-bind="resource.date_time | date:'yyyy-MM-dd HH:mm'"></span>
-              </td>
-              <td class="col-10">
-                <a class="text-dark" ng-bind="resource.title" ng-href="{{resource.body}}"></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="row" id="pager">
-          <div class="col justify-content-end">
-            <label class="fw-bold" ng-bind="tablePageLabel"></label>
-            <span ng-repeat="i in [].constructor(resourcesTotalPages) track by $index">
-              <a class="text-dark fw-bold" href="#" ng-click="resourcesChangePage(($index +1))" ng-bind="$index + 1"></a>
-            </span>
-          </div>
-        </div>
-        <hr/>
-      </div>
-      <footer>
-        <a class="text-dark" href="license.txt">MIT License</a>
-      </footer>
-    </div>
+    <blog></blog>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" integrity="sha384-c+qsMuWimzoMxDpSd67QtX89Nctaxh/CBMTgEnKrTahfMz1HgjjwqrzEGYXMZxYi" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="assets/js/system.js?v=1234567890"></script>
+  <script src="assets/js/language-service.js?v=1234567890"></script>
+  <script src="assets/js/blog-directive.js?v=1234567890"></script>
 </body>
 </html>
