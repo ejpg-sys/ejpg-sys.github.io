@@ -12,7 +12,6 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
     },
     transclude: false,
     link: function(scope, element, attrs, ctrl, transcludeFn) {
-      scope.license = 'MIT License';
       scope.pageTitle = "EJPG-SYS on GITHUB.IO";
       scope.topic = {
         current: undefined,
@@ -138,6 +137,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.retrieve_papers(sincronized);
       }
       scope.choiceLanguageEN = function() {
+        scope.license = 'License';
         languageService.userLanguagePreference('en');
         scope.orderTextValue = "order by";
         scope.newestTextValue = "newest";
@@ -156,6 +156,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         document.getElementById('languagePT').setAttribute('class', 'text-dark');
       }
       scope.choiceLanguagePT = function() {
+        scope.license = 'Licença';
         languageService.userLanguagePreference('pt');
         scope.orderTextValue = "ordernar por";
         scope.newestTextValue = "recente";
@@ -222,8 +223,14 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           $log.info(resource.paper_id);
         } else if (resource === 'license') {
           $log.info(resource);
-          scope.resourceReader.titleText = 'License';
-          $http.get('/license.txt')
+          scope.resourceReader.titleText = scope.license;
+          var licenseTextRef = undefined;
+          if (languageService.get() === languageService.portugueseLanguage) {
+            licenseTextRef = '/license-pt.txt';
+          } else {
+            licenseTextRef = 'license.txt';
+          }
+          $http.get(licenseTextRef)
             .then(function(response) {
               $log.info(response.data);
               scope.resourceReader.bodyText.lines = response.data.split('\n');
