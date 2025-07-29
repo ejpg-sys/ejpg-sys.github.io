@@ -181,7 +181,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         document.getElementById('languageEN').setAttribute('class', 'text-dark');
         scope.resourceReaderPaperRedirection = {
           titleText: 'Redirecionamento',
-          bodyText: 'Você redirecionado para a página do github para a leitura',
+          bodyText: 'Você será redirecionado para a página do github para a leitura',
           declineText: 'Declinar',
           acceptText: 'Aceitar'
         }
