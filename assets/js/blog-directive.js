@@ -319,6 +319,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
       }
       scope.actionResourceReaderClose = function() {
         $('#readerModalFullscreen').modal('hide');
+        scope.resourceReader.dateTime = '';
         scope.resourceReader.titleText = '';
         scope.resourceReader.bodyText = [];
       }
