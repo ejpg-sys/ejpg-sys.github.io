@@ -236,9 +236,21 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
             var contextText = response.data.split('\n');
             var contextTextPortuguese = undefined;
             var contextTextEnglish = undefined;
-
-            // TODO: implement!
-
+            var englishContentMatch = '[en]';
+            var englishContentInit = 0;
+            var portugueseContentMatch = '[pt]';
+            var portugueseContentInit = 0;
+			var i = 0;
+            while (i < contextText.length) {
+              if (contextText[i].match(englishContentMatch)) {
+                englishContentInit = i;
+                i+=1;
+              } else if (contextText[i].match(portugueseContentMatch)) {
+                portugueseContentInit = i;
+                i+=1;
+              }
+              i+=1;
+            }
             if (languageService.get() == languageService.portugueseLanguage) {
               scope.resourceReader.bodyText.lines = contextTextPortuguese;
             } else {
