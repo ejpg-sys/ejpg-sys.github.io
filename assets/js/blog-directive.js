@@ -168,7 +168,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.tableDateLabel = 'DATA';
         scope.tableSubjectLabel = 'ASSUNTO';
         scope.tablePageLabel = "PÁGINA";
-        scope.articleReaderBtnCloseLabel = "Fechar";
+        scope.resourceReaderBtnCloseLabel = "Fechar";
         document.getElementById('languagePT').setAttribute('class', 'text-dark fw-bold');
         document.getElementById('languageEN').setAttribute('class', 'text-dark');
       }
@@ -207,10 +207,10 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           $log.error('unrecognized value!');
         }
       }
-      scope.actionArticleReaderOpen = function(articleId) {
+      scope.actionResourceReaderOpen = function(resource) {
         $('#readerModalFullscreen').modal('toggle');
       }
-      scope.actionArticleReaderClose = function() {
+      scope.actionResourceReaderClose = function() {
         $('#readerModalFullscreen').modal('hide');
       }
       scope.blogInitializer = function() {
