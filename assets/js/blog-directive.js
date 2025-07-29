@@ -221,6 +221,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           $('#readerModalFullscreen').modal('toggle');
         } else if (resource.paper_id !== undefined) {
           $log.info(resource.paper_id);
+          window.location.assign(resource.body);
         } else if (resource === 'license') {
           $log.info(resource);
           scope.resourceReader.titleText = scope.license;
