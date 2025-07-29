@@ -234,22 +234,38 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         $http.get(articleRef)
           .then(function(response) {
             var contextText = response.data.split('\n');
-            var contextTextPortuguese = undefined;
-            var contextTextEnglish = undefined;
             var englishContentMatch = '[en]';
+            var contextTextEnglish = [];
             var englishContentInit = 0;
+            var englishContentEnd = 0;
             var portugueseContentMatch = '[pt]';
+            var contextTextPortuguese = [];
             var portugueseContentInit = 0;
+            var portugueseContentEnd = 0;
 			var i = 0;
             while (i < contextText.length) {
-              if (contextText[i].match(englishContentMatch)) {
+              if (contextText[i].indexOf(englishContentMatch) != -1) {
                 englishContentInit = i;
                 i+=1;
-              } else if (contextText[i].match(portugueseContentMatch)) {
+              } else if (contextText[i].indexOf(portugueseContentMatch) != -1) {
+                englishContentEnd = i-1;
                 portugueseContentInit = i;
-                i+=1;
+                portugueseContentEnd = contextText.length;
+                break;
               }
               i+=1;
+            }
+            var e = 0;
+            contextTextEnglish.push('');
+            while (e < englishContentEnd) {
+              contextTextEnglish.push(contextText[e]);
+              e++;
+            }
+            var p = portugueseContentInit;
+            contextTextPortuguese.push('');
+            while (p < portugueseContentEnd) {
+              contextTextPortuguese.push(contextText[p]);
+              p++;
             }
             if (languageService.get() == languageService.portugueseLanguage) {
               scope.resourceReader.bodyText.lines = contextTextPortuguese;
