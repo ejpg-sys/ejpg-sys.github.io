@@ -69,7 +69,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-4" id="readerModalFullscreenLabel" ng-bind="resourceReader.titleText"></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ng-click="actionResourceReaderClose()"></button>
         </div>
         <div class="modal-body">
           <span ng-repeat="line in resourceReader.bodyText.lines track by $index">
@@ -87,14 +87,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="readerModalLabel" ng-bind="resourceReaderPaperRedirection.titleText"></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ng-click="actionResourceReaderPaperRefRedirectionDecline()"></button>
         </div>
         <div class="modal-body">
           <p ng-bind="resourceReaderPaperRedirection.bodyText"></p>
 		</div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-bind="resourceReaderPaperRedirection.declineText"></button>
-          <button type="button" class="btn btn-primary" ng-bind="resourceReaderPaperRedirection.acceptText"></button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-bind="resourceReaderPaperRedirection.declineText" ng-click="actionResourceReaderPaperRefRedirectionDecline()"></button>
+          <button type="button" class="btn btn-primary" ng-bind="resourceReaderPaperRedirection.acceptText" ng-click="actionResourceReaderPaperRefRedirectionAccept()"></button>
         </div>
       </div>
     </div>
