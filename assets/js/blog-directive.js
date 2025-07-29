@@ -154,6 +154,12 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.resourceReaderBtnCloseLabel = "Close";
         document.getElementById('languageEN').setAttribute('class', 'text-dark fw-bold');
         document.getElementById('languagePT').setAttribute('class', 'text-dark');
+        scope.resourceReaderPaperRedirection = {
+          titleText: 'Redirection',
+          bodyText: 'You will be redirecioned to github page for reading',
+          declineText: 'Decline',
+          acceptText: 'Accept'
+        }
       }
       scope.choiceLanguagePT = function() {
         scope.license = 'Licença';
@@ -173,6 +179,12 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.resourceReaderBtnCloseLabel = "Fechar";
         document.getElementById('languagePT').setAttribute('class', 'text-dark fw-bold');
         document.getElementById('languageEN').setAttribute('class', 'text-dark');
+        scope.resourceReaderPaperRedirection = {
+          titleText: 'Redirecionamento',
+          bodyText: 'Você redirecionado para a página do github para a leitura',
+          declineText: 'Declinar',
+          acceptText: 'Aceitar'
+        }
       }
       scope.actionChangeLanguage = function(language) {
         if (languageService.get() == language) {
@@ -215,12 +227,6 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           lines: undefined
         }
       };
-      scope.resourceReaderPaperRedirection = {
-        titleText: 'Redirection',
-        bodyText: 'You will be redirecioned to github page for reading',
-        declineText: 'Decline',
-        acceptText: 'Accept'
-      }
       scope.actionResourceReaderOpenPaper = function() {
         $('#readerModalFullscreen').modal('toggle');
       }
@@ -231,10 +237,6 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         } else if (resource.paper_id !== undefined) {
           $log.info(resource.paper_id);
           if (languageService.get() == languageService.portugueseLanguage) {
-            scope.resourceReaderPaperRedirection.titleText = 'Redirecionamento';
-            scope.resourceReaderPaperRedirection.bodyText = 'Você redirecionado para a página do github para a leitura';
-            scope.resourceReaderPaperRedirection.declineText = 'Declinar';
-            scope.resourceReaderPaperRedirection.acceptText = 'Aceitar';
             $('#readerModalDefault').modal('toggle');
           } else {
             $('#readerModalDefault').modal('toggle');
