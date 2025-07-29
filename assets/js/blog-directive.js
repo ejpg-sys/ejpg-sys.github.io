@@ -227,8 +227,11 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           lines: undefined
         }
       };
-      scope.actionResourceReaderOpenPaper = function() {
-        $('#readerModalFullscreen').modal('toggle');
+      scope.actionResourceReaderOpenPaper = function(paperRef) {
+        $('#readerModalDefault').modal('toggle');
+        if (false) {
+          window.location.assign(paperRef);
+        }
       }
       scope.actionResourceReaderLicense = function() {
         scope.resourceReader.titleText = scope.license;
@@ -253,14 +256,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           $('#readerModalFullscreen').modal('toggle');
         } else if (resource.paper_id !== undefined) {
           $log.info(resource.paper_id);
-          if (languageService.get() == languageService.portugueseLanguage) {
-            $('#readerModalDefault').modal('toggle');
-          } else {
-            $('#readerModalDefault').modal('toggle');
-          }
-          if (false) {
-            window.location.assign(resource.body);
-          }
+          scope.actionResourceReaderOpenPaper(resource.body);
         } else if (resource === 'license') {
           $log.info(resource);
           scope.actionResourceReaderLicense();
