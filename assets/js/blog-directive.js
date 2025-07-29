@@ -242,6 +242,8 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
       }
       scope.actionResourceReaderClose = function() {
         $('#readerModalFullscreen').modal('hide');
+        scope.resourceReader.titleText = '';
+        scope.resourceReader.bodyText = [];
       }
       scope.blogInitializer = function() {
         if (languageService.get() === languageService.portugueseLanguage) {
