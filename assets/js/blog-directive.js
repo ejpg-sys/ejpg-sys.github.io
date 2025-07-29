@@ -227,6 +227,10 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           lines: undefined
         }
       };
+      scope.actionResourceReaderArticle = function(articleRef) {
+        // TODO: implement!
+        $('#readerModalFullscreen').modal('toggle');
+      }
       scope.actionResourceReaderOpenPaper = function(paperRef) {
         scope.paperRefRedirectionAccept = paperRef;
         $('#readerModalDefault').modal('toggle');
@@ -258,7 +262,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
       scope.actionResourceReaderOpen = function(resource) {
         if (resource.article_id !== undefined) {
           $log.info(resource.article_id);
-          $('#readerModalFullscreen').modal('toggle');
+          scope.actionResourceReaderArticle(resource.body);
         } else if (resource.paper_id !== undefined) {
           $log.info(resource.paper_id);
           scope.actionResourceReaderOpenPaper(resource.body);
