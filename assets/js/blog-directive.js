@@ -229,6 +229,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
       };
       scope.actionResourceReaderArticle = function(article) {
         scope.resourceReader.titleText = article.title;
+        scope.resourceReader.dateTime = article.date_time;
         var articleRef = article.body;
         $http.get(articleRef)
           .then(function(response) {

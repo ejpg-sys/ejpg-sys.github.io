@@ -72,6 +72,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ng-click="actionResourceReaderClose()"></button>
         </div>
         <div class="modal-body">
+          <span ng-bind="resourceReader.dateTime"></span>
           <span ng-repeat="line in resourceReader.bodyText.lines track by $index">
             <p ng-bind="line"></p>
           </span>
