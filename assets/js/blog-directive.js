@@ -205,8 +205,11 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           $log.error('unrecognized value!');
         }
       }
-      scope.actionArticleReader = function(articleId) {
+      scope.actionArticleReaderOpen = function(articleId) {
         $('#readerModalFullscreen').modal('toggle');
+      }
+      scope.actionArticleReaderClose = function() {
+        $('#readerModalFullscreen').modal('hide');
       }
       scope.blogInitializer = function() {
         if (languageService.get() === languageService.portugueseLanguage) {
