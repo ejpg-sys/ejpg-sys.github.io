@@ -49,7 +49,7 @@
             <span ng-bind="resource.date_time | date:'yyyy-MM-dd HH:mm'"></span>
           </td>
           <td class="col-10">
-            <a class="text-dark" ng-bind="resource.title" ng-href="{{resource.body}}"></a>
+            <a class="text-dark" ng-bind="resource.title" ng-href="#" ng-click="actionResourceReaderOpen(resource)"></a>
           </td>
         </tr>
       </tbody>
@@ -64,7 +64,43 @@
     </div>
     <hr/>
   </div>
+  <div class="modal fade" id="readerModalFullscreen" tabindex="-1" aria-labelledby="readerModalFullscreenLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-4" id="readerModalFullscreenLabel" ng-bind="resourceReader.titleText"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ng-click="actionResourceReaderClose()"></button>
+        </div>
+        <div class="modal-body">
+          <span ng-bind="resourceReader.dateTime"></span>
+          <span ng-repeat="line in resourceReader.bodyText.lines track by $index">
+            <p ng-bind="line"></p>
+          </span>
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" ng-click="actionResourceReaderClose()" ng-bind="resourceReaderBtnCloseLabel"></button>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal fade" id="readerModalDefault" tabindex="-1" aria-labelledby="readerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="readerModalLabel" ng-bind="resourceReaderPaperRedirection.titleText"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ng-click="actionResourceReaderPaperRefRedirectionDecline()"></button>
+        </div>
+        <div class="modal-body">
+          <p ng-bind="resourceReaderPaperRedirection.bodyText"></p>
+		</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-bind="resourceReaderPaperRedirection.declineText" ng-click="actionResourceReaderPaperRefRedirectionDecline()"></button>
+          <button type="button" class="btn btn-primary" ng-bind="resourceReaderPaperRedirection.acceptText" ng-click="actionResourceReaderPaperRefRedirectionAccept()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
   <footer>
-    <a class="text-dark" href="license.txt">MIT License</a>
+    <a class="text-dark" href="#" ng-click="actionResourceReaderOpen('license')" ng-bind="license.toUpperCase()"></a>
   </footer>
 </div>
