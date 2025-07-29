@@ -150,6 +150,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.tableDateLabel = 'DATE';
         scope.tableSubjectLabel = 'SUBJECT';
         scope.tablePageLabel = "PAGE";
+        scope.articleReaderBtnCloseLabel = "Close";
         document.getElementById('languageEN').setAttribute('class', 'text-dark fw-bold');
         document.getElementById('languagePT').setAttribute('class', 'text-dark');
       }
@@ -167,6 +168,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.tableDateLabel = 'DATA';
         scope.tableSubjectLabel = 'ASSUNTO';
         scope.tablePageLabel = "PÁGINA";
+        scope.articleReaderBtnCloseLabel = "Fechar";
         document.getElementById('languagePT').setAttribute('class', 'text-dark fw-bold');
         document.getElementById('languageEN').setAttribute('class', 'text-dark');
       }
