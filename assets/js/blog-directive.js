@@ -228,10 +228,15 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         }
       };
       scope.actionResourceReaderOpenPaper = function(paperRef) {
+        scope.paperRefRedirectionAccept = paperRef;
         $('#readerModalDefault').modal('toggle');
-        if (false) {
-          window.location.assign(paperRef);
-        }
+      }
+      scope.actionResourceReaderPaperRefRedirectionAccept = function() {
+        window.location.assign(scope.paperRefRedirectionAccept);
+      }
+      scope.actionResourceReaderPaperRefRedirectionDecline = function() {
+        scope.paperRefRedirectionAccept = undefined;
+        $('#readerModalDefault').modal('hide');
       }
       scope.actionResourceReaderLicense = function() {
         scope.resourceReader.titleText = scope.license;
