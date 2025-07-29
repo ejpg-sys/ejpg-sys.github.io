@@ -68,10 +68,14 @@
     <div class="modal-dialog modal-fullscreen">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-4" id="readerModalFullscreenLabel">Full screen modal</h1>
+          <h1 class="modal-title fs-4" id="readerModalFullscreenLabel" ng-bind="resourceReader.titleText"></h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">...</div>
+        <div class="modal-body">
+          <span ng-repeat="line in resourceReader.bodyText.lines track by $index">
+            <p ng-bind="line"></p>
+          </span>
+        </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" ng-click="actionResourceReaderClose()" ng-bind="resourceReaderBtnCloseLabel"></button>
           </div>
@@ -79,6 +83,6 @@
       </div>
   </div>
   <footer>
-    <a class="text-dark" href="license.txt">MIT License</a>
+    <a class="text-dark" href="#" ng-click="actionResourceReaderOpen('license')">MIT License</a>
   </footer>
 </div>

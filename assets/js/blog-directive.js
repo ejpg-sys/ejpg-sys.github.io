@@ -12,6 +12,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
     },
     transclude: false,
     link: function(scope, element, attrs, ctrl, transcludeFn) {
+      scope.license = 'MIT License';
       scope.pageTitle = "EJPG-SYS on GITHUB.IO";
       scope.topic = {
         current: undefined,
@@ -150,7 +151,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.tableDateLabel = 'DATE';
         scope.tableSubjectLabel = 'SUBJECT';
         scope.tablePageLabel = "PAGE";
-        scope.articleReaderBtnCloseLabel = "Close";
+        scope.resourceReaderBtnCloseLabel = "Close";
         document.getElementById('languageEN').setAttribute('class', 'text-dark fw-bold');
         document.getElementById('languagePT').setAttribute('class', 'text-dark');
       }
@@ -207,12 +208,29 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           $log.error('unrecognized value!');
         }
       }
+      scope.resourceReader = {
+        titleText: undefined,
+        bodyText: {
+          lines: undefined
+        }
+      };
       scope.actionResourceReaderOpen = function(resource) {
         if (resource.article_id !== undefined) {
           $log.info(resource.article_id);
           $('#readerModalFullscreen').modal('toggle');
         } else if (resource.paper_id !== undefined) {
           $log.info(resource.paper_id);
+        } else if (resource === 'license') {
+          $log.info(resource);
+          scope.resourceReader.titleText = 'License';
+          $http.get('/license.txt')
+            .then(function(response) {
+              $log.info(response.data);
+              scope.resourceReader.bodyText.lines = response.data.split('\n');
+              $('#readerModalFullscreen').modal('toggle');
+            }, function(error) {
+              $log.error(error);
+            });
         }
       }
       scope.actionResourceReaderClose = function() {
