@@ -137,6 +137,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.retrieve_papers(sincronized);
       }
       scope.choiceLanguageEN = function() {
+        scope.license = 'License';
         languageService.userLanguagePreference('en');
         scope.orderTextValue = "order by";
         scope.newestTextValue = "newest";
@@ -150,10 +151,18 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.tableDateLabel = 'DATE';
         scope.tableSubjectLabel = 'SUBJECT';
         scope.tablePageLabel = "PAGE";
+        scope.resourceReaderBtnCloseLabel = "Close";
         document.getElementById('languageEN').setAttribute('class', 'text-dark fw-bold');
         document.getElementById('languagePT').setAttribute('class', 'text-dark');
+        scope.resourceReaderPaperRedirection = {
+          titleText: 'Redirection',
+          bodyText: 'You will be redirecioned to github page for reading',
+          declineText: 'Decline',
+          acceptText: 'Accept'
+        }
       }
       scope.choiceLanguagePT = function() {
+        scope.license = 'Licença';
         languageService.userLanguagePreference('pt');
         scope.orderTextValue = "ordernar por";
         scope.newestTextValue = "recente";
@@ -167,8 +176,15 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.tableDateLabel = 'DATA';
         scope.tableSubjectLabel = 'ASSUNTO';
         scope.tablePageLabel = "PÁGINA";
+        scope.resourceReaderBtnCloseLabel = "Fechar";
         document.getElementById('languagePT').setAttribute('class', 'text-dark fw-bold');
         document.getElementById('languageEN').setAttribute('class', 'text-dark');
+        scope.resourceReaderPaperRedirection = {
+          titleText: 'Redirecionamento',
+          bodyText: 'Você será redirecionado para a página do github para a leitura',
+          declineText: 'Declinar',
+          acceptText: 'Aceitar'
+        }
       }
       scope.actionChangeLanguage = function(language) {
         if (languageService.get() == language) {
@@ -204,6 +220,107 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         } else {
           $log.error('unrecognized value!');
         }
+      }
+      scope.resourceReader = {
+        titleText: undefined,
+        bodyText: {
+          lines: undefined
+        }
+      };
+      scope.actionResourceReaderArticle = function(article) {
+        scope.resourceReader.titleText = article.title;
+        scope.resourceReader.dateTime = article.date_time;
+        var articleRef = article.body;
+        $http.get(articleRef)
+          .then(function(response) {
+            var contextText = response.data.split('\n');
+            var englishContentMatch = '[en]';
+            var contextTextEnglish = [];
+            var englishContentInit = 0;
+            var englishContentEnd = 0;
+            var portugueseContentMatch = '[pt]';
+            var contextTextPortuguese = [];
+            var portugueseContentInit = 0;
+            var portugueseContentEnd = 0;
+			var i = 0;
+            while (i < contextText.length) {
+              var inspection = '' + contextText[i];
+              if (inspection.toLowerCase().indexOf(englishContentMatch) != -1) {
+                englishContentInit = i;
+                i+=1;
+              } else if (inspection.toLowerCase().indexOf(portugueseContentMatch) != -1) {
+                englishContentEnd = i-1;
+                portugueseContentInit = i;
+                portugueseContentEnd = contextText.length;
+                break;
+              }
+              i+=1;
+            }
+            var e = 0;
+            contextTextEnglish.push('');
+            while (e < englishContentEnd) {
+              contextTextEnglish.push(contextText[e]);
+              e++;
+            }
+            var p = portugueseContentInit;
+            contextTextPortuguese.push('');
+            while (p < portugueseContentEnd) {
+              contextTextPortuguese.push(contextText[p]);
+              p++;
+            }
+            if (languageService.get() == languageService.portugueseLanguage) {
+              scope.resourceReader.bodyText.lines = contextTextPortuguese;
+            } else {
+              scope.resourceReader.bodyText.lines = contextTextEnglish;
+            }
+            $('#readerModalFullscreen').modal('toggle');
+          }, function(error) {
+            $log.error(error);
+          });
+        $('#readerModalFullscreen').modal('toggle');
+      }
+      scope.actionResourceReaderOpenPaper = function(paperRef) {
+        scope.paperRefRedirectionAccept = paperRef;
+        $('#readerModalDefault').modal('toggle');
+      }
+      scope.actionResourceReaderPaperRefRedirectionAccept = function() {
+        window.location.assign(scope.paperRefRedirectionAccept);
+      }
+      scope.actionResourceReaderPaperRefRedirectionDecline = function() {
+        scope.paperRefRedirectionAccept = undefined;
+        $('#readerModalDefault').modal('hide');
+      }
+      scope.actionResourceReaderLicense = function() {
+        scope.resourceReader.titleText = scope.license;
+        var licenseTextRef = undefined;
+        if (languageService.get() === languageService.portugueseLanguage) {
+          licenseTextRef = '/license-pt.txt';
+        } else {
+          licenseTextRef = '/license.txt';
+        }
+        $http.get(licenseTextRef)
+          .then(function(response) {
+            scope.resourceReader.bodyText.lines = response.data.split('\n');
+            $('#readerModalFullscreen').modal('toggle');
+          }, function(error) {
+            $log.error(error);
+          });
+      }
+      scope.actionResourceReaderOpen = function(resource) {
+        if (resource.article_id !== undefined) {
+          scope.actionResourceReaderArticle(resource);
+        } else if (resource.paper_id !== undefined) {
+          scope.actionResourceReaderOpenPaper(resource.body);
+        } else if (resource === 'license') {
+          scope.actionResourceReaderLicense();
+        } else {
+          $log.error('unrecognized value!');
+        }
+      }
+      scope.actionResourceReaderClose = function() {
+        $('#readerModalFullscreen').modal('hide');
+        scope.resourceReader.titleText = '';
+        scope.resourceReader.bodyText = [];
       }
       scope.blogInitializer = function() {
         if (languageService.get() === languageService.portugueseLanguage) {
