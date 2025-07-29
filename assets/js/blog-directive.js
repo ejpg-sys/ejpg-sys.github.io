@@ -232,7 +232,17 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         var articleRef = article.body;
         $http.get(articleRef)
           .then(function(response) {
-            scope.resourceReader.bodyText.lines = response.data.split('\n');
+            var contextText = response.data.split('\n');
+            var contextTextPortuguese = undefined;
+            var contextTextEnglish = undefined;
+
+            // TODO: implement!
+
+            if (languageService.get() == languageService.portugueseLanguage) {
+              scope.resourceReader.bodyText.lines = contextTextPortuguese;
+            } else {
+              scope.resourceReader.bodyText.lines = contextTextEnglish;
+            }
             $('#readerModalFullscreen').modal('toggle');
           }, function(error) {
             $log.error(error);
