@@ -215,13 +215,33 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           lines: undefined
         }
       };
+      scope.resourceReaderPaperRedirection = {
+        titleText: 'Redirection',
+        bodyText: 'You will be redirecioned to github page for reading',
+        declineText: 'Decline',
+        acceptText: 'Accept'
+      }
+      scope.actionResourceReaderOpenPaper = function() {
+        $('#readerModalFullscreen').modal('toggle');
+      }
       scope.actionResourceReaderOpen = function(resource) {
         if (resource.article_id !== undefined) {
           $log.info(resource.article_id);
           $('#readerModalFullscreen').modal('toggle');
         } else if (resource.paper_id !== undefined) {
           $log.info(resource.paper_id);
-          window.location.assign(resource.body);
+          if (languageService.get() == languageService.portugueseLanguage) {
+            scope.resourceReaderPaperRedirection.titleText = 'Redirecionamento';
+            scope.resourceReaderPaperRedirection.bodyText = 'Você redirecionado para a página do github para a leitura';
+            scope.resourceReaderPaperRedirection.declineText = 'Declinar';
+            scope.resourceReaderPaperRedirection.acceptText = 'Aceitar';
+            $('#readerModalDefault').modal('toggle');
+          } else {
+            $('#readerModalDefault').modal('toggle');
+          }
+          if (false) {
+            window.location.assign(resource.body);
+          }
         } else if (resource === 'license') {
           $log.info(resource);
           scope.resourceReader.titleText = scope.license;
