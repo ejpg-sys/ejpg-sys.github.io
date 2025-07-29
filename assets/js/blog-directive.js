@@ -244,10 +244,11 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
             var portugueseContentEnd = 0;
 			var i = 0;
             while (i < contextText.length) {
-              if (contextText[i].indexOf(englishContentMatch) != -1) {
+              var inspection = '' + contextText[i];
+              if (inspection.toLowerCase().indexOf(englishContentMatch) != -1) {
                 englishContentInit = i;
                 i+=1;
-              } else if (contextText[i].indexOf(portugueseContentMatch) != -1) {
+              } else if (inspection.toLowerCase().indexOf(portugueseContentMatch) != -1) {
                 englishContentEnd = i-1;
                 portugueseContentInit = i;
                 portugueseContentEnd = contextText.length;
