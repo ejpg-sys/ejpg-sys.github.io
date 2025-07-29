@@ -49,7 +49,7 @@
             <span ng-bind="resource.date_time | date:'yyyy-MM-dd HH:mm'"></span>
           </td>
           <td class="col-10">
-            <a class="text-dark" ng-bind="resource.title" ng-click="actionResourceReaderOpen(resource)"></a>
+            <a class="text-dark" ng-bind="resource.title" ng-href="#" ng-click="actionResourceReaderOpen(resource)"></a>
           </td>
         </tr>
       </tbody>
@@ -64,7 +64,6 @@
     </div>
     <hr/>
   </div>
-  <button type="button" class="btn btn-primary">Full screen</button>
   <div class="modal fade" id="readerModalFullscreen" tabindex="-1" aria-labelledby="readerModalFullscreenLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
       <div class="modal-content">
