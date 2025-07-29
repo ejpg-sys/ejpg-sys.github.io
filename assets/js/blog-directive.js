@@ -227,8 +227,17 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           lines: undefined
         }
       };
-      scope.actionResourceReaderArticle = function(articleRef) {
-        // TODO: implement!
+      scope.actionResourceReaderArticle = function(article) {
+        scope.resourceReader.titleText = article.title;
+        var articleRef = article.body;
+        $http.get(articleRef)
+          .then(function(response) {
+            $log.info(response.data);
+            scope.resourceReader.bodyText.lines = response.data.split('\n');
+            $('#readerModalFullscreen').modal('toggle');
+          }, function(error) {
+            $log.error(error);
+          });
         $('#readerModalFullscreen').modal('toggle');
       }
       scope.actionResourceReaderOpenPaper = function(paperRef) {
@@ -262,7 +271,7 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
       scope.actionResourceReaderOpen = function(resource) {
         if (resource.article_id !== undefined) {
           $log.info(resource.article_id);
-          scope.actionResourceReaderArticle(resource.body);
+          scope.actionResourceReaderArticle(resource);
         } else if (resource.paper_id !== undefined) {
           $log.info(resource.paper_id);
           scope.actionResourceReaderOpenPaper(resource.body);
