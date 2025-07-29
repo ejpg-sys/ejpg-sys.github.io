@@ -208,7 +208,12 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         }
       }
       scope.actionResourceReaderOpen = function(resource) {
-        $('#readerModalFullscreen').modal('toggle');
+        if (resource.article_id !== undefined) {
+          $log.info(resource.article_id);
+          $('#readerModalFullscreen').modal('toggle');
+        } else if (resource.paper_id !== undefined) {
+          $log.info(resource.paper_id);
+        }
       }
       scope.actionResourceReaderClose = function() {
         $('#readerModalFullscreen').modal('hide');
