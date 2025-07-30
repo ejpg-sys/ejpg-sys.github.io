@@ -2,17 +2,23 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.directive('pageFooter', ['$log', '$http', 'languageService', function($log, $http, languageService) {
+system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope', function($log, $http, languageService, $rootScope) {
   return {
     templateUrl: '/assets/partials/pageFooter.html',
     replace: true,
     restrict: 'E',
     transclude: false,
     link: function(scope, element, attrs, ctrl, transcludeFn) {
-      var eventListener() {
-        // TODO: implement!
+      var _languageEventListener = function() {
+        $rootScope.$on('languageEvent', function(event, data) {
+          if (languageService.portugueseLanguage === data) {
+            _contextPortuguesLanguage();
+          } else if (languageService.englishLanguage === data) {
+            _contextEnglishLanguage();
+          }
+        });
       }
-      var eventChangeLanguage4En = function() {
+      var _contextPortuguesLanguage = function() {
         // about
         scope.about = "About";
         scope.team = "Team";
@@ -20,7 +26,7 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', function($lo
         scope.privacy = "Privacy";
         scope.terms = "Terms";
       }
-      var eventChanceLanguage4Pt = function() {
+      var _contextEnglishLanguage = function() {
         // about
         scope.about = "Sobre";
         scope.team = "Equipe";
@@ -28,6 +34,7 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', function($lo
         scope.privacy = "Privacidade";
         scope.terms = "Termos";
       }
+      _languageEventListener();
     }
   }
 }]);
