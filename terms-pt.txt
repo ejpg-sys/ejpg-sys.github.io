@@ -1,0 +1,40 @@
+Termos de Armazenamento de Dados para Melhoria da Experiência do Usuário
+
+1. Introdução
+
+Nós estamos comprometidos em fornecer a você a melhor experiência de usuário possível. Para alcançar isso, armazenamos certos dados no seu dispositivo para melhorar o desempenho e a funcionalidade da nossa aplicação.
+
+2. Tipos de Dados Armazenados
+
+Armazenamos os seguintes tipos de dados no seu dispositivo:
+
+- Dados de cache: dados temporários armazenados para melhorar o desempenho da aplicação e reduzir os tempos de carregamento.
+- Preferências: configurações e preferências do usuário, como opções de idioma e layout.
+- Dados de uso: dados anônimos sobre como você usa nossa aplicação, como uso de recursos e padrões de navegação.
+
+3. Finalidade do Armazenamento de Dados
+
+A finalidade do armazenamento de dados no seu dispositivo é:
+
+- Melhorar o desempenho e a capacidade de resposta da aplicação.
+- Fornecer uma experiência de usuário personalizada.
+- Melhorar a funcionalidade e a usabilidade dos recursos.
+
+4. Segurança de Dados
+
+Tomamos medidas razoáveis para garantir a segurança dos dados armazenados no seu dispositivo. No entanto, não podemos garantir a segurança dos dados armazenados no seu dispositivo se ele for comprometido por fatores externos.
+
+5. Retenção de Dados
+
+Retenemos dados no seu dispositivo pelo tempo necessário para alcançar as finalidades descritas acima. Você pode limpar ou excluir dados armazenados a qualquer momento através das configurações do seu dispositivo.
+
+6. Controle do Usuário
+
+Você tem controle sobre os dados armazenados no seu dispositivo. Você pode:
+
+- Limpar dados de cache e uso através das configurações do seu dispositivo.
+- Redefinir preferências para as configurações padrão.
+
+7. Alterações a esta Política
+
+Reservamos o direito de modificar esta política a qualquer momento. Qualquer alteração será efetiva imediatamente após a publicação.

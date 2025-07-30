@@ -2,11 +2,20 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.factory("languageService", function($log) {
+system.factory("languageService", function($log, $rootScope) {
   var _portugueseLanguage = 'pt';
   var _englishLanguage = 'en';
   var _get = function() {
     return localStorage.getItem('language')
+  }
+  var _eventUserLanguageBroadcast = function(language) {
+    if (language !== undefined) {
+      if (language === _portugueseLanguage || language == _englishLanguage) {
+        $rootScope.$broadcast('languageEvent', language);
+      } else {
+        $log.info('unreconized value!');
+      }
+    }
   }
   var _userLanguageStarter = function() {
     var userLanguage = undefined;
@@ -24,16 +33,19 @@ system.factory("languageService", function($log) {
       userLanguage = _englishLanguage;
       localStorage.setItem('language', userLanguage);
     }
+    _eventUserLanguageBroadcast(userLanguage);
   }
   var _userLanguagePreferenceUpdate = function(language) {
-    if (_get() == language) {
+    if (_get() === language) {
       $log.warn('user language already in use: ' + language);
     } else if (language === _portugueseLanguage) {
       localStorage.setItem('language', _portugueseLanguage);
       $log.info('action user preference language change for: ' + language);
+      _eventUserLanguageBroadcast(_portugueseLanguage);
     } else if (language === _englishLanguage) {
       localStorage.setItem('language', _englishLanguage);
       $log.info('action user preference language change for: ' + language);
+      _eventUserLanguageBroadcast(_englishLanguage);
     } else {
       $log.error('unreconized value!');
     }
@@ -52,7 +64,6 @@ system.factory("languageService", function($log) {
     portugueseLanguage: _portugueseLanguage,
     englishLanguage: _englishLanguage,
     get: _get,
-    userLanguageStarter: _userLanguageStarter,
 	userLanguagePreferenceUpdate: _userLanguagePreferenceUpdate,
 	userLanguagePreference: _userLanguagePreference
   };

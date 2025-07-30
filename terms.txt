@@ -1,0 +1,40 @@
+Data Storage Terms for User Experience Improvement
+
+1. Introduction
+
+We are committed to providing you with the best possible user experience. To achieve this, we store certain data on your device to improve the performance and functionality of our application.
+
+2. Types of Data Stored
+
+We store the following types of data on your device:
+
+- Cache data: temporary data stored to improve application performance and reduce loading times.
+- Preferences: user settings and preferences, such as language and layout options.
+- Usage data: anonymous data about how you use our application, such as feature usage and navigation patterns.
+
+3. Data Storage Purpose
+
+The purpose of storing data on your device is to:
+
+- Improve application performance and responsiveness.
+- Provide a personalized user experience.
+- Enhance feature functionality and usability.
+
+4. Data Security
+
+We take reasonable measures to ensure the security of the data stored on your device. However, we cannot guarantee the security of data stored on your device if it is compromised by external factors.
+
+5. Data Retention
+
+We retain data on your device for as long as necessary to achieve the purposes outlined above. You can clear or delete stored data at any time through your device's settings.
+
+6. User Control
+
+You have control over the data stored on your device. You can:
+
+- Clear cache data and usage data through your device's settings.
+- Reset preferences to their default settings.
+
+7. Changes to this Policy
+
+We reserve the right to modify this policy at any time. Any changes will be effective immediately upon posting.
