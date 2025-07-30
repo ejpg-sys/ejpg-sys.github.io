@@ -9,6 +9,25 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', function($lo
     restrict: 'E',
     transclude: false,
     link: function(scope, element, attrs, ctrl, transcludeFn) {
-	}
+      var eventListener() {
+        // TODO: implement!
+      }
+      var eventChangeLanguage4En = function() {
+        // about
+        scope.about = "About";
+        scope.team = "Team";
+        scope.locations = "Locations";
+        scope.privacy = "Privacy";
+        scope.terms = "Terms";
+      }
+      var eventChanceLanguage4Pt = function() {
+        // about
+        scope.about = "Sobre";
+        scope.team = "Equipe";
+        scope.locations = "Localização";
+        scope.privacy = "Privacidade";
+        scope.terms = "Termos";
+      }
+    }
   }
 }]);
