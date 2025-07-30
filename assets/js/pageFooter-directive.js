@@ -38,6 +38,8 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         scope.services = 'Services';
         scope.serviceITConsulting = 'IT Consulting';
         scope.serviceSoftwareManufacture = 'Software Manufacture';
+        // terms reader action button name
+        scope.termsReaderBtnCloseName = 'Close';
       }
       var _contextPortuguesLanguage = function() {
         // about
@@ -59,6 +61,8 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         scope.services = 'Serviços';
         scope.serviceITConsulting = 'Consultoria em TI';
         scope.serviceSoftwareManufacture = 'Fábrica de Software';
+        // terms reader action button name
+        scope.termsReaderBtnCloseName = 'Fechar';
       }
       var _initializer = function() {
         if (languageService.get() === languageService.portugueseLanguage) {
@@ -67,6 +71,58 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
           _contextEnglishLanguage();
         }
 	  }
+      scope.resourceReaderTerms = {
+        subject: undefined,
+        bodyText: {
+          lines: undefined
+        }
+      }
+      var _readerPrivacyTerms = function() {
+        var privacyTermsTextRef = undefined;
+        if (languageService.get() === languageService.portugueseLanguage) {
+          privacyTermsTextRef = '/privacy-pt.txt';
+        } else {
+          privacyTermsTextRef = '/privacy.txt';
+        }
+        $http.get(privacyTermsTextRef)
+          .then(function(response) {
+            scope.resourceReaderTerms.subject = scope.aboutPrivacy;
+            scope.resourceReaderTerms.bodyText.lines = response.data.split('\n');
+            $('#readerTermsModalCenteredScrollable').modal('toggle');
+          }, function(error) {
+            $log.error(error);
+          });
+      }
+      var _readerDataStorageTerms = function() {
+        var dataStorageTermsTextRef = undefined;
+        if (languageService.get() === languageService.portugueseLanguage) {
+          dataStorageTermsTextRef = '/terms-pt.txt';
+        } else {
+          dataStorageTermsTextRef = '/terms.txt';
+        }
+        $http.get(dataStorageTermsTextRef)
+          .then(function(response) {
+            scope.resourceReaderTerms.subject = scope.aboutTerms;
+            scope.resourceReaderTerms.bodyText.lines = response.data.split('\n');
+            $('#readerTermsModalCenteredScrollable').modal('toggle');
+          }, function(error) {
+            $log.error(error);
+          });
+      }
+      var _actionResourceReaderTermsShow = function(subject) {
+        if (subject === 'privacy') {
+          _readerPrivacyTerms();
+        } else if (subject === 'terms') {
+          _readerDataStorageTerms();
+        }
+      }
+      var _actionResourceReaderTermsHide = function() {
+        $('#readerTermsModalCenteredScrollable').modal('hide');
+        scope.resourceReaderTerms.subject = '';
+        scope.resourceReaderTerms.bodyText.lines = '';
+      }
+      scope.actionResourceReaderTermsShow = _actionResourceReaderTermsShow;
+      scope.actionResourceReaderTermsHide = _actionResourceReaderTermsHide;
       _languageEventListener();
       _initializer();
     }

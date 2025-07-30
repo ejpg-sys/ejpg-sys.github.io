@@ -1,4 +1,22 @@
 <footer class="container py-5">
+  <div class="modal fade" id="readerTermsModalCenteredScrollable" tabindex="-1" aria-labelledby="readerTermsModalCenteredScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="readerTermsModalCenteredScrollableTitle" ng-bind="resourceReaderTerms.subject"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <span ng-repeat="line in resourceReaderTerms.bodyText.lines track by $index">
+            <p ng-bind="line"></p>
+          </span>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-bind="termsReaderBtnCloseName"></button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-6 col-md">
       <h5 ng-bind="services"></h5>
@@ -46,10 +64,10 @@
           <a class="link-secondary text-decoration-none" href="#" ng-bind="aboutLocations"></a>
         </li>
         <li>
-          <a class="link-secondary text-decoration-none" href="#" ng-bind="aboutPrivacy"></a>
+          <a class="link-secondary text-decoration-none" href="#" ng-bind="aboutPrivacy" ng-click="actionResourceReaderTermsShow('privacy')"></a>
         </li>
         <li>
-          <a class="link-secondary text-decoration-none" href="#" ng-bind="aboutTerms"></a>
+          <a class="link-secondary text-decoration-none" href="" ng-bind="aboutTerms" ng-click="actionResourceReaderTermsShow('terms')"></a>
         </li>
       </ul>
     </div>
