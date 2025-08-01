@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.directive('blog', ['$log', '$http', 'languageService', function($log, $http, languageService) {
+system.directive('blog', ['$log', '$http', 'languageService', '$rootScope', function($log, $http, languageService, $rootScope) {
   return {
     templateUrl: '/assets/partials/blog.html',
     replace: true,
@@ -138,7 +138,6 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
       }
       scope.choiceLanguageEN = function() {
         scope.license = 'License';
-        languageService.userLanguagePreference('en');
         scope.orderTextValue = "order by";
         scope.newestTextValue = "newest";
         scope.oldestTextValue = "oldest";
@@ -160,10 +159,12 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           declineText: 'Decline',
           acceptText: 'Accept'
         }
+        scope.contextHome = 'Home';
+        scope.contextBlog = 'Blog';
+        scope.contextBlogSD = 'Software Development';
       }
       scope.choiceLanguagePT = function() {
         scope.license = 'Licença';
-        languageService.userLanguagePreference('pt');
         scope.orderTextValue = "ordernar por";
         scope.newestTextValue = "recente";
         scope.oldestTextValue = "antigo";
@@ -185,6 +186,9 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
           declineText: 'Declinar',
           acceptText: 'Aceitar'
         }
+        scope.contextHome = 'Início';
+        scope.contextBlog = 'Blog';
+        scope.contextBlogSD = 'Desenvolvimento de Software';
       }
       scope.actionChangeLanguage = function(language) {
         if (languageService.get() == language) {
@@ -332,6 +336,18 @@ system.directive('blog', ['$log', '$http', 'languageService', function($log, $ht
         scope.choiceTopicViewForPapersTable();
       }
 	  scope.blogInitializer();
+      var _languageEventListener = function() {
+        $rootScope.$on('languageEvent', function(event, data) {
+          if (languageService.portugueseLanguage === data) {
+            scope.choiceLanguagePT();
+            scope.papersLanguagePreference();
+          } else if (languageService.englishLanguage === data) {
+            scope.choiceLanguageEN();
+            scope.papersLanguagePreference();
+          }
+        });
+      }
+      _languageEventListener();
     }
   }
 }]);

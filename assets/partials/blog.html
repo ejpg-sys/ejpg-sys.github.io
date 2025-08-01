@@ -2,9 +2,22 @@
  The MIT License (MIT)
  Copyright (c) 2024-2025 EJPG-SYS
 -->
-<div class="mt-2 container">
+<div class="mt-5 container">
+  <div class="container my-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item">
+          <a class="link-body-emphasis fw-semibold text-decoration-none" href="/">{{contextHome}}</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a class="link-body-emphasis fw-semibold text-decoration-none" href="#">{{contextBlog}}</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">{{contextBlogSD}}</li>
+      </ol>
+    </nav>
+  </div>
   <div>
-    <div class="row">
+    <div class="row" ng-hide="true">
       <div class="text-dark col justify-content-end">
         <label ng-bind="languageLabel"></label> 
         [<a href="#" ng-click="actionChangeLanguage('en')" id="languageEN" ng-bind="languageENTextValue"></a>]
@@ -79,7 +92,7 @@
         </div>
       </div>
   </div>
-  <div class="modal fade" id="readerModalDefault" tabindex="-1" aria-labelledby="readerModalLabel" aria-hidden="true">
+  <div class="modal fade" id="readerModalDefault" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="readerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
