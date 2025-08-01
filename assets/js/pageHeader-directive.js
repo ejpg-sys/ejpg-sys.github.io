@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.directive('pageHeader', ['$log', 'languageService', '$rootScope', function($log, languageService, $rootScope) {
+system.directive('pageHeader', ['$log', 'languageService', '$rootScope', 'contextService', function($log, languageService, $rootScope, contextService) {
   return {
     templateUrl: '/assets/partials/pageHeader.html',
     replace: true,
@@ -48,6 +48,10 @@ system.directive('pageHeader', ['$log', 'languageService', '$rootScope', functio
           $log.error('unrecognized value!');
         }
       }
+      var _actionHeaderHome = function() {
+        contextService.set(contextService.pageHome);
+      }
+      scope.actionHeaderHome = _actionHeaderHome;
     }
   }
 }]);
