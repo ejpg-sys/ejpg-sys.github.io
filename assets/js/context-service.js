@@ -8,7 +8,7 @@ system.factory("contextService", function($log, $rootScope) {
   var _pageBlog = 'blog';
   var _eventUserPageContextBroadcast = function(context) {
     if (context !== undefined) {
-      if (context === _pageHome || context == _pageBlog) {
+      if (context === _pageHome || context === _pageBlog) {
         $rootScope.$broadcast('contextEvent', context);
       } else {
         $log.info('unreconized value!');
@@ -19,10 +19,10 @@ system.factory("contextService", function($log, $rootScope) {
     if (context === undefined) {
       _context = _pageHome;
       _eventUserPageContextBroadcast(_pageHome);
-    } else if (context !== _pageHome) {
+    } else if (context === _pageHome) {
       _context = _pageHome;
       _eventUserPageContextBroadcast(_pageHome);
-    } else if (context !== _pageBlog) {
+    } else if (context === _pageBlog) {
       _context = _pageBlog;
       _eventUserPageContextBroadcast(_pageBlog);
     } else {
