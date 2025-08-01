@@ -159,6 +159,9 @@ system.directive('blog', ['$log', '$http', 'languageService', '$rootScope', func
           declineText: 'Decline',
           acceptText: 'Accept'
         }
+        scope.contextHome = 'Home';
+        scope.contextBlog = 'Blog';
+        scope.contextBlogSD = 'Software Development';
       }
       scope.choiceLanguagePT = function() {
         scope.license = 'Licença';
@@ -183,6 +186,9 @@ system.directive('blog', ['$log', '$http', 'languageService', '$rootScope', func
           declineText: 'Declinar',
           acceptText: 'Aceitar'
         }
+        scope.contextHome = 'Início';
+        scope.contextBlog = 'Blog';
+        scope.contextBlogSD = 'Desenvolvimento de Software';
       }
       scope.actionChangeLanguage = function(language) {
         if (languageService.get() == language) {
