@@ -35,6 +35,19 @@ system.directive('pageHeader', ['$log', 'languageService', '$rootScope', functio
       }
       _languageEventListener();
       _initializer();
+      scope.actionChangeLanguage = function(language) {
+        if (languageService.get() == language) {
+          $log.warn('user language already in use: ' + language);
+        } else if (languageService.portugueseLanguage === language) {
+          languageService.userLanguagePreference('pt');
+          _contextPortuguesLanguage();
+        } else if (languageService.englishLanguage === language) {
+          languageService.userLanguagePreference('en');
+          _contextEnglishLanguage();
+        } else {
+          $log.error('unrecognized value!');
+        }
+      }
     }
   }
 }]);
