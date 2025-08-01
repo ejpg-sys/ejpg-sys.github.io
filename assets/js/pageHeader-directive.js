@@ -20,11 +20,15 @@ system.directive('pageHeader', ['$log', 'languageService', '$rootScope', 'contex
       }
       var _contextEnglishLanguage = function() {
         scope.englishLanguageName = 'English';
+        document.getElementById('englishLanguageId').setAttribute('class', 'nav-link active');
         scope.portugueseLanguageName = 'Portuguese';
+        document.getElementById('portugueseLanguageId').setAttribute('class', 'nav-link');
       }
       var _contextPortuguesLanguage = function() {
         scope.portugueseLanguageName = 'Português';
+        document.getElementById('portugueseLanguageId').setAttribute('class', 'nav-link active');
         scope.englishLanguageName = 'Inglês';
+        document.getElementById('englishLanguageId').setAttribute('class', 'nav-link');
       }
       var _initializer = function() {
         if (languageService.get() === languageService.portugueseLanguage) {
