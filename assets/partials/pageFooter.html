@@ -1,5 +1,5 @@
 <footer class="container py-5">
-  <div class="modal fade" id="readerTermsModalCenteredScrollable" tabindex="-1" aria-labelledby="readerTermsModalCenteredScrollableTitle" aria-hidden="true">
+  <div class="modal fade" id="readerTermsModalCenteredScrollable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="readerTermsModalCenteredScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
@@ -50,7 +50,7 @@
       <h5 ng-bind="blog"></h5>
       <ul class="list-unstyled text-small">
         <li>
-          <a class="link-secondary text-decoration-none" href="#" ng-bind="blogSD"></a>
+          <a class="link-secondary text-decoration-none" href="#" ng-bind="blogSD" ng-click="actionFooterBlogPageReader()"></a>
         </li>
       </ul>
     </div>

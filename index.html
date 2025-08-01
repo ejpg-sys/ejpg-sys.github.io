@@ -16,13 +16,22 @@
 <body ng-controller="ctrl">
   <main>
     <page-header></page-header>
-    <blog></blog>
+      <div ng-show="isHomeContextActive">
+        <page-home></page-home>
+      </div>
+      <div ng-show="isBlogContextActive">
+        <blog></blog>
+      </div>
     <page-footer></page-footer>
   </main>
+  <link href="assets/css/bootstrap-carousel.css" rel="stylesheet"/>
+  <link href="assets/css/boostrap-breadcrumbs.css" rel="stylesheet"/>
   <script src="assets/js/system.js?v=1234567890"></script>
   <script src="assets/js/language-service.js?v=1234567890"></script>
   <script src="assets/js/pageHeader-directive.js?v=1234567890"></script>
   <script src="assets/js/pageFooter-directive.js?v=1234567890"></script>
   <script src="assets/js/blog-directive.js?v=1234567890"></script>
+  <script src="assets/js/pageHome-directive.js?v=1234567890"></script>
+  <script src="assets/js/context-service.js?v=1234567890"></script>
 </body>
 </html>
