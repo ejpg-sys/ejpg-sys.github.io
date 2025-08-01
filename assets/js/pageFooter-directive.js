@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope', function($log, $http, languageService, $rootScope) {
+system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope', 'contextService', function($log, $http, languageService, $rootScope, contextService) {
   return {
     templateUrl: '/assets/partials/pageFooter.html',
     replace: true,
@@ -125,6 +125,10 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
       scope.actionResourceReaderTermsHide = _actionResourceReaderTermsHide;
       _languageEventListener();
       _initializer();
+      var _actionFooterBlogPageReader = function() {
+        contextService.set(contextService.pageBlog);
+      }
+      scope.actionFooterBlogPageReader = _actionFooterBlogPageReader;
     }
   }
 }]);
