@@ -18,32 +18,15 @@ system.run(function($rootScope, $compile) {
         'developer': '/assets/js/developer-directive'
       }
     });
-    require(['languageService'], function(languageService) {
-      $compile(languageService)($rootScope);
-    });
-    require(['contextService'], function(contextService) {
-      $compile(contextService)($rootScope);
-    });
-    require(['pageHeaderDirective'], function(pageHeader) {
-      $compile(pageHeader)($rootScope);
-    });
-    require(['pageContextDirective'], function(pageContext) {
-      $compile(pageContext)($rootScope);
-    });
-    require(['pageFooterDirective'], function(pageFooter) {
-      $compile(pageFooter)($rootScope);
-    });
-    require(['pageBlogDirective'], function(pageBlog) {
-      $compile(pageBlog)($rootScope);
-    });
-    require(['pageHomeDirective'], function(pageHome) {
-      $compile(pageHome)($rootScope);
-    });
-    require(['developer'], function(developer) {
-      $compile(developer)($rootScope);
-    });
+    require(['languageService']);
+    require(['contextService']);
+    require(['pageHeaderDirective']);
+    require(['pageContextDirective']);
+    require(['pageFooterDirective']);
+    require(['pageBlogDirective']);
+    require(['pageHomeDirective']);
+    require(['developer']);
     require(['ctrl'], function(ctrl) {
-      $compile(ctrl)($rootScope);
       document.querySelector('body').setAttribute('ng-controller', 'ctrl');
     });
     $rootScope.$apply();
