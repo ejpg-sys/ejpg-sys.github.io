@@ -18,17 +18,36 @@ system.run(function($rootScope, $compile) {
         'developer': '/assets/js/developer-directive'
       }
     });
-    $compile(require(['languageService']))($rootScope);
-    $compile(require(['contextService']))($rootScope);
-    $compile(require(['ctrl']))($rootScope);
-    $compile(require(['pageHeaderDirective']))($rootScope);
-    $compile(require(['pageContextDirective']))($rootScope);
-    $compile(require(['pageFooterDirective']))($rootScope);
-    $compile(require(['pageBlogDirective']))($rootScope);
-    $compile(require(['pageHomeDirective']))($rootScope);
-    $compile(require(['developer']))($rootScope);
+    require(['languageService'], function(languageService) {
+      $compile(languageService)($rootScope);
+    });
+    require(['contextService'], function(contextService) {
+      $compile(contextService)($rootScope);
+    });
+    require(['pageHeaderDirective'], function(pageHeader) {
+      $compile(pageHeader)($rootScope);
+    });
+    require(['pageContextDirective'], function(pageContext) {
+      $compile(pageContext)($rootScope);
+    });
+    require(['pageFooterDirective'], function(pageFooter) {
+      $compile(pageFooter)($rootScope);
+    });
+    require(['pageBlogDirective'], function(pageBlog) {
+      $compile(pageBlog)($rootScope);
+    });
+    require(['pageHomeDirective'], function(pageHome) {
+      $compile(pageHome)($rootScope);
+    });
+    require(['developer'], function(developer) {
+      $compile(developer)($rootScope);
+    });
+    require(['ctrl'], function(ctrl) {
+      $compile(ctrl)($rootScope);
+      document.querySelector('body').setAttribute('ng-controller', 'ctrl');
+    });
     $rootScope.$apply();
-    document.querySelector('body').setAttribute('ng-controller', 'ctrl');
+    $rootScope.$digest();
   }
   dependecies();
 });
