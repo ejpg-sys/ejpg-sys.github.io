@@ -13,7 +13,8 @@ var dependecies = function() {
       'pageFooterDirective': '/assets/js/pageFooter-directive',
       'pageBlogDirective': '/assets/js/blog-directive',
       'pageHomeDirective': '/assets/js/pageHome-directive',
-      'contextService': '/assets/js/context-service'
+      'contextService': '/assets/js/context-service',
+      'developer': '/assets/js/developer-directive'
     }
   });
   require(['languageService']);
@@ -24,6 +25,7 @@ var dependecies = function() {
   require(['pageFooterDirective']);
   require(['pageBlogDirective']);
   require(['pageHomeDirective']);
+  require(['developer']);
   document.querySelector('body').setAttribute('ng-controller', 'ctrl');
 }
 dependecies();
