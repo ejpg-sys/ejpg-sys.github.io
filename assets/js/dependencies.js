@@ -32,3 +32,28 @@ var dependencies = [
 { name: "AngularJS Home Page Directive", type: "js", addr: "assets/js/pageHome-directive.js?v=1234567890" },
 { name: "AngularJS Context Service", type: "js", addr: "assets/js/context-service.js?v=1234567890" }
 ];
+var requireDependencies = function() {
+  require.config({
+    paths: {
+      'system': '/assets/js/system',
+      'languageService': '/assets/js/language-service',
+      'pageHeaderDirective': '/assets/js/pageHeader-directive',
+      'pageContextDirective': '/assets/js/pageContext-directive',
+      'pageFooterDirective': '/assets/js/pageFooter-directive',
+      'pageBlogDirective': '/assets/js/blog-directive',
+      'pageHomeDirective': '/assets/js/pageHome-directive',
+      'contextService': '/assets/js/context-service'
+    }
+  });
+  require([
+    'system',
+    'languageService',
+    'pageHeaderDirective',
+    'pageContextDirective',
+    'pageFooterDirective',
+    'pageBlogDirective',
+    'pageHomeDirective',
+    'contextService'
+  ],function(){dependenciesReady=true;});
+}
+requireDependencies();
