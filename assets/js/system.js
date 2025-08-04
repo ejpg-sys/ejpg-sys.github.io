@@ -4,15 +4,7 @@
  */
 var system = angular.module("system", []);
 system.run(function($rootScope, $compile) {
-  var indexIdVerify01 = false;
-  var indexIdVerify02 = false;
-  var indexIdVerify03 = false;
-  var indexIdVerify04 = false;
-  var indexIdVerify05 = false;
-  var indexIdVerify06 = false;
-  var indexIdVerify07 = false;
-  var indexIdVerify08 = false;
-  var indexIdVerify09 = false;
+  var statusIndex = [false, false, false, false, false, false, false, false, false];
   var dependecies = function() {
     require.config({
       paths: {
@@ -27,20 +19,21 @@ system.run(function($rootScope, $compile) {
         'developer': '/assets/js/developer-directive'
       }
     });
-    require(['languageService'],function(a){indexIdVerify01=true;});
-    require(['contextService'],function(b){indexIdVerify02=true;});
-    require(['pageHeaderDirective'],function(c){indexIdVerify03=true;});
-    require(['pageContextDirective'],function(d){indexIdVerify04=true;});
-    require(['pageFooterDirective'],function(e){indexIdVerify05=true;});
-    require(['pageBlogDirective'],function(f){indexIdVerify06=true;});
-    require(['pageHomeDirective'],function(g){indexIdVerify07=true;});
-    require(['developer'],function(h){indexIdVerify08=true;});
+    require(['languageService'],function(a){statusIndex[0]=true;});
+    require(['contextService'],function(b){statusIndex[1]=true;});
+    require(['pageHeaderDirective'],function(c){statusIndex[2]=true;});
+    require(['pageContextDirective'],function(d){statusIndex[3]=true;});
+    require(['pageFooterDirective'],function(e){statusIndex[4]=true;});
+    require(['pageBlogDirective'],function(f){statusIndex[5]=true;});
+    require(['pageHomeDirective'],function(g){statusIndex[6]=true;});
+    require(['developer'],function(h){statusIndex[7]=true;});
     require(['ctrl'], function(j) {
-      indexIdVerify09 = true;
+      statusIndex[8] = true;
       document.querySelector('body').setAttribute('ng-controller', 'ctrl');
       $rootScope.$apply();
       $rootScope.$digest();
     });
+	console.log(statusIndex);
   }
   dependecies();
 });
