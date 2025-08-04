@@ -24,5 +24,6 @@ var dependecies = function() {
   require(['pageFooterDirective']);
   require(['pageBlogDirective']);
   require(['pageHomeDirective']);
+  document.querySelector('body').setAttribute('ng-controller', 'ctrl');
 }
 dependecies();
