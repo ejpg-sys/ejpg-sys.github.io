@@ -3,7 +3,7 @@
  * Copyright (c) 2024-2025 EJPG-SYS
  */
 var system = angular.module("system", []);
-system.run(function($rootScope) {
+system.run(function($rootScope, $compile) {
   var dependecies = function() {
     require.config({
       paths: {
@@ -18,15 +18,15 @@ system.run(function($rootScope) {
         'developer': '/assets/js/developer-directive'
       }
     });
-    require(['languageService']);
-    require(['contextService']);
-    require(['ctrl']);
-    require(['pageHeaderDirective']);
-    require(['pageContextDirective']);
-    require(['pageFooterDirective']);
-    require(['pageBlogDirective']);
-    require(['pageHomeDirective']);
-    require(['developer']);
+    $compile(require(['languageService']))($rootScope);
+    $compile(require(['contextService']))($rootScope);
+    $compile(require(['ctrl']))($rootScope);
+    $compile(require(['pageHeaderDirective']))($rootScope);
+    $compile(require(['pageContextDirective']))($rootScope);
+    $compile(require(['pageFooterDirective']))($rootScope);
+    $compile(require(['pageBlogDirective']))($rootScope);
+    $compile(require(['pageHomeDirective']))($rootScope);
+    $compile(require(['developer']))($rootScope);
     $rootScope.$apply();
     document.querySelector('body').setAttribute('ng-controller', 'ctrl');
   }
