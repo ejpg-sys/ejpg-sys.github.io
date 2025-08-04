@@ -33,7 +33,6 @@ system.run(function($rootScope, $compile) {
       $rootScope.$apply();
       $rootScope.$digest();
     });
-	console.log(statusIndex);
   }
   dependecies();
 });
