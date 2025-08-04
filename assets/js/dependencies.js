@@ -3,7 +3,7 @@
  * Copyright (c) 2024-2025 EJPG-SYS
  */
 var dependenciesReady = false;
-var debugEnabled = true;
+var debugEnabled = false;
 var developerInfo = function(message) {
   if (debugEnabled) {
     console.log(message);
@@ -34,7 +34,6 @@ var dependencies = [
 ];
 var requireDependencies = function() {
   require.config({
-    async: false,
     paths: {
       'system': '/assets/js/system',
       'ctrl': '/assets/js/ctrl',
@@ -45,9 +44,17 @@ var requireDependencies = function() {
       'pageBlogDirective': '/assets/js/blog-directive',
       'pageHomeDirective': '/assets/js/pageHome-directive',
       'contextService': '/assets/js/context-service'
-    }
+    },
+    async: false,
+    waitSeconds: 0,
+    priority: ['system'],
+    callback: function() {
+      console.log('ready!');
+	},
+    deps: ['languageService','contextService','ctrl','pageHeaderDirective',
+	'pageContextDirective','pageFooterDirective','pageBlogDirective','pageHomeDirective']
   });
-  require(['system'], function() {
+/*  require(['system'], function() {
     require(['languageService']);
     require(['contextService']);
     require(['ctrl']);
@@ -57,6 +64,6 @@ var requireDependencies = function() {
     require(['pageBlogDirective']);
     require(['pageHomeDirective']);
     dependenciesReady=true;
-  });
+  }); */
 }
 var complete = requireDependencies();
