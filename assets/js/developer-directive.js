@@ -11,4 +11,4 @@ system.directive('developer', function() {
     link: function(scope, element, attrs, ctrl, transcludeFn) {
     }
   }
-}]);
+});
