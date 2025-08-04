@@ -6,32 +6,25 @@
 <html ng-app="system">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title ng-bind="pageTitle"></title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" integrity="sha384-c+qsMuWimzoMxDpSd67QtX89Nctaxh/CBMTgEnKrTahfMz1HgjjwqrzEGYXMZxYi" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="EJPG-SYS" />
+  <meta name="description" content="HOME PAGE / TOPICS OF SOFTWARE DEVELOPMENT / READY TO GO WEB SERVICES PRODUCTS / SOFTWARE MANUFACTURE / IT CONSULTING / USERS PRIVACY / USERS TERMS" />
+  <title>EJPG-SYS ON GITHUB.IO</title>
 </head>
-<body ng-controller="ctrl">
-  <main>
-    <page-header></page-header>
-      <div ng-show="isHomeContextActive">
-        <page-home></page-home>
+<body>
+  <developer></developer>
+  <div id="loadingRefId">
+    <div class="text-center mt-5">
+      <div class="spinner-border text-dark" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
-      <div ng-show="isBlogContextActive">
-        <blog></blog>
-      </div>
-    <page-footer></page-footer>
-  </main>
-  <link href="assets/css/bootstrap-carousel.css" rel="stylesheet"/>
-  <link href="assets/css/boostrap-breadcrumbs.css" rel="stylesheet"/>
-  <script src="assets/js/system.js?v=1234567890"></script>
-  <script src="assets/js/language-service.js?v=1234567890"></script>
-  <script src="assets/js/pageHeader-directive.js?v=1234567890"></script>
-  <script src="assets/js/pageFooter-directive.js?v=1234567890"></script>
-  <script src="assets/js/blog-directive.js?v=1234567890"></script>
-  <script src="assets/js/pageHome-directive.js?v=1234567890"></script>
-  <script src="assets/js/context-service.js?v=1234567890"></script>
+    </div>
+  </div>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" integrity="sha384-c+qsMuWimzoMxDpSd67QtX89Nctaxh/CBMTgEnKrTahfMz1HgjjwqrzEGYXMZxYi" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js" integrity="sha512-J5ha2LF4Le+PBQnI5+xAVJDR+sZG9uSgroy4n/A6TLjNkvYQbqZA8WHZdaOvJ0HiKkBC9Frmvs10rFDSHKmveQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="assets/js/system.js"></script>
 </body>
 </html>

@@ -3,32 +3,36 @@
  * Copyright (c) 2024-2025 EJPG-SYS
  */
 var system = angular.module("system", []);
-system.controller("ctrl", function ($scope, $http, $log, languageService, contextService, $rootScope) {
-  languageService.userLanguagePreference(undefined);
-  var _setHomeContextActive = function() {
-    $scope.isHomeContextActive = true;
-    $scope.isBlogContextActive = false;
-  }
-  var _setBlogContextActive = function() {
-    $scope.isBlogContextActive = true;
-    $scope.isHomeContextActive = false;
-  }
-  var _contextEventListener = function() {
-    $rootScope.$on('contextEvent', function(event, data) {
-      if (contextService.pageHome === data) {
-        _setHomeContextActive();
-      } else if (contextService.pageBlog === data) {
-        _setBlogContextActive();
+system.run(function($rootScope, $compile) {
+  var statusIndex = [false, false, false, false, false, false, false, false, false];
+  var dependecies = function() {
+    require.config({
+      paths: {
+        'ctrl': '/assets/js/ctrl',
+        'languageService': '/assets/js/language-service',
+        'pageHeaderDirective': '/assets/js/pageHeader-directive',
+        'pageContextDirective': '/assets/js/pageContext-directive',
+        'pageFooterDirective': '/assets/js/pageFooter-directive',
+        'pageBlogDirective': '/assets/js/blog-directive',
+        'pageHomeDirective': '/assets/js/pageHome-directive',
+        'contextService': '/assets/js/context-service',
+        'developer': '/assets/js/developer-directive'
       }
     });
+    require(['languageService'],function(a){statusIndex[0]=true;});
+    require(['contextService'],function(b){statusIndex[1]=true;});
+    require(['pageHeaderDirective'],function(c){statusIndex[2]=true;});
+    require(['pageContextDirective'],function(d){statusIndex[3]=true;});
+    require(['pageFooterDirective'],function(e){statusIndex[4]=true;});
+    require(['pageBlogDirective'],function(f){statusIndex[5]=true;});
+    require(['pageHomeDirective'],function(g){statusIndex[6]=true;});
+    require(['developer'],function(h){statusIndex[7]=true;});
+    require(['ctrl'], function(j) {
+      statusIndex[8] = true;
+      document.querySelector('body').setAttribute('ng-controller', 'ctrl');
+      $rootScope.$apply();
+      $rootScope.$digest();
+    });
   }
-  _contextEventListener();
-  var _initializer = function() {
-    if (contextService.get() === contextService.pageHome) {
-      _setHomeContextActive();
-    } else if (contextService.get() === contextService.pageBlog) {
-      _setBlogContextActive();
-    }
-  }
-  _initializer();
+  dependecies();
 });

@@ -30,10 +30,12 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         scope.blogSD = 'Software Developer'
         // products
         scope.products = 'Products';
-        scope.productSpecIntepreter = 'Specification Interpreter';
+        scope.productSpecIntepreter = 'Specification Interpreter Command';
         scope.productFpaWS = 'FPA WebService';
         scope.productSysWS = 'Systems WebService';
         scope.productBaseWS = 'Base WebService';
+        scope.productAdmWS = 'Admin WebService';
+        scope.productCgWS = 'Cloud Gateway WebService';
         // services
         scope.services = 'Services';
         scope.serviceITConsulting = 'IT Consulting';
@@ -53,10 +55,12 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         scope.blogSD = 'Desenvolvimento de Software'
         // products
         scope.products = 'Produtos';
-        scope.productSpecIntepreter = 'Interpretador de Especificações';
+        scope.productSpecIntepreter = 'Comando de Interpretação de Especificações';
         scope.productFpaWS = 'FPA Serviço Web';
         scope.productSysWS = 'Systems Serviço Web';
         scope.productBaseWS = 'Base Serviço Web';
+        scope.productAdmWS = 'Admin Serviço Web';
+        scope.productCgWS = 'Cloud Gateway Serviço Web';
         // services
         scope.services = 'Serviços';
         scope.serviceITConsulting = 'Consultoria em TI';
