@@ -3,6 +3,23 @@
  * Copyright (c) 2024-2025 EJPG-SYS
  */
 var dependenciesReady = false;
+var debugEnabled = false;
+var developerInfo = function(message) {
+  if (debugEnabled) {
+    console.log(message);
+  }
+}
+window.addEventListener('DOMContentLoaded', function() {
+  developerInfo('The HTML Document was loaded, but scripts can not even completed loaded;');
+});
+window.addEventListener('load', (event) => {
+  if (!dependenciesReady) {
+    event.preventDefault();
+    developerInfo('is not ready!')
+  } else {
+    developerInfo('is ready!');
+  }
+});
 var dependencies = [
 { name: "Bootstrap Carousel", type: "css", addr: "assets/css/bootstrap-carousel.css" },
 { name: "Bootstrap Breadcrumbs", type: "css", addr: "assets/css/bootstrap-breadcrumbs.css" },
@@ -15,4 +32,3 @@ var dependencies = [
 { name: "AngularJS Home Page Directive", type: "js", addr: "assets/js/pageHome-directive.js?v=1234567890" },
 { name: "AngularJS Context Service", type: "js", addr: "assets/js/context-service.js?v=1234567890" }
 ];
-
