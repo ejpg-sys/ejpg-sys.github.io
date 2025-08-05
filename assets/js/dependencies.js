@@ -35,6 +35,9 @@ while (spinner) {
     if (statusIndex[i] === false) {
       break;
     }
+    if ((i+1) === statusIndex.length) {
+      spinner = false;
+    }
     i = i + 1;
   }
 }
