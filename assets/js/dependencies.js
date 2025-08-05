@@ -2,7 +2,6 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-var indexReady = false;
 require.config({
   paths: {
     'system': '/assets/js/system',
@@ -28,9 +27,4 @@ require([
   'pageHomeDirective',
   'developer',
   'ctrl'
-], function() {
-  indexReady = true;
-});
-console.log('Not ready! ' + Date.now());
-while (!indexReady) {}
-console.log('Ready! ' + Date.now());
+]);
