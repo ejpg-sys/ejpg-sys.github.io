@@ -27,8 +27,11 @@ require(['pageBlogDirective'],function(){statusIndex[6]=true;});
 require(['pageHomeDirective'],function(){statusIndex[7]=true;});
 require(['developer'],function(){statusIndex[8]=true;});
 require(['ctrl'],function(){statusIndex[9] = true;});
-var i = 0;
-while (i < statusIndex.length) {
-  console.log(i);
-  i = i + 1;
+function loopSpinner() {
+  var i = 0;
+  while (i < statusIndex.length) {
+    console.log(i);
+    i = i + 1;
+  }
 }
+loopSpinner();
