@@ -3,7 +3,6 @@
  * Copyright (c) 2024-2025 EJPG-SYS
  */
 require.config({
-  waitSeconds: 60,
   paths: {
     'system': '/assets/js/system',
     'ctrl': '/assets/js/ctrl',
@@ -15,15 +14,15 @@ require.config({
     'pageHomeDirective': '/assets/js/pageHome-directive',
     'contextService': '/assets/js/context-service',
     'developer': '/assets/js/developer-directive'
-  },
-  deps: ['system',
-  'languageService',
-  'contextService',
-  'pageHeaderDirective',
-  'pageContextDirective',
-  'pageFooterDirective',
-  'pageBlogDirective',
-  'pageHomeDirective',
-  'developer',
-  'ctrl']
+  }
 });
+require(['system']);
+require(['languageService']);
+require(['contextService']);
+require(['pageHeaderDirective']);
+require(['pageContextDirective']);
+require(['pageFooterDirective']);
+require(['pageBlogDirective']);
+require(['pageHomeDirective']);
+require(['developer']);
+require(['ctrl']);
