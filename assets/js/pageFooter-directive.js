@@ -135,15 +135,21 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         contextService.set(contextService.pageBlog);
       }
       scope.actionFooterBlogPageReader = _actionFooterBlogPageReader;
+      var _requiredActionUserPrivacyTermsReader = function() {
+        scope.readerTermConfirm = 'privacy';
+        _readerPrivacyTerms();
+        _scrollableReaderConfirmEventListener();
+      }
+      var _requiredActionDataStorageTermsReader = function() {
+        scope.readerTermConfirm = 'terms';
+        _readerDataStorageTerms();
+        _scrollableReaderConfirmEventListener();
+      }
       var _initializerTermsConfirm = function() {
         if(termsService.getPrivacyConfirmDate() === null) {
-          scope.readerTermConfirm = 'privacy';
-		  _readerPrivacyTerms();
-          _scrollableReaderConfirmEventListener();
+          _requiredActionUserPrivacyTermsReader();
         } else if (termsService.getDataStorageConfirmDate() === null) {
-          scope.readerTermConfirm = 'terms';
-          _readerDataStorageTerms();
-          _scrollableReaderConfirmEventListener();
+          _requiredActionDataStorageTermsReader();
         } else {
           scope.termsConfirm = true;
         }
