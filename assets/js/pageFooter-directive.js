@@ -169,6 +169,11 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         if (subject === 'privacy') {
           termsService.setPrivacyConfirmDate();
           _actionResourceReaderTermsHide();
+          if (termsService.getDataStorageConfirmDate() === null) {
+            setTimeout(function() {
+              _requiredActionDataStorageTermsReader();
+            }, 500);
+          }
         } else if (subject === 'terms') {
           termsService.setDataStorageConfirmDate();
           _actionResourceReaderTermsHide();
