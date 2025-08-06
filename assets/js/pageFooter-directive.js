@@ -133,6 +133,17 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         contextService.set(contextService.pageBlog);
       }
       scope.actionFooterBlogPageReader = _actionFooterBlogPageReader;
+      var _initializerTermsConfirm = function() {
+        if(termsService.getPrivacyConfirmDate() === undefined) {
+          if (languageService.portugueseLanguage) {
+            scope.termsReaderBtnCloseName = 'Confirmar';
+		  } else {
+            scope.termsReaderBtnCloseName = 'Confirm';
+          }
+		  _readerPrivacyTerms();
+        }
+      }
+      _initializerTermsConfirm();
     }
   }
 }]);
