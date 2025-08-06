@@ -12,7 +12,7 @@ system.factory("termsService", function($log, $rootScope) {
     return localStorage.getItem(_systDataAttrName);
   };
   var _setPrivacyConfirmDate = function() {
-    if (_getPrivacyConfirmDate() === undefined) {
+    if (_getPrivacyConfirmDate() === null) {
       const currentDateTime = Date.now();
       localStorage.setItem(_userDataAttrName, currentDateTime);
     } else {
@@ -20,7 +20,7 @@ system.factory("termsService", function($log, $rootScope) {
     }
   };
   var _setDataStorageConfirmDate = function() {
-    if (_getDataStorageConfirmDate() === undefined) {
+    if (_getDataStorageConfirmDate() === null) {
       const currentDateTime = Date.now();
       localStorage.setItem(_systDataAttrName, currentDateTime);
     } else {
