@@ -27,19 +27,10 @@ system.factory("termsService", function($log, $rootScope) {
       $log.warn('Terms confirm date already in: ' + _getDataStorageConfirmDate().toISOString());
     }
   }
-  var _termsConfirm = function() {
-    if (_getPrivacyConfirmDate === null) {
-      return false;
-    } else if (_getDataStorageConfirmDate() === null) {
-      return false;
-    }
-    return true;
-  }
   return {
     getPrivacyConfirmDate: _getPrivacyConfirmDate,
     getDataStorageConfirmDate: _getDataStorageConfirmDate,
     setPrivacyConfirmDate: _setPrivacyConfirmDate,
-    setDataStorageConfirmDate: _setDataStorageConfirmDate,
-    termsConfirm: _termsConfirm
+    setDataStorageConfirmDate: _setDataStorageConfirmDate
   };
 });
