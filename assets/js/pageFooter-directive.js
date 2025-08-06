@@ -42,6 +42,7 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         scope.serviceSoftwareManufacture = 'Software Manufacture';
         // terms reader action button name
         scope.termsReaderBtnCloseName = 'Close';
+        scope.termsReaderBtnConfirmName = 'Confirm';
       }
       var _contextPortuguesLanguage = function() {
         // about
@@ -67,6 +68,7 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         scope.serviceSoftwareManufacture = 'Fábrica de Software';
         // terms reader action button name
         scope.termsReaderBtnCloseName = 'Fechar';
+        scope.termsReaderBtnConfirmName = 'Confirmar';
       }
       var _initializer = function() {
         if (languageService.get() === languageService.portugueseLanguage) {
@@ -135,11 +137,6 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
       scope.actionFooterBlogPageReader = _actionFooterBlogPageReader;
       var _initializerTermsConfirm = function() {
         if(termsService.getPrivacyConfirmDate() === null) {
-          if (languageService.portugueseLanguage) {
-            scope.termsReaderBtnCloseName = 'Confirmar';
-		  } else {
-            scope.termsReaderBtnCloseName = 'Confirm';
-          }
 		  _readerPrivacyTerms();
         }
       }
