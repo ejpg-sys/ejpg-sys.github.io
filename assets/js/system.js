@@ -3,7 +3,7 @@
  * Copyright (c) 2024-2025 EJPG-SYS
  */
 var system = angular.module("system", []);
-system.controller("ctrl", function ($scope, $http, $log, languageService, contextService, $rootScope) {
+system.controller("ctrl", function ($scope, $http, $log, languageService, contextService, $rootScope, systemService) {
   languageService.userLanguagePreference(undefined);
   var _setHomeContextActive = function() {
     $scope.isHomeContextActive = true;
