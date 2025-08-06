@@ -163,6 +163,11 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         if (subject === 'privacy') {
           termsService.setPrivacyConfirmDate();
           _actionResourceReaderTermsHide();
+        } else if (subject === 'terms') {
+          termsService.setDataStorageConfirmDate();
+          _actionResourceReaderTermsHide();
+        } else {
+          $log.info('unrecognized value!');
         }
       }
       scope.actionTermsReaderConfirm = _actionTermsReaderConfirm;
