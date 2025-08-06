@@ -134,7 +134,7 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
       }
       scope.actionFooterBlogPageReader = _actionFooterBlogPageReader;
       var _initializerTermsConfirm = function() {
-        if(termsService.getPrivacyConfirmDate() === undefined) {
+        if(termsService.getPrivacyConfirmDate() === null) {
           if (languageService.portugueseLanguage) {
             scope.termsReaderBtnCloseName = 'Confirmar';
 		  } else {
