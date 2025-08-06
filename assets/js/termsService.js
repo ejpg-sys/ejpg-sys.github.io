@@ -9,4 +9,6 @@ system.factory("termsService", function($log, $rootScope) {
   var _getDataStorageConfirmDate = function() {
     return localStorage.getItem('syst-data');
   };
+  return {
+  };
 });
