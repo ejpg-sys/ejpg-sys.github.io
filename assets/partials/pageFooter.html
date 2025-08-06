@@ -10,10 +10,11 @@
           <span ng-repeat="line in resourceReaderTerms.bodyText.lines track by $index">
             <p ng-bind="line"></p>
           </span>
+          <span id="termsReaderScrollEndConfirm"></span>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-bind="termsReaderBtnCloseName" ng-hide="!termsConfirm"></button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-bind="termsReaderBtnConfirmName" ng-hide="termsConfirm"></button>
+            <button id="termReaderBtnCofirmId" type="button" class="btn btn-secondary disabled" data-bs-dismiss="modal" ng-bind="termsReaderBtnConfirmName" ng-hide="termsConfirm"></button>
         </div>
       </div>
     </div>
