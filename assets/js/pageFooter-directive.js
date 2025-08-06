@@ -139,8 +139,13 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         if(termsService.getPrivacyConfirmDate() === null) {
 		  _readerPrivacyTerms();
           const scrollableElement = document.getElementById('termsReaderScrollBodyId');
+          const scrollableEnd = document.getElementById('termsReaderScrollEndConfirm');
           scrollableElement.addEventListener('scroll', function(event) {
-            // TODO: implement!
+            const rectagleConst1 = scrollableElement.getBoundingClientRect();
+            const rectagleConst2 = scrollableEnd.getBoundingClientRect();
+            console.log('scrollable area [top: ' + rectagleConst1.top + ', bottom: ' + rectagleConst1.bottom + ']');
+            console.log('location of end [top: ' + rectagleConst2.top + ', bottom: ' + rectagleConst2.bottom + ']');
+            console.log('window user height: ' + window.innerHeight);
           });
         }
       }
