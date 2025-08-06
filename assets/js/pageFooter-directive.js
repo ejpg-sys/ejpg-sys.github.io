@@ -150,6 +150,8 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
           _requiredActionUserPrivacyTermsReader();
         } else if (termsService.getDataStorageConfirmDate() === null) {
           _requiredActionDataStorageTermsReader();
+        } else {
+          scope.termsConfirm = true;
         }
       }
       var _scrollableReaderConfirmEventListener = function() {
@@ -175,11 +177,11 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         } else if (subject === 'terms') {
           termsService.setDataStorageConfirmDate();
           _actionResourceReaderTermsHide();
+          scope.termsConfirm = true;
         } else {
           $log.info('unrecognized value!');
         }
       }
-      scope.termsConfirm = termsService.termsConfirm;
       scope.actionTermsReaderConfirm = _actionTermsReaderConfirm;
       _initializerTermsConfirm();
     }
