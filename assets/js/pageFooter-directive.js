@@ -140,7 +140,7 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
           scope.readerTermConfirm = 'privacy';
 		  _readerPrivacyTerms();
           _scrollableReaderConfirmEventListener();
-        } else if (termsService._getDataStorageConfirmDate() === null) {
+        } else if (termsService.getDataStorageConfirmDate() === null) {
           scope.readerTermConfirm = 'terms';
           _readerDataStorageTerms();
           _scrollableReaderConfirmEventListener();
@@ -160,7 +160,10 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         });
       }
       var _actionTermsReaderConfirm = function(subject) {
-        // TODO: implement!
+        if (subject === 'privacy') {
+          termsService.setPrivacyConfirmDate();
+          _actionResourceReaderTermsHide();
+        }
       }
       scope.actionTermsReaderConfirm = _actionTermsReaderConfirm;
       _initializerTermsConfirm();
