@@ -143,9 +143,9 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
           scrollableElement.addEventListener('scroll', function(event) {
             const rectagleConst1 = scrollableElement.getBoundingClientRect();
             const rectagleConst2 = scrollableEnd.getBoundingClientRect();
-            console.log('scrollable area [top: ' + rectagleConst1.top + ', bottom: ' + rectagleConst1.bottom + ']');
-            console.log('location of end [top: ' + rectagleConst2.top + ', bottom: ' + rectagleConst2.bottom + ']');
-            console.log('window user height: ' + window.innerHeight);
+            if (rectagleConst1.bottom > rectagleConst2.top) {
+              console.log('Enabled!');
+            }
           });
         }
       }
