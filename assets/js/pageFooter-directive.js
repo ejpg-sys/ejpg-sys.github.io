@@ -138,6 +138,9 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
       var _initializerTermsConfirm = function() {
         if(termsService.getPrivacyConfirmDate() === null) {
 		  _readerPrivacyTerms();
+          window.addEventListener('scroll', (event) => {
+            console.log('Scroll update! ');
+          });
         }
       }
       _initializerTermsConfirm();
