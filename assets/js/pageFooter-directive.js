@@ -155,6 +155,10 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
           }
         });
       }
+      var _actionTermsReaderConfirm = function() {
+        // TODO: implement!
+      }
+      scope.actionTermsReaderConfirm = _actionTermsReaderConfirm;
       _initializerTermsConfirm();
     }
   }
