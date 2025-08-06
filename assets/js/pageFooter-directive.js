@@ -137,11 +137,15 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
       scope.actionFooterBlogPageReader = _actionFooterBlogPageReader;
       var _initializerTermsConfirm = function() {
         if(termsService.getPrivacyConfirmDate() === null) {
+          scope.readerTermConfirm = 'privacy';
 		  _readerPrivacyTerms();
           _scrollableReaderConfirmEventListener();
         } else if (termsService._getDataStorageConfirmDate() === null) {
+          scope.readerTermConfirm = 'terms';
           _readerDataStorageTerms();
           _scrollableReaderConfirmEventListener();
+        } else {
+          scope.termsConfirm = true;
         }
       }
       var _scrollableReaderConfirmEventListener = function() {
@@ -155,7 +159,7 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
           }
         });
       }
-      var _actionTermsReaderConfirm = function() {
+      var _actionTermsReaderConfirm = function(subject) {
         // TODO: implement!
       }
       scope.actionTermsReaderConfirm = _actionTermsReaderConfirm;
