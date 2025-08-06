@@ -138,16 +138,22 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
       var _initializerTermsConfirm = function() {
         if(termsService.getPrivacyConfirmDate() === null) {
 		  _readerPrivacyTerms();
-          const scrollableElement = document.getElementById('termsReaderScrollBodyId');
-          const scrollableEnd = document.getElementById('termsReaderScrollEndConfirm');
-          scrollableElement.addEventListener('scroll', function(event) {
-            const rectagleConst1ScrollableArea = scrollableElement.getBoundingClientRect();
-            const rectagleConst2ScrollableEnd = scrollableEnd.getBoundingClientRect();
-            if (rectagleConst1ScrollableArea.bottom > rectagleConst2ScrollableEnd.top) {
-              document.getElementById('termReaderBtnCofirmId').removeAttribute('disabled');
-            }
-          });
+          _scrollableReaderConfirmEventListener();
+        } else if (termsService._getDataStorageConfirmDate() === null) {
+          _readerDataStorageTerms();
+          _scrollableReaderConfirmEventListener();
         }
+      }
+      var _scrollableReaderConfirmEventListener = function() {
+        const scrollableElement = document.getElementById('termsReaderScrollBodyId');
+        const scrollableEnd = document.getElementById('termsReaderScrollEndConfirm');
+        scrollableElement.addEventListener('scroll', function(event) {
+          const rectagleConst1ScrollableArea = scrollableElement.getBoundingClientRect();
+          const rectagleConst2ScrollableEnd = scrollableEnd.getBoundingClientRect();
+          if (rectagleConst1ScrollableArea.bottom > rectagleConst2ScrollableEnd.top) {
+            document.getElementById('termReaderBtnCofirmId').removeAttribute('disabled');
+          }
+        });
       }
       _initializerTermsConfirm();
     }
