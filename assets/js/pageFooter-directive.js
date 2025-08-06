@@ -141,10 +141,10 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
           const scrollableElement = document.getElementById('termsReaderScrollBodyId');
           const scrollableEnd = document.getElementById('termsReaderScrollEndConfirm');
           scrollableElement.addEventListener('scroll', function(event) {
-            const rectagleConst1 = scrollableElement.getBoundingClientRect();
-            const rectagleConst2 = scrollableEnd.getBoundingClientRect();
-            if (rectagleConst1.bottom > rectagleConst2.top) {
-              console.log('Enabled!');
+            const rectagleConst1ScrollableArea = scrollableElement.getBoundingClientRect();
+            const rectagleConst2ScrollableEnd = scrollableEnd.getBoundingClientRect();
+            if (rectagleConst1ScrollableArea.bottom > rectagleConst2ScrollableEnd.top) {
+              document.getElementById('termReaderBtnCofirmId').removeAttribute('disabled');
             }
           });
         }
