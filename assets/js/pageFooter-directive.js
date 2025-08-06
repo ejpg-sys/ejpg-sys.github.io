@@ -138,9 +138,9 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
       var _initializerTermsConfirm = function() {
         if(termsService.getPrivacyConfirmDate() === null) {
 		  _readerPrivacyTerms();
-          const scrollableElement = document.getElementById('readerTermsModalCenteredScrollable');
+          const scrollableElement = document.getElementById('termsReaderScrollBodyId');
           scrollableElement.addEventListener('scroll', function(event) {
-            console.log('Scroll update! ');
+            // TODO: implement!
           });
         }
       }
