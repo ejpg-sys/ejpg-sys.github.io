@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope', 'contextService', function($log, $http, languageService, $rootScope, contextService) {
+system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope', 'contextService', 'termsService', function($log, $http, languageService, $rootScope, contextService, termsService) {
   return {
     templateUrl: '/assets/partials/pageFooter.html',
     replace: true,
