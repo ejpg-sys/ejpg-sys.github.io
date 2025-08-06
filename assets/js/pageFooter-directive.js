@@ -138,7 +138,8 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
       var _initializerTermsConfirm = function() {
         if(termsService.getPrivacyConfirmDate() === null) {
 		  _readerPrivacyTerms();
-          window.addEventListener('scroll', (event) => {
+          const scrollableElement = document.getElementById('readerTermsModalCenteredScrollable');
+          scrollableElement.addEventListener('scroll', function(event) {
             console.log('Scroll update! ');
           });
         }
