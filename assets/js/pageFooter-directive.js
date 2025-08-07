@@ -168,6 +168,7 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
           }
         });
         buttonConfirmElement.addEventListener('click', function(event) {
+          scrollableElement.removeEventListener('scroll');
           buttonConfirmElement.setAttribute('disabled','');
         });
       }
