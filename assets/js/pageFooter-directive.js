@@ -157,12 +157,18 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
       var _scrollableReaderConfirmEventListener = function() {
         const scrollableElement = document.getElementById('termsReaderScrollBodyId');
         const scrollableEnd = document.getElementById('termsReaderScrollEndConfirm');
+        const buttonConfirmElement = document.getElementById('termReaderBtnCofirmId');
         scrollableElement.addEventListener('scroll', function(event) {
           const rectagleConst1ScrollableArea = scrollableElement.getBoundingClientRect();
           const rectagleConst2ScrollableEnd = scrollableEnd.getBoundingClientRect();
           if (rectagleConst1ScrollableArea.bottom > rectagleConst2ScrollableEnd.top) {
-            document.getElementById('termReaderBtnCofirmId').removeAttribute('disabled');
+            buttonConfirmElement.removeAttribute('disabled');
+          } else {
+            buttonConfirmElement.setAttribute('disabled','');
           }
+        });
+        buttonConfirmElement.addEventListener('click', function(event) {
+          buttonConfirmElement.setAttribute('disabled','');
         });
       }
       var _actionTermsReaderConfirm = function(subject) {
