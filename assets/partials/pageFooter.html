@@ -4,15 +4,17 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="readerTermsModalCenteredScrollableTitle" ng-bind="resourceReaderTerms.subject"></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ng-hide="!termsConfirm"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="termsReaderScrollBodyId">
           <span ng-repeat="line in resourceReaderTerms.bodyText.lines track by $index">
             <p ng-bind="line"></p>
           </span>
+          <span id="termsReaderScrollEndConfirm"></span>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-bind="termsReaderBtnCloseName"></button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-bind="termsReaderBtnCloseName" ng-hide="!termsConfirm"></button>
+            <button disabled id="termReaderBtnCofirmId" type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-bind="termsReaderBtnConfirmName" ng-hide="termsConfirm" ng-click="actionTermsReaderConfirm(readerTermConfirm)"></button>
         </div>
       </div>
     </div>
@@ -70,7 +72,7 @@
           <a class="link-secondary text-decoration-none" href="#" ng-bind="aboutLocations"></a>
         </li>
         <li>
-          <a class="link-secondary text-decoration-none" href="#" ng-bind="aboutPrivacy" ng-click="actionResourceReaderTermsShow('privacy')"></a>
+          <a class="link-secondary text-decoration-none" href="" ng-bind="aboutPrivacy" ng-click="actionResourceReaderTermsShow('privacy')"></a>
         </li>
         <li>
           <a class="link-secondary text-decoration-none" href="" ng-bind="aboutTerms" ng-click="actionResourceReaderTermsShow('terms')"></a>
