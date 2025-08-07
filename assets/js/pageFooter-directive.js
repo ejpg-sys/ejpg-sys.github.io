@@ -173,21 +173,23 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         });
       }
       var _actionTermsReaderConfirm = function(subject) {
-        if (subject === 'privacy') {
-          termsService.setPrivacyConfirmDate();
-          _actionResourceReaderTermsHide();
-          if (termsService.getDataStorageConfirmDate() === null) {
-            setTimeout(function() {
-              _requiredActionDataStorageTermsReader();
-            }, 500);
+        setTimeout(function() {
+          if (subject === 'privacy') {
+            termsService.setPrivacyConfirmDate();
+            _actionResourceReaderTermsHide();
+            if (termsService.getDataStorageConfirmDate() === null) {
+              setTimeout(function() {
+                _requiredActionDataStorageTermsReader();
+              }, 500);
+            }
+          } else if (subject === 'terms') {
+            termsService.setDataStorageConfirmDate();
+            _actionResourceReaderTermsHide();
+            scope.termsConfirm = true;
+          } else {
+            $log.info('unrecognized value!');
           }
-        } else if (subject === 'terms') {
-          termsService.setDataStorageConfirmDate();
-          _actionResourceReaderTermsHide();
-          scope.termsConfirm = true;
-        } else {
-          $log.info('unrecognized value!');
-        }
+        }, 500);
       }
       scope.actionTermsReaderConfirm = _actionTermsReaderConfirm;
       _initializerTermsConfirm();
