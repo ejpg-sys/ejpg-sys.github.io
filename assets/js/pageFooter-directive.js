@@ -146,13 +146,15 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         _scrollableReaderConfirmEventListener();
       }
       var _initializerTermsConfirm = function() {
-        if(termsService.getPrivacyConfirmDate() === null) {
-          _requiredActionUserPrivacyTermsReader();
-        } else if (termsService.getDataStorageConfirmDate() === null) {
-          _requiredActionDataStorageTermsReader();
-        } else {
-          scope.termsConfirm = true;
-        }
+        setTimeout(function() {
+          if(termsService.getPrivacyConfirmDate() === null) {
+            _requiredActionUserPrivacyTermsReader();
+          } else if (termsService.getDataStorageConfirmDate() === null) {
+            _requiredActionDataStorageTermsReader();
+          } else {
+            scope.termsConfirm = true;
+          }
+        }, 500);
       }
       var _scrollableReaderConfirmEventListener = function() {
         const scrollableElement = document.getElementById('termsReaderScrollBodyId');
