@@ -16,6 +16,7 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link href="assets/css/bootstrap-carousel.css" rel="stylesheet"/>
   <link href="assets/css/bootstrap-breadcrumbs.css" rel="stylesheet"/>
+  <link href="assets/css/system-custom-style.css" rel="stylesheet"/>
   <script src="assets/js/system.js?v=1234567890"></script>
   <script src="assets/js/language-service.js?v=1234567890"></script>
   <script src="assets/js/pageHeader-directive.js?v=1234567890"></script>
@@ -29,5 +30,13 @@
 </head>
 <body ng-controller="ctrl">
   <developer></developer>
+  <div id="loadingRefId">
+    <div class="container-element">
+      <div class="spinner-border text-dark" role="status">
+        <span class="visually-hidden">Carregando...</span>
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
