@@ -9,6 +9,12 @@ system.directive('developer', ['$log', '$rootScope', function($log, $rootScope) 
     restrict: 'E',
     transclude: false,
     link: function(scope, element, attrs, ctrl, transcludeFn) {
+      var _initializer = function() {
+        setTimeout(function() {
+          document.getElementById('loadingRefId').remove();
+        }, 5000);
+      }
+      _initializer();
     }
   }
 }]);
