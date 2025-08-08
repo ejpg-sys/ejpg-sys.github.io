@@ -11,7 +11,7 @@ system.directive('developer', ['$log', '$rootScope', function($log, $rootScope) 
     link: function(scope, element, attrs, ctrl, transcludeFn) {
       var _initializer = function() {
         setTimeout(function() {
-          document.getElementById('loadingRefId').remove();
+          document.getElementById('loadingRefId').setAttribute('class', 'display-none');
         }, 5000);
       }
       _initializer();
