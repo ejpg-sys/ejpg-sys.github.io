@@ -160,7 +160,7 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         const scrollableElement = document.getElementById('termsReaderScrollBodyId');
         const scrollableEnd = document.getElementById('termsReaderScrollEndConfirm');
         const buttonConfirmElement = document.getElementById('termReaderBtnCofirmId');
-        scrollableElement.addEventListener('scroll', function(event) {
+        var scrollCallback = function(event) {
           const rectagleConst1ScrollableArea = scrollableElement.getBoundingClientRect();
           const rectagleConst2ScrollableEnd = scrollableEnd.getBoundingClientRect();
           if (rectagleConst1ScrollableArea.bottom > rectagleConst2ScrollableEnd.top) {
@@ -168,11 +168,13 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
           } else {
             buttonConfirmElement.setAttribute('disabled','');
           }
-        });
-        buttonConfirmElement.addEventListener('click', function(event) {
-          scrollableElement.removeEventListener('scroll');
+        }
+        var clickCallback = function(event) {
+          scrollableElement.removeEventListener('scroll',scrollCallback);
           buttonConfirmElement.setAttribute('disabled','');
-        });
+        }
+        scrollableElement.addEventListener('scroll', scrollCallback);
+        buttonConfirmElement.addEventListener('click', clickCallback);
       }
       var _actionTermsReaderConfirm = function(subject) {
         setTimeout(function() {
