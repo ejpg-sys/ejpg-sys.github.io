@@ -26,6 +26,8 @@ system.directive('pageHome', ['$log', 'languageService', '$rootScope', function(
         scope.service2Summary = 'WebServices Development by Custon-Built.';
         scope.service3Title = 'Web Front-End Development';
         scope.service3Summary = 'Web Front-End Development by Custon-Built.';
+        scope.service4Title = 'IT Consulting';
+        scope.service4Summary = 'Business support';
         // markegin insight
         scope.marketing1Title = 'Databases';
         scope.marketing1Text = 'Oracle DB, IBM DB2, SQL Server, PostgreSQL, MariaDB';
@@ -52,6 +54,8 @@ system.directive('pageHome', ['$log', 'languageService', '$rootScope', function(
         scope.service2Summary = 'Desenvolvimento de Serviços Web Sob-Encomenda.';
         scope.service3Title = 'Desenvolvimento de Front-End Web';
         scope.service3Summary = 'Desenvolvimento de Front-End Web Sob-Encomenda.';
+        scope.service4Title = 'Consultoria em TI';
+        scope.service4Summary = 'Apoio comercial';
         // markegin insight
         scope.marketing1Title = 'Banco de Dados';
         scope.marketing1Text = 'Oracle DB, IBM DB2, SQL Server, PostgreSQL, MariaDB';
