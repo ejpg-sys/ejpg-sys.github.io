@@ -5,8 +5,11 @@
 system.factory("contextService", function($log, $rootScope) {
   var _active = undefined;
   var _contexts = ['home','services','products','blog','about'];
-  var _pageHome = 'home';
-  var _pageBlog = 'blog';
+  var _pageHome     = _contexts[0];
+  var _pageServices = _contexts[1];
+  var _pageProducts = _contexts[2];
+  var _pageBlog     = _contexts[3];
+  var _pageAbout    = _contexts[4];
   var _eventUserPageContextBroadcast = function(context) {
     var found = false;
     if (context !== undefined) {
@@ -55,8 +58,12 @@ system.factory("contextService", function($log, $rootScope) {
   }
   _initializer();
   return {
+    contexts: _contexts,
     pageHome: _pageHome,
+    pageServices: _pageServices,
+    pageProducts: _pageProducts,
     pageBlog: _pageBlog,
+    pageAbout: _pageAbout,
     set: _set,
     get: _get
   };
