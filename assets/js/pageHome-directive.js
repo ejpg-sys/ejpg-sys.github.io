@@ -20,55 +20,59 @@ system.directive('pageHome', ['$log', 'languageService', '$rootScope', function(
       }
       var _contextEnglishLanguage = function() {
         // carousel
-        scope.service1Title = 'Microsservices Development';
-        scope.service1Summary = 'Development of autonomus services as complaince requirments from your organization';
-        scope.service2Title = 'Micro-Frontend Development';
-        scope.service2Summary = 'Development of domains micro-frotend for your business goals';
-        scope.service3Title = 'IT Consulting';
-        scope.service3Summary = 'Support in the exits products and the continuos delivery of your software manufacture';
+        scope.service1Title = 'Databases Development';
+        scope.service1Summary = 'Databases Development Custon-Built.';
+        scope.service2Title = 'WebServices Development';
+        scope.service2Summary = 'WebServices Development Custon-Built.';
+        scope.service3Title = 'Web Front-End Development';
+        scope.service3Summary = 'Web Front-End Development Custon-Built.';
+        scope.service4Title = 'IT Consulting';
+        scope.service4Summary = 'Business support';
         // markegin insight
-        scope.marketing1Title = 'Best Practices';
-        scope.marketing1Text = 'Applied The Industry Standards (DDD, BDD, TDD, Clean Architecture)';
-        scope.marketing2Title = 'Simplicity';
-        scope.marketing2Text = 'Little pieces of big products (microservices and micro-fronted by domain business requiriments)';
-        scope.marketing3Title = 'Continuos Delivery';
-        scope.marketing3Text = 'Delivery results in each sprint by the business goals priorities';
+        scope.marketing1Title = 'Databases';
+        scope.marketing1Text = 'Oracle DB, IBM DB2, SQL Server, PostgreSQL, MariaDB';
+        scope.marketing2Title = 'Web Services';
+        scope.marketing2Text = 'Jakarta Servlets and RS, Spring Framework, Apache Tomcat, Spring Boot';
+        scope.marketing3Title = 'Web Front-End';
+        scope.marketing3Text = 'JSP, JSF, jQuery, AngularJS';
         // highlight
-        scope.highlight1Title = 'Back-End Java Development';
-        scope.highlight1SubTitle = 'Use of Jakarta EE specifications and Spring Framework ecosystem';
-        scope.highlight1Text = 'Ready to all chalenges of your organization';
-        scope.highlight2Title = 'AngularJS Micro-Frontend Development';
-        scope.highlight2SubTitle = 'Best practices in products development for Mobile First';
-        scope.highlight2Text = 'In perfect partner with Bootstap, JQuery, and others Frontend technologies';
-        scope.highlight3Title = 'Agile Manangement';
-        scope.highlight3SubTitle = 'Continuos delivery in compaince with services calendar';
-        scope.highlight3Text = 'Your organization always in movement';
+        scope.highlight1Title = 'Databases';
+        scope.highlight1SubTitle = 'Modeling and Implementation of ILF.';
+        scope.highlight1Text = 'Design and Data Solution Custon-Built.';
+        scope.highlight2Title = 'WebServices';
+        scope.highlight2SubTitle = 'Integration and Data Processing by ILF, EIF, EQ, EI, and EO.';
+        scope.highlight2Text = 'Desing and Solution of WebServices Custon-Built.';
+        scope.highlight3Title = 'Front-End Web';
+        scope.highlight3SubTitle = 'Integration and Data Processing by EQ, EI, and EO.';
+        scope.highlight3Text = 'Desing and Solution of Front-End Web Custon-Built.';
       }
       var _contextPortuguesLanguage = function() {
         // carousel
-        scope.service1Title = 'Desenvolvimento de Microsserviços';
-        scope.service1Summary = 'Desenvolvimento de serviços autonomos de conformidade com requisitos de sua organização';
-        scope.service2Title = 'Desenvolvimento de Micro-Frontend';
-        scope.service2Summary = 'Desenvolvimento de micro-fronted para atender os objetivos de negocio da sua área comercial';
-        scope.service3Title = 'Consultoria em TI';
-        scope.service3Summary = 'Sustentação a produtos existentes e entrega continua em sua fábrica de software';
+        scope.service1Title = 'Desenvolvimento de Banco de Dados';
+        scope.service1Summary = 'Desenvolvimento de Banco de Dados Sob Encomenda.'
+        scope.service2Title = 'Desenvolvimento de Serviços Web';
+        scope.service2Summary = 'Desenvolvimento de Serviços Web Sob Encomenda.';
+        scope.service3Title = 'Desenvolvimento de Front-End Web';
+        scope.service3Summary = 'Desenvolvimento de Front-End Web Sob Encomenda.';
+        scope.service4Title = 'Consultoria em TI';
+        scope.service4Summary = 'Apoio comercial';
         // markegin insight
-        scope.marketing1Title = 'Melhores Práticas';
-        scope.marketing1Text = 'Aplicação de Padrões de Industria (DDD, BDD, TDD, Arquitetura Limpa)';
-        scope.marketing2Title = 'Simplicidade';
-        scope.marketing2Text = 'Pequenas peças de grandes produtos (microsserviços e micro-frontend por requisitos de domínio de negócio)';
-        scope.marketing3Title = 'Entrega Contínua';
-        scope.marketing3Text = 'Resultados em cada sprint por prioridades de objetivos de negócio';
+        scope.marketing1Title = 'Banco de Dados';
+        scope.marketing1Text = 'Oracle DB, IBM DB2, SQL Server, PostgreSQL, MariaDB';
+        scope.marketing2Title = 'Serviços Web';
+        scope.marketing2Text = 'Jakarta Servlets e RS, Spring Framework, Apache Tomcat, Spring Boot';
+        scope.marketing3Title = 'Front-End Web';
+        scope.marketing3Text = 'JSP, JSF, jQuery, AngularJS';
         // highlight
-        scope.highlight1Title = 'Desenvolvimento Back-End Java';
-        scope.highlight1SubTitle = 'Uso de especificações Jakarta EE e ecossistema Spring Framework';
-        scope.highlight1Text = 'Preparado para todos os desafios da sua organização';
-        scope.highlight2Title = 'Desenvolvimento de Micro-Frontend AngularJS';
-        scope.highlight2SubTitle = 'Melhores práticas de desenvolvimento de produtos Mobile First';
-        scope.highlight2Text = 'Em parceria perfeita com Bootstrap, JQuery, e outras tecnologias Frontend.';
-        scope.highlight3Title = 'Gestão Ágil';
-        scope.highlight3SubTitle = 'Entrega continua de acordo com calendario de serviços';
-        scope.highlight3Text = 'Sua organização sempre em movimento';
+        scope.highlight1Title = 'Banco de Dados';
+        scope.highlight1SubTitle = 'Modelagem e Implementação de ALI.';
+        scope.highlight1Text = 'Desenho e Solução de Dados Sob Encomenda.';
+        scope.highlight2Title = 'Serviços Web';
+        scope.highlight2SubTitle = 'Integrações e Processamento de Dados por ALI, AIE, CE, EE, e SE.';
+        scope.highlight2Text = 'Desenho e Solução de Serviços Web Sob Encomenda.';
+        scope.highlight3Title = 'Front-End Web';
+        scope.highlight3SubTitle = 'Integrações e Processamento de Dados por CE, EE, e SE.';
+        scope.highlight3Text = 'Desenho e Solução de Front-End Web Sob Encomenda.';
       }
       var _initializer = function() {
         if (languageService.get() === languageService.portugueseLanguage) {

@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope', 'contextService', function($log, $http, languageService, $rootScope, contextService) {
+system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope', 'contextService', 'termsService', function($log, $http, languageService, $rootScope, contextService, termsService) {
   return {
     templateUrl: '/assets/partials/pageFooter.html',
     replace: true,
@@ -30,16 +30,19 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         scope.blogSD = 'Software Developer'
         // products
         scope.products = 'Products';
-        scope.productSpecIntepreter = 'Specification Interpreter';
+        scope.productSpecIntepreter = 'Specification Interpreter Command';
         scope.productFpaWS = 'FPA WebService';
         scope.productSysWS = 'Systems WebService';
         scope.productBaseWS = 'Base WebService';
+        scope.productAdmWS = 'Admin WebService';
+        scope.productCgWS = 'Cloud Gateway WebService';
         // services
         scope.services = 'Services';
         scope.serviceITConsulting = 'IT Consulting';
         scope.serviceSoftwareManufacture = 'Software Manufacture';
         // terms reader action button name
         scope.termsReaderBtnCloseName = 'Close';
+        scope.termsReaderBtnConfirmName = 'Confirm';
       }
       var _contextPortuguesLanguage = function() {
         // about
@@ -53,16 +56,19 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         scope.blogSD = 'Desenvolvimento de Software'
         // products
         scope.products = 'Produtos';
-        scope.productSpecIntepreter = 'Interpretador de Especificações';
+        scope.productSpecIntepreter = 'Comando de Interpretação de Especificações';
         scope.productFpaWS = 'FPA Serviço Web';
         scope.productSysWS = 'Systems Serviço Web';
         scope.productBaseWS = 'Base Serviço Web';
+        scope.productAdmWS = 'Admin Serviço Web';
+        scope.productCgWS = 'Cloud Gateway Serviço Web';
         // services
         scope.services = 'Serviços';
         scope.serviceITConsulting = 'Consultoria em TI';
         scope.serviceSoftwareManufacture = 'Fábrica de Software';
         // terms reader action button name
         scope.termsReaderBtnCloseName = 'Fechar';
+        scope.termsReaderBtnConfirmName = 'Confirmar';
       }
       var _initializer = function() {
         if (languageService.get() === languageService.portugueseLanguage) {
@@ -129,6 +135,68 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         contextService.set(contextService.pageBlog);
       }
       scope.actionFooterBlogPageReader = _actionFooterBlogPageReader;
+      var _requiredActionUserPrivacyTermsReader = function() {
+        scope.readerTermConfirm = 'privacy';
+        _readerPrivacyTerms();
+        _scrollableReaderConfirmEventListener();
+      }
+      var _requiredActionDataStorageTermsReader = function() {
+        scope.readerTermConfirm = 'terms';
+        _readerDataStorageTerms();
+        _scrollableReaderConfirmEventListener();
+      }
+      var _initializerTermsConfirm = function() {
+        setTimeout(function() {
+          if(termsService.getPrivacyConfirmDate() === null) {
+            _requiredActionUserPrivacyTermsReader();
+          } else if (termsService.getDataStorageConfirmDate() === null) {
+            _requiredActionDataStorageTermsReader();
+          } else {
+            scope.termsConfirm = true;
+          }
+        }, 500);
+      }
+      var _scrollableReaderConfirmEventListener = function() {
+        const scrollableElement = document.getElementById('termsReaderScrollBodyId');
+        const scrollableEnd = document.getElementById('termsReaderScrollEndConfirm');
+        const buttonConfirmElement = document.getElementById('termReaderBtnCofirmId');
+        var scrollCallback = function(event) {
+          const rectagleConst1ScrollableArea = scrollableElement.getBoundingClientRect();
+          const rectagleConst2ScrollableEnd = scrollableEnd.getBoundingClientRect();
+          if (rectagleConst1ScrollableArea.bottom > rectagleConst2ScrollableEnd.top) {
+            buttonConfirmElement.removeAttribute('disabled');
+          } else {
+            buttonConfirmElement.setAttribute('disabled','');
+          }
+        }
+        var clickCallback = function(event) {
+          scrollableElement.removeEventListener('scroll',scrollCallback);
+          buttonConfirmElement.setAttribute('disabled','');
+        }
+        scrollableElement.addEventListener('scroll', scrollCallback);
+        buttonConfirmElement.addEventListener('click', clickCallback);
+      }
+      var _actionTermsReaderConfirm = function(subject) {
+        setTimeout(function() {
+          if (subject === 'privacy') {
+            termsService.setPrivacyConfirmDate();
+            _actionResourceReaderTermsHide();
+            if (termsService.getDataStorageConfirmDate() === null) {
+              setTimeout(function() {
+                _requiredActionDataStorageTermsReader();
+              }, 500);
+            }
+          } else if (subject === 'terms') {
+            termsService.setDataStorageConfirmDate();
+            _actionResourceReaderTermsHide();
+            scope.termsConfirm = true;
+          } else {
+            $log.info('unrecognized value!');
+          }
+        }, 500);
+      }
+      scope.actionTermsReaderConfirm = _actionTermsReaderConfirm;
+      _initializerTermsConfirm();
     }
   }
 }]);
