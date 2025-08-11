@@ -3,7 +3,7 @@
  * Copyright (c) 2024-2025 EJPG-SYS
  */
 system.factory("contextService", function($log, $rootScope) {
-  var _context = undefined;
+  var _active = undefined;
   var _pageHome = 'home';
   var _pageBlog = 'blog';
   var _eventUserPageContextBroadcast = function(context) {
@@ -17,20 +17,20 @@ system.factory("contextService", function($log, $rootScope) {
   }
   var _set = function(context) {
     if (context === undefined) {
-      _context = _pageHome;
+      _active = _pageHome;
       _eventUserPageContextBroadcast(_pageHome);
     } else if (context === _pageHome) {
-      _context = _pageHome;
+      _active = _pageHome;
       _eventUserPageContextBroadcast(_pageHome);
     } else if (context === _pageBlog) {
-      _context = _pageBlog;
+      _active = _pageBlog;
       _eventUserPageContextBroadcast(_pageBlog);
     } else {
       $log.error('unreconized value!');
     }
   }
   var _get = function() {
-    return _context;
+    return _active;
   }
   var _initializer = function() {
     _set(undefined);
