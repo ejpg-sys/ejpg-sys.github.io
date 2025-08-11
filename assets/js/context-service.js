@@ -4,15 +4,24 @@
  */
 system.factory("contextService", function($log, $rootScope) {
   var _active = undefined;
+  var _contexts = ['home','services','products','blog','about'];
   var _pageHome = 'home';
   var _pageBlog = 'blog';
   var _eventUserPageContextBroadcast = function(context) {
+    var found = false;
     if (context !== undefined) {
-      if (context === _pageHome || context === _pageBlog) {
-        $rootScope.$broadcast('contextEvent', context);
-      } else {
-        $log.info('unreconized value!');
+      let i = 0;
+      while (i < _contexts.length) {
+        if (context === _contexts[i]) {
+          $rootScope.$broadcast('contextEvent', context);
+          found = true;
+          break;
+        }
+		i = i + 1;
       }
+    }
+    if (!found) {
+      $log.info('unreconized value!');
     }
   }
   var _set = function(context) {
