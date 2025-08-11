@@ -25,17 +25,26 @@ system.factory("contextService", function($log, $rootScope) {
     }
   }
   var _set = function(context) {
+    var found = false;
     if (context === undefined) {
       _active = _pageHome;
       _eventUserPageContextBroadcast(_pageHome);
-    } else if (context === _pageHome) {
-      _active = _pageHome;
-      _eventUserPageContextBroadcast(_pageHome);
-    } else if (context === _pageBlog) {
-      _active = _pageBlog;
-      _eventUserPageContextBroadcast(_pageBlog);
-    } else {
-      $log.error('unreconized value!');
+      found = true;
+    }
+    if (!found && context !== undefined) {
+      let i = 0;
+      while (i < _contexts.length) {
+        if (context === _contexts[i]) {
+          _active = context;
+          _eventUserPageContextBroadcast(context);
+          found = true;
+          break;
+        }
+        i = i + 1;
+      }
+    }
+    if (!found) {
+      $log.info('unreconized value!');
     }
   }
   var _get = function() {
