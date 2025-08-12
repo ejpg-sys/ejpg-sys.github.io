@@ -4,18 +4,34 @@
  */
 system.factory("contextService", function($log, $rootScope) {
   var _active = undefined;
-  var _contexts = ['home','services','products','blog','about'];
-  var _pageHome     = _contexts[0];
-  var _pageServices = _contexts[1];
-  var _pageProducts = _contexts[2];
-  var _pageBlog     = _contexts[3];
-  var _pageAbout    = _contexts[4];
+  var _contexts = [
+   {
+     name: 'home'
+   },
+   {
+     name: 'services'
+   },
+   {
+     name: 'products'
+   },
+   {
+     name: 'blog'
+   },
+   {
+     name: 'about'
+   }
+  ];
+  var _pageHome     = _contexts[0].name;
+  var _pageServices = _contexts[1].name;
+  var _pageProducts = _contexts[2].name;
+  var _pageBlog     = _contexts[3].name;
+  var _pageAbout    = _contexts[4].name;
   var _eventUserPageContextBroadcast = function(context) {
     var found = false;
     if (context !== undefined) {
       let i = 0;
       while (i < _contexts.length) {
-        if (context === _contexts[i]) {
+        if (context === _contexts[i].name) {
           $rootScope.$broadcast('contextEvent', context);
           found = true;
           break;
@@ -37,7 +53,7 @@ system.factory("contextService", function($log, $rootScope) {
     if (!found && context !== undefined) {
       let i = 0;
       while (i < _contexts.length) {
-        if (context === _contexts[i]) {
+        if (context === _contexts[i].name) {
           _active = context;
           _eventUserPageContextBroadcast(context);
           found = true;
