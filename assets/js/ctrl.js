@@ -2,6 +2,6 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.controller("ctrl", function (languageService) {
+system.controller("ctrl", ['languageService', function (languageService) {
   languageService.userLanguagePreference(undefined);
-});
+}]);

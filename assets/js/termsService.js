@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.factory("termsService", function($log, $rootScope) {
+system.factory("termsService", ['$log', '$rootScope', function($log, $rootScope) {
   var _userDataAttrName = 'terms-user-privacy';
   var _systDataAttrName = 'terms-data-storage';
   var _getPrivacyConfirmDate = function() {
@@ -33,4 +33,4 @@ system.factory("termsService", function($log, $rootScope) {
     setPrivacyConfirmDate: _setPrivacyConfirmDate,
     setDataStorageConfirmDate: _setDataStorageConfirmDate
   };
-});
+}]);

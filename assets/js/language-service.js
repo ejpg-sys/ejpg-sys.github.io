@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.factory("languageService", function($log, $rootScope) {
+system.factory("languageService", ['$log', '$rootScope', function($log, $rootScope) {
   var _portugueseLanguage = 'pt';
   var _englishLanguage = 'en';
   var _get = function() {
@@ -67,4 +67,4 @@ system.factory("languageService", function($log, $rootScope) {
 	userLanguagePreferenceUpdate: _userLanguagePreferenceUpdate,
 	userLanguagePreference: _userLanguagePreference
   };
-});
+}]);
