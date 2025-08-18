@@ -20,6 +20,9 @@ module.exports = function(grunt) {
             'assets/js/developer-directive.js',
             'assets/js/ctrl.js'
           ]
+        },
+        options: {
+          banner: '/**\n * The MIT License (MIT)\n * Copyright (c) 2024-2025 EJPG-SYS\n */'
         }
       }
     },
