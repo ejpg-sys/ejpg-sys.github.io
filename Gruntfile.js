@@ -22,8 +22,20 @@ module.exports = function(grunt) {
           ]
         }
       }
+    },
+    cssmin: {
+      target: {
+        files: {
+          'ejpg-bootstrap-impl.min.css': [
+            'assets/css/bootstrap-carousel.css',
+            'assets/css/bootstrap-breadcrumbs.css',
+            'assets/css/system-custom-style.css'
+          ]
+        }
+      }
     }
   });
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.registerTask('default', ['uglify']);
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.registerTask('default', ['uglify', 'cssmin']);
 };
