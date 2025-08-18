@@ -11,22 +11,22 @@ system.factory("contextService", function($log, $rootScope) {
      visible: false
    },
    {
-     name: 'services'
+     name: 'services',
      action: undefined,
      visible: true
    },
    {
-     name: 'products'
+     name: 'products',
      action: undefined,
      visible: true
    },
    {
-     name: 'blog'
+     name: 'blog',
      action: undefined,
      visible: true
    },
    {
-     name: 'about'
+     name: 'about',
      action: undefined,
      visible: true
    }
