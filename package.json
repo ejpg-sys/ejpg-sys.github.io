@@ -1,0 +1,24 @@
+{
+  "name": "ejpg-sys.github.io",
+  "version": "1.0.0",
+  "description": "EJPG-SYS ON GITHUB.IO",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ejpg-sys/ejpg-sys.github.io.git"
+  },
+  "keywords": [
+    "Software",
+    "Development",
+    "Custon-Built"
+  ],
+  "author": "EJPG-SYS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ejpg-sys/ejpg-sys.github.io/issues"
+  },
+  "homepage": "https://github.com/ejpg-sys/ejpg-sys.github.io#readme"
+}
