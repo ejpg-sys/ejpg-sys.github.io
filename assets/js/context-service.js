@@ -6,19 +6,29 @@ system.factory("contextService", function($log, $rootScope) {
   var _active = undefined;
   var _contexts = [
    {
-     name: 'home'
+     name: 'home',
+     action: undefined,
+     visible: false
    },
    {
      name: 'services'
+     action: undefined,
+     visible: true
    },
    {
      name: 'products'
+     action: undefined,
+     visible: true
    },
    {
      name: 'blog'
+     action: undefined,
+     visible: true
    },
    {
      name: 'about'
+     action: undefined,
+     visible: true
    }
   ];
   var _pageHome     = _contexts[0].name;
