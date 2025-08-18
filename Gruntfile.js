@@ -8,7 +8,17 @@ module.exports = function(grunt) {
       target: {
         files: {
           'ejpg-angular-impl.min.js': [
-            'system.js'
+            'assets/js/system.js',
+            'assets/js/language-service.js',
+            'assets/js/pageHeader-directive.js',
+            'assets/js/pageFooter-directive.js',
+            'assets/js/blog-directive.js',
+            'assets/js/pageHome-directive.js',
+            'assets/js/context-service.js',
+            'assets/js/pageContext-directive.js',
+            'assets/js/termsService.js',
+            'assets/js/developer-directive.js',
+            'assets/js/ctrl.js'
           ]
         }
       }
