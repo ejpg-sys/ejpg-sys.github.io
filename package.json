@@ -23,6 +23,7 @@
   "homepage": "https://github.com/ejpg-sys/ejpg-sys.github.io#readme",
   "devDependencies": {
     "grunt": "^1.6.1",
+    "grunt-contrib-cssmin": "^5.0.0",
     "grunt-contrib-uglify": "^5.2.2"
   }
 }
