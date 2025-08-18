@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  * Copyright (c) 2024-2025 EJPG-SYS
  */
-system.factory("contextService", function($log, $rootScope) {
+system.factory("contextService", ['$log', '$rootScope', function($log, $rootScope) {
   var _active = undefined;
   var _contexts = [
    {
@@ -93,4 +93,4 @@ system.factory("contextService", function($log, $rootScope) {
     set: _set,
     get: _get
   };
-});
+}]);
