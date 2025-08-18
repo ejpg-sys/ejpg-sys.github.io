@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/ejpg-sys/ejpg-sys.github.io/issues"
   },
-  "homepage": "https://github.com/ejpg-sys/ejpg-sys.github.io#readme"
+  "homepage": "https://github.com/ejpg-sys/ejpg-sys.github.io#readme",
+  "devDependencies": {
+    "grunt": "^1.6.1"
+  }
 }
