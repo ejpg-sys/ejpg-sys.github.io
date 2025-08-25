@@ -209,7 +209,23 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         $http.get(licenseTermsTextRef)
           .then(function(response) {
             scope.resourceReaderTerms.subject = scope.licenseTerms;
-            scope.resourceReaderTerms.bodyText.lines = response.data.split('\n');
+            var lineSeparator = /^\s*$/;
+            var documentLines = response.data.split('\n');
+            var documentContext = [];
+            var i=0;
+            var lineForPush='';
+            while (i < documentLines.length) {
+              if (!lineSeparator.test(documentLines[i])) {
+                let withoutEnd = documentLines[i].replace(/\n/g, '');
+                lineForPush += withoutEnd;
+              } else {
+                documentContext.push(lineForPush);
+                documentContext.push(documentLines[i]);
+                lineForPush='';
+              }
+              i=i+1;
+            }
+            scope.resourceReaderTerms.bodyText.lines = documentContext;
             $('#readerTermsModalCenteredScrollable').modal('toggle');
           }, function(error) {
             $log.error(error);
