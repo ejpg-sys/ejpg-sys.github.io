@@ -1,5 +1,5 @@
 /**
- * The MIT License (MIT)
+ * Attribution-NonCommercial-NoDerivatives 4.0 International
  * Copyright (c) 2024-2025 EJPG-SYS
  */
 system.directive('blog', ['$log', '$http', 'languageService', '$rootScope', function($log, $http, languageService, $rootScope) {
