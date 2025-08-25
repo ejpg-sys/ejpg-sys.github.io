@@ -1,5 +1,5 @@
 /**
- * The MIT License (MIT)
+ * Attribution-NonCommercial-NoDerivatives 4.0 International
  * Copyright (c) 2024-2025 EJPG-SYS
  */
 module.exports = function(grunt) {
@@ -7,7 +7,9 @@ module.exports = function(grunt) {
     uglify: {
       target: {
         options: {
-          banner: '/**\n * The MIT License (MIT)\n * Copyright (c) 2024-2025 EJPG-SYS\n */'
+          banner: '/**\n * Attribution-NonCommercial-NoDerivatives' +
+            ' 4.0 International\n * Copyright (c) 2024-2025 EJPG-SYS' +
+            '\n */'
         },
         files: {
           'ejpg-angular-impl.min.js': [
