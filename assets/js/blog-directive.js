@@ -298,9 +298,9 @@ system.directive('blog', ['$log', '$http', 'languageService', '$rootScope', func
         scope.resourceReader.titleText = scope.license;
         var licenseTextRef = undefined;
         if (languageService.get() === languageService.portugueseLanguage) {
-          licenseTextRef = '/license-pt.txt';
+          licenseTextRef = '/license-blog-pt.txt';
         } else {
-          licenseTextRef = '/license.txt';
+          licenseTextRef = '/license-blog.txt';
         }
         $http.get(licenseTextRef)
           .then(function(response) {
