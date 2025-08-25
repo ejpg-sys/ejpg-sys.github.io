@@ -43,6 +43,8 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         // terms reader action button name
         scope.termsReaderBtnCloseName = 'Close';
         scope.termsReaderBtnConfirmName = 'Confirm';
+        // license term
+        scope.licenseTerms='License';
       }
       var _contextPortuguesLanguage = function() {
         // about
@@ -69,6 +71,8 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
         // terms reader action button name
         scope.termsReaderBtnCloseName = 'Fechar';
         scope.termsReaderBtnConfirmName = 'Confirmar';
+        // license terms
+        scope.licenseTerms='Licença';
       }
       var _initializer = function() {
         if (languageService.get() === languageService.portugueseLanguage) {
@@ -195,6 +199,23 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
           }
         }, 500);
       }
+      var _actionLicenseReader = function() {
+        var licenseTermsTextRef = undefined;
+        if (languageService.get() === languageService.portugueseLanguage) {
+          licenseTermsTextRef = '/license-pt.txt';
+        } else {
+          licenseTermsTextRef = '/license.txt';
+        }
+        $http.get(licenseTermsTextRef)
+          .then(function(response) {
+            scope.resourceReaderTerms.subject = scope.licenseTerms;
+            scope.resourceReaderTerms.bodyText.lines = response.data.split('\n');
+            $('#readerTermsModalCenteredScrollable').modal('toggle');
+          }, function(error) {
+            $log.error(error);
+          });
+      }
+      scope.actionLicenseReader = _actionLicenseReader;
       scope.actionTermsReaderConfirm = _actionTermsReaderConfirm;
       _initializerTermsConfirm();
     }
