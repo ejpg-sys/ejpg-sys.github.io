@@ -295,20 +295,24 @@ system.directive('blog', ['$log', '$http', 'languageService', '$rootScope', func
         $('#readerModalDefault').modal('hide');
       }
       scope.actionResourceReaderLicense = function() {
-        scope.resourceReader.titleText = scope.license;
-        var licenseTextRef = undefined;
-        if (languageService.get() === languageService.portugueseLanguage) {
-          licenseTextRef = '/license-blog-pt.txt';
+        if (0 === 0) {
+          $log.warn('this function was removed in the previous release');
         } else {
-          licenseTextRef = '/license-blog.txt';
+          scope.resourceReader.titleText = scope.license;
+          var licenseTextRef = undefined;
+          if (languageService.get() === languageService.portugueseLanguage) {
+            licenseTextRef = '/blog-license-pt.txt';
+          } else {
+            licenseTextRef = '/blog-license.txt';
+          }
+          $http.get(licenseTextRef)
+            .then(function(response) {
+              scope.resourceReader.bodyText.lines = response.data.split('\n');
+              $('#readerModalFullscreen').modal('toggle');
+            }, function(error) {
+              $log.error(error);
+            });
         }
-        $http.get(licenseTextRef)
-          .then(function(response) {
-            scope.resourceReader.bodyText.lines = response.data.split('\n');
-            $('#readerModalFullscreen').modal('toggle');
-          }, function(error) {
-            $log.error(error);
-          });
       }
       scope.actionResourceReaderOpen = function(resource) {
         if (resource.article_id !== undefined) {
