@@ -7,4 +7,5 @@
 # Copyright: (c) 2024-2025 EJPG-SYS
 # License: Attribution-NonCommercial-NoDerivatives 4.0 International
 openssl dgst -sha384 -binary ejpg-angular-impl.min.js | openssl base64 -A
-openssl dgst -sha384 -binary ejpg-bootstrap-impl.min.css | openssl base64 -A
+openssl dgst -sha384 -binary ejpg-style-impl.min.css | openssl base64 -A
+openssl dgst -sha384 -binary bootstrap-template.min.css | openssl base64 -A

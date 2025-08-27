@@ -29,12 +29,18 @@ module.exports = function(grunt) {
       }
     },
     cssmin: {
-      target: {
+      targetCustom: {
         files: {
-          'ejpg-bootstrap-impl.min.css': [
-            'assets/css/bootstrap-carousel.css',
-            'assets/css/bootstrap-breadcrumbs.css',
+          'ejpg-style-impl.min.css': [
             'assets/css/system-custom-style.css'
+          ]
+        }
+      },
+      targetTemplate: {
+        files: {
+          'bootstrap-template.min.css': [
+            'assets/css/bootstrap-carousel.css',
+            'assets/css/bootstrap-breadcrumbs.css'
           ]
         }
       }
