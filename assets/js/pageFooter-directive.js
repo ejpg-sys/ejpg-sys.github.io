@@ -217,7 +217,7 @@ system.directive('pageFooter', ['$log', '$http', 'languageService', '$rootScope'
             while (i < documentLines.length) {
               if (!lineSeparator.test(documentLines[i])) {
                 let withoutEnd = documentLines[i].replace(/\n/g, '');
-                lineForPush += withoutEnd;
+                lineForPush += ' ' + withoutEnd;
               } else {
                 documentContext.push(lineForPush);
                 documentContext.push(documentLines[i]);
